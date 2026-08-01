@@ -147,18 +147,65 @@ GS.DB = (function () {
   }
 
   function addCustomAsset(asset) {
-    if (!asset.id) asset.id = "custom_" + Date.now() + "_" + Math.floor(Math.random() * 1000);
-    asset.custom = true;
-    state.customAssets.unshift(asset);
-    state.assets.unshift(asset);
-    writeJSON(customPath(), state.customAssets);
-    return asset;
+    try {
+      if (!asset || !asset.name || !asset.category) return null;
+      if (!asset.id) asset.id = "custom_" + Date.now() + "_" + Math.floor(Math.random() * 1000);
+      var root = extensionRoot();
+      var customDir = path.join(root, "Assets", "Custom Audio");
+
+      if (asset.type === "audio") {
+        if (!asset.sourceFile || !fs.existsSync(asset.sourceFile)) return null;
+        if (!fs.existsSync(customDir)) fs.mkdirSync(customDir, { recursive: true });
+        var sourceName = path.basename(asset.sourceFile).replace(/[^a-zA-Z0-9._ -]/g, "_");
+        var destination = path.join(customDir, asset.id + "_" + sourceName);
+        fs.copyFileSync(asset.sourceFile, destination);
+        asset.file = destination;
+        delete asset.sourceFile;
+      }
+
+      if (asset.type === "shake") {
+        var shakeDir = path.join(root, "Config", "Custom Shakes");
+        if (!fs.existsSync(shakeDir)) fs.mkdirSync(shakeDir, { recursive: true });
+        asset.file = path.join(shakeDir, asset.id + ".json");
+        writeJSON(asset.file, { name: asset.name, category: asset.category, params: asset.params || {} });
+      }
+
+      asset.custom = true;
+      state.customAssets.unshift(asset);
+      state.assets.unshift(asset);
+      writeJSON(customPath(), state.customAssets);
+      return asset;
+    } catch (e) {
+      console.error("JV.DB custom asset import failed", e);
+      return null;
+    }
   }
 
   function deleteCustomAsset(id) {
+    var removed = state.customAssets.filter(function (a) { return a.id === id; })[0];
+    if (removed && removed.file && fs.existsSync(removed.file)) {
+      try { fs.unlinkSync(removed.file); } catch (e) { console.warn("JV.DB could not remove custom file", e); }
+    }
     state.customAssets = state.customAssets.filter(function (a) { return a.id !== id; });
     state.assets = state.assets.filter(function (a) { return a.id !== id; });
     writeJSON(customPath(), state.customAssets);
+  }
+
+  function updateCustomAsset(id, changes) {
+    var asset = state.customAssets.filter(function (a) { return a.id === id; })[0];
+    if (!asset || !changes) return null;
+    if (changes.name) asset.name = String(changes.name).trim();
+    if (changes.category) asset.category = String(changes.category).trim();
+    var live = state.assets.filter(function (a) { return a.id === id; })[0];
+    if (live) {
+      live.name = asset.name;
+      live.category = asset.category;
+    }
+    writeJSON(customPath(), state.customAssets);
+    if (asset.type === "shake" && asset.file) {
+      writeJSON(asset.file, { name: asset.name, category: asset.category, params: asset.params || {} });
+    }
+    return asset;
   }
 
   function getCustomAssets() {
@@ -181,6 +228,7 @@ GS.DB = (function () {
     markRecent: markRecent,
     addCustomAsset: addCustomAsset,
     deleteCustomAsset: deleteCustomAsset,
+    updateCustomAsset: updateCustomAsset,
     getCustomAssets: getCustomAssets
   };
 })();

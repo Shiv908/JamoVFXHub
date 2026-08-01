@@ -12,6 +12,8 @@ GS.UI = (function () {
   var playingAssetId = null;
   var previewTimer = null;
   var viewMode = "list"; // "list" | "grid"
+  var bulkAudioQueue = [];
+  var onboardingStep = 0;
 
   var SHAKE_DEFAULTS = {
     intensity: 20, duration: 0.6, scale: 4, rotation: 2, frequency: 12,
@@ -115,7 +117,10 @@ GS.UI = (function () {
     else if (cat === "__recent") { title = "Recent"; assets = GS.DB.getRecent(); }
     else if (cat === "__downloads") { renderDownloads(); return; }
     else if (cat === "__updates") { renderUpdates(); return; }
-    else { assets = GS.DB.getByCategory(cat); }
+    else {
+      assets = GS.DB.getByCategory(cat);
+      if (!assets.length) assets = GS.DB.getByGroup(cat);
+    }
 
     el("contentTitle").textContent = title;
     renderGrid(assets);
@@ -136,19 +141,102 @@ GS.UI = (function () {
   function closeAssetStudio() {
     var modal = el("assetStudioModal");
     if (modal) modal.style.display = "none";
+    stopLiveShakeSimulation();
+  }
+
+  var graphHistory = [];
+  function drawMotionGraph(dx, dy) {
+    var graphCanvas = el("studioGraphCanvas");
+    if (!graphCanvas) return;
+    var gCtx = graphCanvas.getContext("2d");
+    var gw = graphCanvas.width = 280;
+    var gh = graphCanvas.height = 35;
+
+    graphHistory.push({ x: dx, y: dy });
+    if (graphHistory.length > 80) graphHistory.shift();
+
+    gCtx.clearRect(0, 0, gw, gh);
+
+    // Center line
+    gCtx.strokeStyle = "rgba(255, 255, 255, 0.08)";
+    gCtx.lineWidth = 1;
+    gCtx.beginPath();
+    gCtx.moveTo(0, gh / 2); gCtx.lineTo(gw, gh / 2);
+    gCtx.stroke();
+
+    // Plot X Curve (Cyan)
+    gCtx.strokeStyle = "#00F2FE";
+    gCtx.lineWidth = 1.5;
+    gCtx.beginPath();
+    for (var i = 0; i < graphHistory.length; i++) {
+      var px = (i / 80) * gw;
+      var py = gh / 2 + (graphHistory[i].x * 0.4);
+      if (i === 0) gCtx.moveTo(px, py);
+      else gCtx.lineTo(px, py);
+    }
+    gCtx.stroke();
+
+    // Plot Y Curve (Violet)
+    gCtx.strokeStyle = "#7F00FF";
+    gCtx.lineWidth = 1.2;
+    gCtx.beginPath();
+    for (var j = 0; j < graphHistory.length; j++) {
+      var px2 = (j / 80) * gw;
+      var py2 = gh / 2 + (graphHistory[j].y * 0.4);
+      if (j === 0) gCtx.moveTo(px2, py2);
+      else gCtx.lineTo(px2, py2);
+    }
+    gCtx.stroke();
   }
 
   function startLiveStudioShake() {
     var canvas = el("studioShakeCanvas");
     if (!canvas) return;
+    var presetBase = parseInt((el("studioPresetBase") && el("studioPresetBase").value) || "3", 10);
     var p = {
-      intensity: parseFloat(el("studioIntensity").value || 40),
-      duration: parseFloat(el("studioDuration").value || 0.6),
-      scale: parseFloat(el("studioScale").value || 10),
-      rotation: parseFloat(el("studioRotation").value || 6),
-      frequency: 14
+      intensity: parseFloat((el("studioIntensity") && el("studioIntensity").value) || 45),
+      duration: parseFloat((el("studioDuration") && el("studioDuration").value) || 0.8),
+      scale: parseFloat((el("studioScale") && el("studioScale").value) || 15),
+      rotation: parseFloat((el("studioRotation") && el("studioRotation").value) || 10),
+      frequency: parseFloat((el("studioFrequency") && el("studioFrequency").value) || 18),
+      rgb: parseFloat((el("studioRgb") && el("studioRgb").value) || 40),
+      easing: (el("studioEasingCurve") && el("studioEasingCurve").value) || "expo"
     };
-    startLiveShakeSimulation(canvas, p, 1);
+    startLiveShakeSimulation(canvas, p, presetBase, drawMotionGraph);
+  }
+
+  function exportPresetPack() {
+    var custom = GS.DB.getCustomAssets();
+    if (!custom || !custom.length) {
+      toast("No custom assets to export!", "err");
+      return;
+    }
+    var jsonStr = JSON.stringify(custom, null, 2);
+    var blob = new Blob([jsonStr], { type: "application/json" });
+    var url = URL.createObjectURL(blob);
+    var a = document.createElement("a");
+    a.href = url;
+    a.download = "JamoVFX_Custom_Presets_" + Date.now() + ".json";
+    a.click();
+    toast("Exported Custom Presets Pack!", "ok");
+  }
+
+  function importPresetPack(file) {
+    var reader = new FileReader();
+    reader.onload = function (e) {
+      try {
+        var pack = JSON.parse(e.target.result);
+        if (Array.isArray(pack)) {
+          pack.forEach(function (item) { GS.DB.addCustomAsset(item); });
+          toast("Imported " + pack.length + " presets!", "ok");
+          renderCustomAssetsManagerList();
+          refreshAll();
+        }
+      } catch (err) {
+        toast("Invalid preset pack file!", "err");
+      }
+    };
+    reader.readAsText(file);
   }
 
   function renderCustomAssetsManagerList() {
@@ -168,7 +256,22 @@ GS.UI = (function () {
           '<div style="font-weight:700; color:var(--text-hi);">' + escapeHTML(ca.name) + '</div>' +
           '<div style="font-size:9px; color:var(--text-mid);">' + escapeHTML(ca.category) + ' (' + (ca.type || "custom") + ')</div>' +
         '</div>' +
-        '<button class="delete-btn">🗑️ Delete</button>';
+        '<div class="custom-asset-actions"><button class="edit-btn">EDIT</button><button class="delete-btn">DELETE</button></div>';
+
+      item.querySelector(".edit-btn").onclick = function () {
+        var nextName = window.prompt("Asset name", ca.name);
+        if (nextName === null) return;
+        var nextCategory = window.prompt("Category", ca.category);
+        if (nextCategory === null) return;
+        if (!nextName.trim() || !nextCategory.trim()) {
+          toast("Name and category are required", "err");
+          return;
+        }
+        GS.DB.updateCustomAsset(ca.id, { name: nextName, category: nextCategory });
+        toast("Custom asset updated", "ok");
+        renderCustomAssetsManagerList();
+        refreshAll();
+      };
 
       item.querySelector(".delete-btn").onclick = function () {
         GS.DB.deleteCustomAsset(ca.id);
@@ -178,6 +281,158 @@ GS.UI = (function () {
       };
       list.appendChild(item);
     });
+  }
+
+  // ---------------- Bulk Builder & Intelligent Organization ----------------
+  function cleanBulkName(fileName) {
+    return String(fileName || "")
+      .replace(/\.[^/.]+$/, "")
+      .replace(/[._-]+/g, " ")
+      .replace(/\b(ES|SFX|SFXPRODUCER|SOUND EFFECT)\b/gi, "")
+      .replace(/\s+/g, " ")
+      .trim()
+      .replace(/\b\w/g, function (c) { return c.toUpperCase(); });
+  }
+
+  function inferBulkMetadata(file) {
+    var raw = String(file.name || "").toLowerCase();
+    var rules = [
+      { category: "Impacts", words: ["impact", "hit", "slam", "crash", "boom", "punch"] },
+      { category: "Whooshes", words: ["whoosh", "swoosh", "swish", "sweep", "pass"] },
+      { category: "Risers", words: ["riser", "build", "uplift", "ascend", "rise"] },
+      { category: "Weapons", words: ["gun", "shot", "reload", "bullet", "weapon", "rifle"] },
+      { category: "Vehicles", words: ["car", "engine", "vehicle", "drift", "skid", "horn"] },
+      { category: "UI", words: ["click", "button", "beep", "ui", "interface", "notification"] },
+      { category: "Glitch", words: ["glitch", "digital", "error", "static", "data"] },
+      { category: "Foley", words: ["cloth", "footstep", "paper", "door", "object", "metal"] }
+    ];
+    var match = rules.filter(function (rule) {
+      return rule.words.some(function (word) { return raw.indexOf(word) !== -1; });
+    })[0];
+    var category = match ? match.category : "My Custom Sounds";
+    var tags = [category.toLowerCase()];
+    if (raw.indexOf("long") !== -1) tags.push("long");
+    if (raw.indexOf("short") !== -1) tags.push("short");
+    if (raw.indexOf("reverse") !== -1) tags.push("reverse");
+    if (raw.indexOf("heavy") !== -1) tags.push("heavy");
+    return { name: cleanBulkName(file.name), category: category, tags: tags };
+  }
+
+  function renderBulkQueue() {
+    var list = el("bulkAudioQueue");
+    var status = el("bulkQueueStatus");
+    var importBtn = el("bulkImportBtn");
+    if (!list || !status || !importBtn) return;
+    status.textContent = bulkAudioQueue.length ? bulkAudioQueue.length + " file" + (bulkAudioQueue.length === 1 ? "" : "s") + " ready" : "No files queued";
+    importBtn.disabled = !bulkAudioQueue.length;
+    if (!bulkAudioQueue.length) {
+      list.innerHTML = '<div class="bulk-empty">Your import queue will appear here.</div>';
+      return;
+    }
+    list.innerHTML = "";
+    bulkAudioQueue.forEach(function (item, index) {
+      var row = document.createElement("div");
+      row.className = "bulk-queue-item";
+      row.innerHTML =
+        '<span class="bulk-file-type">AUDIO</span>' +
+        '<div class="bulk-file-name" title="' + escapeHTML(item.file.name) + '">' + escapeHTML(item.file.name) + '</div>' +
+        '<input class="bulk-name-input" value="' + escapeHTML(item.name) + '" aria-label="Asset name" />' +
+        '<select class="bulk-category-input" aria-label="Asset category">' +
+          ["Impacts", "Whooshes", "Risers", "Weapons", "Vehicles", "UI", "Glitch", "Foley", "My Custom Sounds"].map(function (category) {
+            return '<option' + (category === item.category ? " selected" : "") + '>' + category + '</option>';
+          }).join("") +
+        '</select>' +
+        '<button class="bulk-remove-btn" title="Remove from queue">×</button>';
+      row.querySelector(".bulk-name-input").addEventListener("input", function (e) { item.name = e.target.value; });
+      row.querySelector(".bulk-category-input").addEventListener("change", function (e) { item.category = e.target.value; });
+      row.querySelector(".bulk-remove-btn").addEventListener("click", function () {
+        bulkAudioQueue.splice(index, 1);
+        renderBulkQueue();
+      });
+      list.appendChild(row);
+    });
+  }
+
+  function queueBulkAudio(files) {
+    Array.prototype.forEach.call(files || [], function (file) {
+      var ext = (file.name.match(/\.([a-z0-9]+)$/i) || ["", ""])[1].toLowerCase();
+      if (["wav", "mp3", "aiff", "aif", "m4a", "ogg"].indexOf(ext) === -1) return;
+      var meta = inferBulkMetadata(file);
+      bulkAudioQueue.push({ file: file, name: meta.name, category: meta.category, tags: meta.tags });
+    });
+    renderBulkQueue();
+  }
+
+  function organizeBulkQueue() {
+    bulkAudioQueue.forEach(function (item) {
+      var meta = inferBulkMetadata(item.file);
+      item.name = meta.name;
+      item.category = meta.category;
+      item.tags = meta.tags;
+    });
+    renderBulkQueue();
+    toast(bulkAudioQueue.length ? "Library metadata organized" : "Add files to organize first", bulkAudioQueue.length ? "ok" : "err");
+  }
+
+  function importBulkQueue() {
+    if (!bulkAudioQueue.length) return;
+    var imported = 0;
+    var failed = 0;
+    bulkAudioQueue.forEach(function (item) {
+      var sourceFile = item.file.path || item.file.name;
+      var asset = GS.DB.addCustomAsset({
+        id: "audio_bulk_" + Date.now() + "_" + Math.floor(Math.random() * 100000),
+        name: item.name || cleanBulkName(item.file.name),
+        category: item.category || "My Custom Sounds",
+        group: "Custom Audio",
+        type: "audio",
+        kind: "audio",
+        tags: item.tags || [],
+        keywords: item.tags || [],
+        sourceFile: sourceFile,
+        length: ""
+      });
+      if (asset) imported++;
+      else failed++;
+    });
+    bulkAudioQueue = [];
+    renderBulkQueue();
+    refreshAll();
+    selectCategory("__custom");
+    toast(imported + " asset" + (imported === 1 ? "" : "s") + " added" + (failed ? "; " + failed + " failed" : ""), failed ? "err" : "ok");
+  }
+
+  // ---------------- First-run Onboarding ----------------
+  function finishOnboarding() {
+    try { localStorage.setItem("jamovfx.onboarding.complete", "1"); } catch (e) {}
+    var overlay = el("onboardingOverlay");
+    if (overlay) overlay.style.display = "none";
+  }
+
+  function renderOnboardingStep() {
+    var overlay = el("onboardingOverlay");
+    if (!overlay) return;
+    overlay.querySelectorAll(".onboarding-step").forEach(function (step) {
+      step.classList.toggle("active", parseInt(step.dataset.onboardingStep, 10) === onboardingStep);
+    });
+    overlay.querySelectorAll(".onboarding-progress span").forEach(function (dot, index) {
+      dot.classList.toggle("active", index === onboardingStep);
+      dot.classList.toggle("done", index < onboardingStep);
+    });
+    var next = el("nextOnboardingBtn");
+    if (next) next.textContent = onboardingStep === 2 ? "OPEN MY LIBRARY" : "CONTINUE";
+  }
+
+  function openOnboardingIfNeeded() {
+    var complete = false;
+    try { complete = localStorage.getItem("jamovfx.onboarding.complete") === "1"; } catch (e) {}
+    if (complete) return;
+    var overlay = el("onboardingOverlay");
+    if (overlay) {
+      onboardingStep = 0;
+      renderOnboardingStep();
+      setTimeout(function () { overlay.style.display = "flex"; }, 450);
+    }
   }
 
   // ---------------- Home Overview ----------------
@@ -191,9 +446,9 @@ GS.UI = (function () {
     grid.className = "card-grid list-view";
     grid.innerHTML = "";
 
-    // Show top 50 recent / featured assets in high-density list
-    var sample = all.slice(0, 100);
-    renderGrid(sample);
+    // Home is the complete library view. Filtering and scrolling remain fast
+    // because rows are lightweight DOM nodes.
+    renderGrid(all);
   }
 
   // ---------------- Grid & List rendering ----------------
@@ -341,8 +596,22 @@ GS.UI = (function () {
       inspectShake(asset);
     } else {
       inspectAudio(asset);
-      playAudio(asset);
+      if (GS.Settings.get("autoPreview") !== false) playAudio(asset);
     }
+  }
+
+  function openSettings() {
+    var modal = el("settingsModal");
+    if (!modal) return;
+    el("settingAutoPreview").checked = GS.Settings.get("autoPreview") !== false;
+    el("settingVolume").value = GS.Settings.get("volume");
+    el("settingMaxRecent").value = GS.Settings.get("maxRecent");
+    modal.style.display = "flex";
+  }
+
+  function closeSettings() {
+    var modal = el("settingsModal");
+    if (modal) modal.style.display = "none";
   }
 
   function setPlayingState(asset, isPlaying) {
@@ -463,8 +732,15 @@ GS.UI = (function () {
   // ---------------- Inspector Drawer (Shake preset sliders & Real Camera Viewfinder Simulator) ----------------
   var currentShakeRaf = null;
 
+  function stopLiveShakeSimulation() {
+    if (currentShakeRaf) {
+      cancelAnimationFrame(currentShakeRaf);
+      currentShakeRaf = null;
+    }
+  }
+
   function startLiveShakeSimulation(canvas, p, presetNum) {
-    if (currentShakeRaf) cancelAnimationFrame(currentShakeRaf);
+    stopLiveShakeSimulation();
     if (!canvas) return;
     var ctx = canvas.getContext("2d");
     var w = canvas.width = 230;
@@ -657,6 +933,7 @@ GS.UI = (function () {
       var rgbSplit = (speed > 4 || num === 3 || num === 8 || num === 10 || num === 13) ? (speed * 0.25 + 1) : 0;
 
       renderScene(ctx, dx, dy, dr, ds, rgbSplit);
+      if (typeof onStep === "function") onStep(dx, dy);
 
       currentShakeRaf = requestAnimationFrame(step);
     }
@@ -701,6 +978,7 @@ GS.UI = (function () {
   function inspectShake(asset) {
     var drawer = el("inspectorDrawer");
     if (!drawer) return;
+    stopLiveShakeSimulation();
     drawer.style.display = "flex";
     var titleEl = el("inspectorTitle");
     if (titleEl) titleEl.textContent = asset.name;
@@ -790,6 +1068,7 @@ GS.UI = (function () {
   function closeInspector() {
     var drawer = el("inspectorDrawer");
     if (drawer) drawer.style.display = "none";
+    stopLiveShakeSimulation();
   }
 
   // ---------------- Downloads & Updates views ----------------
@@ -809,6 +1088,22 @@ GS.UI = (function () {
     el("toggleSidebarBtn").addEventListener("click", toggleSidebar);
     el("closeSidebarBtn").addEventListener("click", closeSidebar);
 
+    // Static navigation items need explicit wiring; dynamically generated
+    // category items are wired in renderSidebar().
+    document.querySelectorAll(".sidebar-item[data-cat]").forEach(function (item) {
+      item.addEventListener("click", function () {
+        selectCategory(item.dataset.cat);
+        closeSidebar();
+      });
+    });
+    document.querySelectorAll(".pill[data-cat]").forEach(function (pill) {
+      pill.addEventListener("click", function () {
+        document.querySelectorAll(".pill").forEach(function (p) { p.classList.remove("active"); });
+        pill.classList.add("active");
+        selectCategory(pill.dataset.cat);
+      });
+    });
+
     var reloadBtn = el("reloadPanelBtn");
     if (reloadBtn) {
       reloadBtn.addEventListener("click", function () {
@@ -822,6 +1117,27 @@ GS.UI = (function () {
         e.preventDefault();
         location.reload(true);
       }
+      if (e.key === "Escape") {
+        closeSidebar();
+        closeInspector();
+        closeAssetStudio();
+        closeSettings();
+      }
+      if (e.key === "/" && document.activeElement !== el("searchInput")) {
+        e.preventDefault();
+        el("searchInput").focus();
+      }
+    });
+
+    var studioModal = el("assetStudioModal");
+    if (studioModal) {
+      studioModal.addEventListener("click", function (e) {
+        if (e.target === studioModal) closeAssetStudio();
+      });
+    }
+    var settingsModal = el("settingsModal");
+    if (settingsModal) settingsModal.addEventListener("click", function (e) {
+      if (e.target === settingsModal) closeSettings();
     });
 
     el("viewToggleBtn").addEventListener("click", function () {
@@ -853,6 +1169,23 @@ GS.UI = (function () {
       });
     }
 
+    var settingsButton = el("settingsBtn");
+    if (settingsButton) settingsButton.addEventListener("click", openSettings);
+    var closeSettingsButton = el("closeSettingsBtn");
+    if (closeSettingsButton) closeSettingsButton.addEventListener("click", closeSettings);
+    var autoPreviewSetting = el("settingAutoPreview");
+    if (autoPreviewSetting) autoPreviewSetting.addEventListener("change", function (e) { GS.Settings.set("autoPreview", e.target.checked); });
+    var settingVolume = el("settingVolume");
+    if (settingVolume) settingVolume.addEventListener("input", function (e) { GS.Player.setVolume(e.target.value); });
+    var maxRecentSetting = el("settingMaxRecent");
+    if (maxRecentSetting) maxRecentSetting.addEventListener("change", function (e) { GS.Settings.set("maxRecent", Math.max(5, Math.min(200, parseInt(e.target.value, 10) || 40))); });
+    var resetSettings = el("resetSettingsBtn");
+    if (resetSettings) resetSettings.addEventListener("click", function () {
+      GS.Settings.reset();
+      openSettings();
+      toast("Preferences reset", "ok");
+    });
+
     el("searchInput").addEventListener("input", function (e) {
       var q = e.target.value;
       if (!q.trim()) { selectCategory(currentCategory); return; }
@@ -880,28 +1213,134 @@ GS.UI = (function () {
       });
     });
 
-    ["Intensity", "Duration", "Scale", "Rotation"].forEach(function (k) {
+    var bulkInput = el("bulkAudioInput");
+    if (bulkInput) bulkInput.addEventListener("change", function (e) { queueBulkAudio(e.target.files); });
+    var bulkOrganize = el("bulkOrganizeBtn");
+    if (bulkOrganize) bulkOrganize.addEventListener("click", organizeBulkQueue);
+    var bulkImport = el("bulkImportBtn");
+    if (bulkImport) bulkImport.addEventListener("click", importBulkQueue);
+
+    // ---------------- 100X PRO MOTION STUDIO EVENTS ----------------
+    var presetBaseSelect = el("studioPresetBase");
+    if (presetBaseSelect) presetBaseSelect.addEventListener("change", startLiveStudioShake);
+
+    var easingSelect = el("studioEasingCurve");
+    if (easingSelect) easingSelect.addEventListener("change", startLiveStudioShake);
+
+    ["Intensity", "Duration", "Scale", "Rotation", "Frequency", "Rgb"].forEach(function (k) {
       var input = el("studio" + k);
       if (input) {
         input.addEventListener("input", function (e) {
           var valEl = el("studioVal" + k);
-          if (valEl) valEl.textContent = e.target.value + (k === "Duration" ? "s" : k === "Rotation" ? "°" : k === "Scale" ? "%" : "");
+          if (valEl) {
+            var unit = k === "Duration" ? "s" : k === "Rotation" ? "°" : (k === "Scale" || k === "Rgb") ? "%" : k === "Frequency" ? "Hz" : "";
+            valEl.textContent = e.target.value + unit;
+          }
           startLiveStudioShake();
         });
       }
     });
+
+    // Bulk File Dropzone Handlers
+    var dropZone = el("bulkDropZone");
+    var bulkInput = el("bulkFileInput");
+    var bulkList = el("bulkFileList");
+    var bulkSaveBtn = el("saveBulkBtn");
+    var pendingBulkFiles = [];
+
+    if (dropZone) {
+      dropZone.addEventListener("click", function () { if (bulkInput) bulkInput.click(); });
+      dropZone.addEventListener("dragover", function (e) { e.preventDefault(); dropZone.classList.add("dragover"); });
+      dropZone.addEventListener("dragleave", function () { dropZone.classList.remove("dragover"); });
+      dropZone.addEventListener("drop", function (e) {
+        e.preventDefault();
+        dropZone.classList.remove("dragover");
+        if (e.dataTransfer.files && e.dataTransfer.files.length) {
+          handleBulkFiles(e.dataTransfer.files);
+        }
+      });
+    }
+
+    if (bulkInput) {
+      bulkInput.addEventListener("change", function (e) {
+        if (e.target.files && e.target.files.length) handleBulkFiles(e.target.files);
+      });
+    }
+
+    function handleBulkFiles(files) {
+      pendingBulkFiles = Array.prototype.slice.call(files).filter(function (f) {
+        return (/\.(wav|mp3|aiff|m4a|flac|ogg)$/i).test(f.name);
+      });
+      if (!pendingBulkFiles.length) {
+        toast("No supported audio files found!", "err");
+        return;
+      }
+      bulkList.innerHTML = "";
+      pendingBulkFiles.forEach(function (f) {
+        var div = document.createElement("div");
+        div.style.cssText = "font-size:10px; color:var(--text-hi); padding:3px 0; border-bottom:1px solid var(--line-subtle);";
+        div.textContent = "🎵 " + f.name + " (" + (f.size / 1024 / 1024).toFixed(1) + " MB)";
+        bulkList.appendChild(div);
+      });
+      if (bulkSaveBtn) bulkSaveBtn.disabled = false;
+      toast("Loaded " + pendingBulkFiles.length + " audio files", "ok");
+    }
+
+    if (bulkSaveBtn) {
+      bulkSaveBtn.addEventListener("click", function () {
+        var cat = (el("bulkCategoryInput").value || "").trim() || "Imported Pack";
+        pendingBulkFiles.forEach(function (f) {
+          var name = f.name.replace(/\.[^/.]+$/, "");
+          var asset = {
+            id: "audio_custom_" + Date.now() + "_" + Math.floor(Math.random() * 1000),
+            name: name,
+            category: cat,
+            group: "Custom Audio",
+            type: "audio",
+            kind: "audio",
+            sourceFile: f.path || f.name,
+            length: "00:03"
+          };
+          GS.DB.addCustomAsset(asset);
+        });
+        toast("Batch imported " + pendingBulkFiles.length + " audio assets!", "ok");
+        pendingBulkFiles = [];
+        bulkList.innerHTML = "";
+        bulkSaveBtn.disabled = true;
+        closeAssetStudio();
+        refreshAll();
+        selectCategory("__custom");
+      });
+    }
+
+    // Export & Import Pack Buttons
+    var exportBtn = el("exportPackBtn");
+    if (exportBtn) exportBtn.addEventListener("click", exportPresetPack);
+
+    var importBtn = el("importPackBtn");
+    var importInput = el("importPackInput");
+    if (importBtn && importInput) {
+      importBtn.addEventListener("click", function () { importInput.click(); });
+      importInput.addEventListener("change", function (e) {
+        if (e.target.files && e.target.files.length) importPresetPack(e.target.files[0]);
+      });
+    }
 
     var saveShakeBtn = el("saveCustomShakeBtn");
     if (saveShakeBtn) {
       saveShakeBtn.addEventListener("click", function () {
         var name = (el("customShakeName").value || "").trim() || "Custom Shake Preset";
         var cat = (el("customShakeCategory").value || "").trim() || "Custom Shakes";
+        var presetBase = parseInt((el("studioPresetBase") && el("studioPresetBase").value) || "3", 10);
         var p = {
+          presetBase: presetBase,
           intensity: parseFloat(el("studioIntensity").value),
           duration: parseFloat(el("studioDuration").value),
           scale: parseFloat(el("studioScale").value),
           rotation: parseFloat(el("studioRotation").value),
-          frequency: 14
+          frequency: parseFloat(el("studioFrequency").value),
+          rgb: parseFloat(el("studioRgb").value),
+          easing: el("studioEasingCurve").value
         };
         var asset = {
           id: "shake_custom_" + Date.now(),
@@ -913,7 +1352,10 @@ GS.UI = (function () {
           file: "custom_shake.json",
           params: p
         };
-        GS.DB.addCustomAsset(asset);
+        if (!GS.DB.addCustomAsset(asset)) {
+          toast("Could not save the custom shake preset", "err");
+          return;
+        }
         toast("Saved Custom Shake Preset to Library!", "ok");
         closeAssetStudio();
         refreshAll();
@@ -927,13 +1369,20 @@ GS.UI = (function () {
         var fileInput = el("audioFileInput");
         var name = (el("customAudioName").value || "").trim();
         var cat = (el("customAudioCategory").value || "").trim() || "My Custom Sounds";
+        var tagsStr = (el("customAudioTags").value || "").trim();
 
         if (!fileInput.files || !fileInput.files.length) {
           toast("Please select an audio file first!", "err");
           return;
         }
         var file = fileInput.files[0];
+        var extension = (file.name.match(/\.([a-z0-9]+)$/i) || ["", ""])[1].toLowerCase();
+        if (["wav", "mp3", "aiff", "aif", "m4a", "ogg", "flac"].indexOf(extension) === -1) {
+          toast("Unsupported audio format", "err");
+          return;
+        }
         var assetName = name || file.name.replace(/\.[^/.]+$/, "");
+        var tagsArr = tagsStr ? tagsStr.split(",").map(function(t) { return t.trim(); }).filter(Boolean) : [];
         var asset = {
           id: "audio_custom_" + Date.now(),
           name: assetName,
@@ -941,16 +1390,28 @@ GS.UI = (function () {
           group: "Custom Audio",
           type: "audio",
           kind: "audio",
-          file: file.path || file.name,
-          length: "00:03"
+          tags: tagsArr,
+          sourceFile: file.path || file.name,
+          length: ""
         };
-        GS.DB.addCustomAsset(asset);
+        if (!GS.DB.addCustomAsset(asset)) {
+          toast("Could not copy audio into the extension library", "err");
+          return;
+        }
         toast("Added Audio Asset to Library!", "ok");
         closeAssetStudio();
         refreshAll();
         selectCategory("__custom");
       });
     }
+
+    var nextOnboarding = el("nextOnboardingBtn");
+    if (nextOnboarding) nextOnboarding.addEventListener("click", function () {
+      if (onboardingStep >= 2) finishOnboarding();
+      else { onboardingStep++; renderOnboardingStep(); }
+    });
+    var skipOnboarding = el("skipOnboardingBtn");
+    if (skipOnboarding) skipOnboarding.addEventListener("click", finishOnboarding);
   }
 
   function escapeHTML(str) {
@@ -982,9 +1443,7 @@ GS.UI = (function () {
       if (selectedAsset) setPlayingState(selectedAsset, false);
     });
     el("assetTotal").textContent = GS.DB.getAll().length + " assets";
-    el("settingsBtn").addEventListener("click", function () {
-      toast("JamoVFX Hub - Ready", "ok");
-    });
+    openOnboardingIfNeeded();
   }
 
   function refreshAll() {

@@ -137,6 +137,9 @@ GS.Scanner = (function () {
     }
 
     var groups = fs.readdirSync(assetsRoot).filter(function (g) {
+      // Custom imports are owned by Database.customAssets and must not be
+      // scanned a second time after a rescan.
+      if (g.toLowerCase() === "custom audio") return false;
       try { return fs.statSync(path.join(assetsRoot, g)).isDirectory(); }
       catch (e) { return false; }
     });

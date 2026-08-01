@@ -16,7 +16,8 @@ GS.Settings = (function () {
     updateUrl: "",
     licenseKey: "",
     volume: 0.8,
-    maxRecent: 40
+    maxRecent: 40,
+    autoPreview: true
   };
 
   var state = Object.assign({}, DEFAULTS);
