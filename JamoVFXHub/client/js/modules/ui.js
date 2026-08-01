@@ -48,8 +48,9 @@ GS.UI = (function () {
     var cats = GS.DB.getCategories();
     var byGroup = {};
     cats.forEach(function (c) {
-      byGroup[c.group] = byGroup[c.group] || [];
-      byGroup[c.group].push(c);
+      var grpName = (c.group && c.group !== "undefined" && c.group !== "UNDEFINED") ? c.group : "EXTENSIONS & PRESETS";
+      byGroup[grpName] = byGroup[grpName] || [];
+      byGroup[grpName].push(c);
     });
 
     Object.keys(byGroup).forEach(function (group) {
@@ -108,6 +109,7 @@ GS.UI = (function () {
 
   function selectCategory(cat) {
     currentCategory = cat;
+    if (el("searchInput")) el("searchInput").value = "";
     document.querySelectorAll(".sidebar-item, .pill").forEach(function (n) {
       n.classList.remove("active");
       if (n.dataset.cat === cat) n.classList.add("active");
@@ -570,6 +572,7 @@ GS.UI = (function () {
     var container = el("inspector");
     if (!drawer || !container) return;
     drawer.style.display = "flex";
+    document.body.classList.add("inspector-open");
     el("inspectorTitle").textContent = "TEXT ANIMATION STUDIO";
 
     container.innerHTML =
@@ -607,7 +610,9 @@ GS.UI = (function () {
 
     el("applyTextBtn").onclick = function () {
       GS.DB.markRecent(asset.id);
-      if (asset.hostHint === "AEFT" && asset.file.endsWith(".ffx")) {
+      if (/\.(aep|aepx)$/i.test(String(asset.file || ""))) {
+        GS.Host.importTemplate(asset.file);
+      } else if (asset.hostHint === "AEFT" && asset.file.endsWith(".ffx")) {
         GS.Host.applyPreset(asset.file, "AEFT");
       } else {
         GS.Host.importSound(asset.file, true);
@@ -709,6 +714,7 @@ GS.UI = (function () {
     var container = el("inspector");
     if (!drawer || !container) return;
     drawer.style.display = "flex";
+    document.body.classList.add("inspector-open");
     el("inspectorTitle").textContent = "AUDIO PREVIEW";
     container.innerHTML =
       '<div class="audio-preview-panel">' +
@@ -1130,6 +1136,7 @@ GS.UI = (function () {
     if (!drawer) return;
     stopLiveShakeSimulation();
     drawer.style.display = "flex";
+    document.body.classList.add("inspector-open");
     var titleEl = el("inspectorTitle");
     if (titleEl) titleEl.textContent = asset.name;
 
@@ -1218,6 +1225,7 @@ GS.UI = (function () {
   function closeInspector() {
     var drawer = el("inspectorDrawer");
     if (drawer) drawer.style.display = "none";
+    document.body.classList.remove("inspector-open");
     stopLiveShakeSimulation();
   }
 

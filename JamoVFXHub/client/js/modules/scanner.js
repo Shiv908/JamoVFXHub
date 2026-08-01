@@ -20,6 +20,7 @@ GS.Scanner = (function () {
 
   var SOUND_EXT = [".wav", ".mp3", ".aiff", ".aif", ".m4a", ".ogg"];
   var SHAKE_EXT = [".json", ".prfpset", ".ffx"];
+  var TEMPLATE_EXT = [".aep", ".aepx", ".mogrt"];
   var PREVIEW_EXT = [".png", ".jpg", ".jpeg", ".gif", ".webp"];
   var METADATA_RE = /\.metadata\.json$/i;
   var IGNORE_RE = /(^|\/)(preview|thumbnail|\.gitkeep)(\.|$)/i;
@@ -80,6 +81,7 @@ GS.Scanner = (function () {
       var base = path.basename(file, ext);
       var isSound = SOUND_EXT.indexOf(ext) > -1;
       var isShake = SHAKE_EXT.indexOf(ext) > -1;
+      var isTemplate = TEMPLATE_EXT.indexOf(ext) > -1;
       var isPreview = PREVIEW_EXT.indexOf(ext) > -1;
 
       if (kind === "sound" && !isSound) return;
@@ -104,8 +106,8 @@ GS.Scanner = (function () {
         name: meta.Name || titleCase(base),
         category: categoryName,
         group: group,
-        type: kind,                     // "sound" | "shake" | "generic"
-        kind: meta.Kind || kind,
+        type: isTemplate ? "template" : kind,
+        kind: meta.Kind || (isTemplate ? "template" : kind),
         tags: meta.Tags || (meta.Keywords ? meta.Keywords.slice() : [cleanTag(categoryName)]),
         keywords: meta.Keywords || [],
         description: meta.Description || "",
@@ -114,7 +116,7 @@ GS.Scanner = (function () {
         premium: !!meta.Premium,
         favorite: false,
         params: meta.Params || inlineParams || null,
-        hostHint: hostHint,
+        hostHint: meta.Host || (isTemplate ? "AEFT" : hostHint),
         version: meta.Version || "1.0",
         length: meta.Length || "",
         sampleRate: meta.SampleRate || "",

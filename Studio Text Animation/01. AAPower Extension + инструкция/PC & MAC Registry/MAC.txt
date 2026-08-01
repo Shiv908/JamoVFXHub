@@ -1,0 +1,63 @@
+Mac:
+"defaults write /Users/<username>/Library/Preferences/com.adobe.CSXS.8.plist PlayerDebugMode 1"
+
+"defaults write /Users/<username>/Library/Preferences/com.adobe.CSXS.9.plist PlayerDebugMode 1"
+
+"defaults write /Users/<username>/Library/Preferences/com.adobe.CSXS.10.plist PlayerDebugMode 1"
+
+"defaults write /Users/<username>/Library/Preferences/com.adobe.CSXS.11.plist PlayerDebugMode 1"
+
+"defaults write /Users/<username>/Library/Preferences/com.adobe.CSXS.12.plist PlayerDebugMode 1"
+
+"defaults write /Users/<username>/Library/Preferences/com.adobe.CSXS.13.plist PlayerDebugMode 1"
+
+"defaults write /Users/<username>/Library/Preferences/com.adobe.CSXS.14.plist PlayerDebugMode 1"
+
+"defaults write /Users/<username>/Library/Preferences/com.adobe.CSXS.15.plist PlayerDebugMode 1"
+
+"defaults write /Users/<username>/Library/Preferences/com.adobe.CSXS.16.plist PlayerDebugMode 1"
+
+"defaults write /Users/<username>/Library/Preferences/com.adobe.CSXS.17.plist PlayerDebugMode 1"
+
+"defaults write /Users/<username>/Library/Preferences/com.adobe.CSXS.18.plist PlayerDebugMode 1"
+
+"defaults write /Users/<username>/Library/Preferences/com.adobe.CSXS.19.plist PlayerDebugMode 1"
+
+"defaults write /Users/<username>/Library/Preferences/com.adobe.CSXS.20.plist PlayerDebugMode 1"
+
+"defaults write /Users/<username>/Library/Preferences/com.adobe.CSXS.21.plist PlayerDebugMode 1"
+
+"defaults write /Users/<username>/Library/Preferences/com.adobe.CSXS.22.plist PlayerDebugMode 1"
+
+"defaults write /Users/<username>/Library/Preferences/com.adobe.CSXS.23.plist PlayerDebugMode 1"
+
+"defaults write /Users/<username>/Library/Preferences/com.adobe.CSXS.24.plist PlayerDebugMode 1"
+
+"defaults write /Users/<username>/Library/Preferences/com.adobe.CSXS.25.plist PlayerDebugMode 1"
+
+or
+
+Go to terminal and write 
+
+com.adobe.CSXS.8.plist PlayerDebugMode 1
+com.adobe.CSXS.9.plist PlayerDebugMode 1
+com.adobe.CSXS.10.plist PlayerDebugMode 1
+com.adobe.CSXS.11.plist PlayerDebugMode 1
+com.adobe.CSXS.12.plist PlayerDebugMode 1
+com.adobe.CSXS.13.plist PlayerDebugMode 1
+com.adobe.CSXS.14.plist PlayerDebugMode 1
+com.adobe.CSXS.15.plist PlayerDebugMode 1
+com.adobe.CSXS.16.plist PlayerDebugMode 1
+com.adobe.CSXS.17.plist PlayerDebugMode 1
+com.adobe.CSXS.18.plist PlayerDebugMode 1
+com.adobe.CSXS.19.plist PlayerDebugMode 1
+com.adobe.CSXS.20.plist PlayerDebugMode 1
+com.adobe.CSXS.21.plist PlayerDebugMode 1
+com.adobe.CSXS.22.plist PlayerDebugMode 1
+com.adobe.CSXS.23.plist PlayerDebugMode 1
+com.adobe.CSXS.24.plist PlayerDebugMode 1
+com.adobe.CSXS.25.plist PlayerDebugMode 1
+
+Press Enter 
+
+Restart After Effect.  

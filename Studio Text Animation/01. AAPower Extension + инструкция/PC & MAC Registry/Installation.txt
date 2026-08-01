@@ -1,0 +1,37 @@
+EXTENSION IS NO LONGER DISPLAYED
+------------------------
+
+Solution for Windows:
+ 
+1. Run the ae reg for pc file corresponding to the version of After Effects that is installed on your system.
+
+2. In the pop-up window, click “OK”
+
+--------------------------
+
+Solution for Mac Os:
+ 
+1. Open the Terminal
+
+2. Paste a line that matches the version of After Effects that is installed on your system:
+
+For After Effects CC.2020:
+defaults write com.adobe.CSXS.10 PlayerDebugMode 1
+
+For After Effects CC.2019:
+defaults write com.adobe.CSXS.9 PlayerDebugMode 1
+
+For After Effects CC.2018:
+defaults write com.adobe.CSXS.8 PlayerDebugMode 1
+
+For After Effects CC.2017:
+defaults write com.adobe.CSXS.7 PlayerDebugMode 1
+
+For older versions:
+defaults write com.adobe.CSXS.6 PlayerDebugMode 1
+or
+defaults write com.adobe.CSXS.5 PlayerDebugMode 1
+
+3. Press Enter
+
+4. Restart After Effects

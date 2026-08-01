@@ -45,6 +45,11 @@ GS.Host = (function () {
           res.ok ? "ok" : "err");
       });
     },
+    importTemplate: function (filePath) {
+      call("gsImportTemplate", [JSON.stringify(filePath)], function (res) {
+        GS.UI.toast(res.ok ? "Text animation imported" : "Template failed: " + res.error, res.ok ? "ok" : "err");
+      });
+    },
     getInfo: function (cb) { call("gsGetHostInfo", [], cb); }
   };
 })();

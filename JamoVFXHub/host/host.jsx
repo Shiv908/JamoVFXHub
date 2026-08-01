@@ -455,6 +455,19 @@ function importToAAPowerFolder(filePath) {
   }
 }
 
+function gsImportTemplate(filePathJSON) {
+    try {
+        var filePath = JSON.parse(filePathJSON);
+        if (!isAfterEffects()) return fail("Text animation projects require After Effects.");
+        if (!app.project) return fail("No active After Effects project.");
+        var imported = importToAAPowerFolder(filePath);
+        if (!imported) return fail("After Effects could not import the project.");
+        return ok({ name: imported.name || "Studio Text Animation" });
+    } catch (e) {
+        return fail(e.toString());
+    }
+}
+
 /**
  * Gets the After Effects / Premiere version information
  */
@@ -541,4 +554,3 @@ function getControllerLayerInfo(controllerLayer) {
     error: error_message
   });
 }
-

@@ -1,0 +1,15 @@
+INSTALLATION:
+
+1. Install "aa-power-0.3.0.zxp". You will need ZXP Installer for this. Download it from here - https://aescripts.com/learn/zxp-installer/
+
+2. Run the "AE REG For PC.reg" file (for Windows) and click OK in the pop-up window. For MAC, you need to enter the commands from the "MAC.txt" file into the console.
+
+3. Launch After Effects and open the settings Edit/Preferences/Script & Expressions (or Edit/Preferences/General in AE 2019 and earlier versions) and check the box next to "Allow Scripts to Write Files and Access Network".
+
+4. Done. Now launch the extension in After Effects:
+RUS: Window/Extensions/aapower-stock
+ENG: Window/Extensions/aapower-stock
+
+5. Drag and drop the catalog file with the .aap extension into the open plugin window.
+
+Done
