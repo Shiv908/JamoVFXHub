@@ -1,0 +1,22 @@
+{
+  "id": "text_7_premiere_pro",
+  "name": "Text Preset 07 - Neon Glow Pulse Title",
+  "category": "Text Animations",
+  "group": "Text Animations",
+  "type": "text",
+  "kind": "text",
+  "hostHint": "PPRO",
+  "file": "JamoVFXHub\\Assets\\Text Animations\\Premiere Pro\\Text Preset 07 - Neon Glow Pulse Title.prfpset",
+  "params": {
+    "glowColor": "#00F2FE",
+    "flickerSpeed": 12
+  },
+  "tags": [
+    "text",
+    "animation",
+    "typography",
+    "neon",
+    "titles",
+    "lower third"
+  ]
+}

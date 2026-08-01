@@ -1,0 +1,25 @@
+{
+  "id": "text_1_after_effects",
+  "name": "Text Preset 01 - Kinetic Pop-In Bounce",
+  "category": "Text Animations",
+  "group": "Text Animations",
+  "type": "text",
+  "kind": "text",
+  "hostHint": "AEFT",
+  "file": "JamoVFXHub\\Assets\\Text Animations\\After Effects\\Text Preset 01 - Kinetic Pop-In Bounce.ffx",
+  "params": {
+    "scaleStart": 0,
+    "scaleMax": 125,
+    "scaleFinal": 100,
+    "duration": 0.5,
+    "easing": "elastic"
+  },
+  "tags": [
+    "text",
+    "animation",
+    "typography",
+    "pop",
+    "titles",
+    "lower third"
+  ]
+}

@@ -1,0 +1,22 @@
+{
+  "id": "text_13_after_effects",
+  "name": "Text Preset 13 - 3D Flip Perspective",
+  "category": "Text Animations",
+  "group": "Text Animations",
+  "type": "text",
+  "kind": "text",
+  "hostHint": "AEFT",
+  "file": "JamoVFXHub\\Assets\\Text Animations\\After Effects\\Text Preset 13 - 3D Flip Perspective.ffx",
+  "params": {
+    "rotateX": 90,
+    "depth": 200
+  },
+  "tags": [
+    "text",
+    "animation",
+    "typography",
+    "flip_3d",
+    "titles",
+    "lower third"
+  ]
+}

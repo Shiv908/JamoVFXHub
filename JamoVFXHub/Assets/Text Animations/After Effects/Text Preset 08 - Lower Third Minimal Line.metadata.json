@@ -1,0 +1,22 @@
+{
+  "id": "text_8_after_effects",
+  "name": "Text Preset 08 - Lower Third Minimal Line",
+  "category": "Text Animations",
+  "group": "Text Animations",
+  "type": "text",
+  "kind": "text",
+  "hostHint": "AEFT",
+  "file": "JamoVFXHub\\Assets\\Text Animations\\After Effects\\Text Preset 08 - Lower Third Minimal Line.ffx",
+  "params": {
+    "lineDraw": true,
+    "subtitle": "VIDEO EDITOR & CREATOR"
+  },
+  "tags": [
+    "text",
+    "animation",
+    "typography",
+    "lower_third",
+    "titles",
+    "lower third"
+  ]
+}

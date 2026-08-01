@@ -1,0 +1,22 @@
+{
+  "id": "text_13_premiere_pro",
+  "name": "Text Preset 13 - 3D Flip Perspective",
+  "category": "Text Animations",
+  "group": "Text Animations",
+  "type": "text",
+  "kind": "text",
+  "hostHint": "PPRO",
+  "file": "JamoVFXHub\\Assets\\Text Animations\\Premiere Pro\\Text Preset 13 - 3D Flip Perspective.prfpset",
+  "params": {
+    "rotateX": 90,
+    "depth": 200
+  },
+  "tags": [
+    "text",
+    "animation",
+    "typography",
+    "flip_3d",
+    "titles",
+    "lower third"
+  ]
+}

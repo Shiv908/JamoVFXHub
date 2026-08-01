@@ -1,0 +1,22 @@
+{
+  "id": "text_14_after_effects",
+  "name": "Text Preset 14 - Highlight Marker Underline",
+  "category": "Text Animations",
+  "group": "Text Animations",
+  "type": "text",
+  "kind": "text",
+  "hostHint": "AEFT",
+  "file": "JamoVFXHub\\Assets\\Text Animations\\After Effects\\Text Preset 14 - Highlight Marker Underline.ffx",
+  "params": {
+    "markerColor": "#FFB84D",
+    "opacity": 0.8
+  },
+  "tags": [
+    "text",
+    "animation",
+    "typography",
+    "highlight",
+    "titles",
+    "lower third"
+  ]
+}

@@ -1,0 +1,22 @@
+{
+  "id": "text_11_after_effects",
+  "name": "Text Preset 11 - Liquid Wave Distortion",
+  "category": "Text Animations",
+  "group": "Text Animations",
+  "type": "text",
+  "kind": "text",
+  "hostHint": "AEFT",
+  "file": "JamoVFXHub\\Assets\\Text Animations\\After Effects\\Text Preset 11 - Liquid Wave Distortion.ffx",
+  "params": {
+    "waveFrequency": 8,
+    "waveAmplitude": 12
+  },
+  "tags": [
+    "text",
+    "animation",
+    "typography",
+    "liquid",
+    "titles",
+    "lower third"
+  ]
+}

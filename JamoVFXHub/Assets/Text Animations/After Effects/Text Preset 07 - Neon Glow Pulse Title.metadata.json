@@ -1,0 +1,22 @@
+{
+  "id": "text_7_after_effects",
+  "name": "Text Preset 07 - Neon Glow Pulse Title",
+  "category": "Text Animations",
+  "group": "Text Animations",
+  "type": "text",
+  "kind": "text",
+  "hostHint": "AEFT",
+  "file": "JamoVFXHub\\Assets\\Text Animations\\After Effects\\Text Preset 07 - Neon Glow Pulse Title.ffx",
+  "params": {
+    "glowColor": "#00F2FE",
+    "flickerSpeed": 12
+  },
+  "tags": [
+    "text",
+    "animation",
+    "typography",
+    "neon",
+    "titles",
+    "lower third"
+  ]
+}

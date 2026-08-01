@@ -1,0 +1,22 @@
+{
+  "id": "text_5_premiere_pro",
+  "name": "Text Preset 05 - Kinetic Word-By-Word Punch",
+  "category": "Text Animations",
+  "group": "Text Animations",
+  "type": "text",
+  "kind": "text",
+  "hostHint": "PPRO",
+  "file": "JamoVFXHub\\Assets\\Text Animations\\Premiere Pro\\Text Preset 05 - Kinetic Word-By-Word Punch.prfpset",
+  "params": {
+    "speedWpm": 300,
+    "scalePulse": 115
+  },
+  "tags": [
+    "text",
+    "animation",
+    "typography",
+    "word_punch",
+    "titles",
+    "lower third"
+  ]
+}

@@ -1,0 +1,22 @@
+{
+  "id": "text_8_premiere_pro",
+  "name": "Text Preset 08 - Lower Third Minimal Line",
+  "category": "Text Animations",
+  "group": "Text Animations",
+  "type": "text",
+  "kind": "text",
+  "hostHint": "PPRO",
+  "file": "JamoVFXHub\\Assets\\Text Animations\\Premiere Pro\\Text Preset 08 - Lower Third Minimal Line.prfpset",
+  "params": {
+    "lineDraw": true,
+    "subtitle": "VIDEO EDITOR & CREATOR"
+  },
+  "tags": [
+    "text",
+    "animation",
+    "typography",
+    "lower_third",
+    "titles",
+    "lower third"
+  ]
+}

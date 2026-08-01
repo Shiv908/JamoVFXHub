@@ -1,0 +1,22 @@
+{
+  "id": "text_15_premiere_pro",
+  "name": "Text Preset 15 - Glitch Noise Distortion Burst",
+  "category": "Text Animations",
+  "group": "Text Animations",
+  "type": "text",
+  "kind": "text",
+  "hostHint": "PPRO",
+  "file": "JamoVFXHub\\Assets\\Text Animations\\Premiere Pro\\Text Preset 15 - Glitch Noise Distortion Burst.prfpset",
+  "params": {
+    "noiseAmount": 90,
+    "duration": 0.5
+  },
+  "tags": [
+    "text",
+    "animation",
+    "typography",
+    "noise_burst",
+    "titles",
+    "lower third"
+  ]
+}

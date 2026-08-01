@@ -552,109 +552,68 @@ GS.UI = (function () {
     if (asset.type === "shake" || asset.kind === "shake") return true;
     if (asset.group && String(asset.group).toLowerCase().indexOf("shake") !== -1) return true;
     if (asset.category && String(asset.category).toLowerCase().indexOf("shake") !== -1) return true;
-    if (asset.file && (/\.(json|ffx|prfpset)$/i).test(asset.file)) return true;
+    if (asset.file && (/\.(json|ffx|prfpset)$/i).test(asset.file) && String(asset.category).toLowerCase().indexOf("text") === -1) return true;
     return false;
   }
 
-  // --- High-Density List Row (32px) ---
-  function buildRow(asset) {
-    var row = document.createElement("div");
-    row.className = "asset-row " + (isShakeAsset(asset) ? "shake-asset" : "audio-asset");
-    row.draggable = true;
-    row.dataset.id = asset.id;
-    if (selectedAsset && selectedAsset.id === asset.id) row.classList.add("selected");
-    if (playingAssetId === asset.id) row.classList.add("is-playing");
+  function isTextAsset(asset) {
+    if (!asset) return false;
+    if (asset.type === "text" || asset.kind === "text") return true;
+    if (asset.group && String(asset.group).toLowerCase().indexOf("text") !== -1) return true;
+    if (asset.category && String(asset.category).toLowerCase().indexOf("text") !== -1) return true;
+    if (asset.name && String(asset.name).toLowerCase().indexOf("text preset") !== -1) return true;
+    return false;
+  }
 
-    var playIcon = isShakeAsset(asset) ? svgIcon("shake") : (playingAssetId === asset.id ? svgIcon("pause") : svgIcon("play"));
-    var duration = asset.length || asset.duration || "--:--";
+  function inspectText(asset) {
+    var drawer = el("inspectorDrawer");
+    var container = el("inspector");
+    if (!drawer || !container) return;
+    drawer.style.display = "flex";
+    el("inspectorTitle").textContent = "TEXT ANIMATION STUDIO";
 
-    row.innerHTML =
-      '<button class="row-play-btn" title="Preview">' + playIcon + '</button>' +
-      '<div class="row-name" title="' + escapeHTML(asset.name) + '">' + escapeHTML(asset.name) + '</div>' +
-      '<span class="row-waveform" aria-hidden="true"></span>' +
-      '<div class="row-meta">' +
-        '<span>' + escapeHTML(asset.category.replace(/^\d+\s*/, "")) + '</span>' +
-        '<span>' + escapeHTML(duration) + '</span>' +
-        (playingAssetId === asset.id ? '<span class="playing-label">PLAYING</span>' : '') +
-        '<span class="card-fav' + (asset.favorite ? " active" : "") + '">' + svgIcon("star") + '</span>' +
-        '<button class="row-insert-btn" title="Insert to timeline">' + svgIcon("add") + 'ADD</button>' +
-      '</div>';
+    container.innerHTML =
+      '<div class="shake-preview-viewport" style="height:120px; background:#08090D; display:flex; align-items:center; justify-content:center; overflow:hidden;">' +
+        '<div id="textPreviewStage" style="font-size:20px; font-weight:800; color:#00F2FE; font-family:\'Syne\', sans-serif; text-align:center; transition:all 0.3s ease;">' +
+          'YOUR TITLE HERE' +
+        '</div>' +
+      '</div>' +
+      '<h3>' + escapeHTML(asset.name) + '</h3>' +
+      '<p style="color:var(--text-mid); font-size:10px; margin-bottom:10px;">' + escapeHTML(asset.category) + '</p>' +
+      '<div class="form-group">' +
+        '<label>Text Content</label>' +
+        '<input type="text" id="textInputContent" value="YOUR TITLE HERE" />' +
+      '</div>' +
+      '<div class="form-row">' +
+        '<div class="form-group">' +
+          '<label>Font Size</label>' +
+          '<input type="range" id="textSizeRange" min="12" max="48" value="20" />' +
+        '</div>' +
+        '<div class="form-group">' +
+          '<label>Text Color</label>' +
+          '<input type="color" id="textColorPicker" value="#00F2FE" style="height:26px; padding:0; cursor:pointer;" />' +
+        '</div>' +
+      '</div>' +
+      '<button id="applyTextBtn" class="insert-action-btn" style="width:100%; margin-top:12px; height:34px;">⚡ APPLY TEXT ANIMATION TO TIMELINE</button>';
 
-    var playBtn = row.querySelector(".row-play-btn");
-    playBtn.addEventListener("click", function (e) {
-      e.stopPropagation();
-      selectAsset(asset);
-    });
+    var stage = el("textPreviewStage");
+    var input = el("textInputContent");
+    var sizeRange = el("textSizeRange");
+    var colorPicker = el("textColorPicker");
 
-    row.querySelector(".row-insert-btn").addEventListener("click", function (e) {
-      e.stopPropagation();
+    if (input) input.oninput = function (e) { if (stage) stage.textContent = e.target.value || "YOUR TITLE HERE"; };
+    if (sizeRange) sizeRange.oninput = function (e) { if (stage) stage.style.fontSize = e.target.value + "px"; };
+    if (colorPicker) colorPicker.oninput = function (e) { if (stage) stage.style.color = e.target.value; };
+
+    el("applyTextBtn").onclick = function () {
       GS.DB.markRecent(asset.id);
-      if (isShakeAsset(asset)) {
-        inspectShake(asset);
+      if (asset.hostHint === "AEFT" && asset.file.endsWith(".ffx")) {
+        GS.Host.applyPreset(asset.file, "AEFT");
       } else {
         GS.Host.importSound(asset.file, true);
       }
-    });
-
-    row.querySelector(".card-fav").addEventListener("click", function (e) {
-      e.stopPropagation();
-      GS.DB.toggleFavorite(asset.id);
-      e.target.classList.toggle("active");
-    });
-
-    row.addEventListener("click", function () {
-      selectAsset(asset);
-    });
-
-    row.addEventListener("dragstart", function (e) {
-      handleDragStart(e, asset.file);
-    });
-
-    return row;
-  }
-
-  function handleDragStart(e, filePath) {
-    var normalized = String(filePath).replace(/\\/g, "/");
-    var fileURI = "file:///" + encodeURI(normalized).replace(/#/g, "%23");
-    var fileName = filePath.split(/[\\/]/).pop();
-
-    e.dataTransfer.setData("text/plain", filePath);
-    e.dataTransfer.setData("text/uri-list", fileURI);
-    e.dataTransfer.setData("URL", fileURI);
-    e.dataTransfer.setData("DownloadURL", "application/octet-stream:" + fileName + ":" + fileURI);
-  }
-
-  // --- Compact Grid Card ---
-  function buildCard(asset) {
-    var card = document.createElement("div");
-    card.className = "asset-card " + (isShakeAsset(asset) ? "shake-asset" : "audio-asset");
-    card.draggable = true;
-    card.dataset.id = asset.id;
-    if (selectedAsset && selectedAsset.id === asset.id) card.classList.add("selected");
-    if (playingAssetId === asset.id) card.classList.add("is-playing");
-
-    var icon = isShakeAsset(asset) ? svgIcon("shake") : svgIcon("audio");
-
-    card.innerHTML =
-      '<div class="card-preview">' + icon + '</div>' +
-      '<div class="card-name">' + escapeHTML(asset.name) + '</div>' +
-      '<div class="card-meta"><span>' + asset.category.replace(/^\d+\s*/, "") + '</span>' +
-      '<span class="card-fav' + (asset.favorite ? " active" : "") + '">' + svgIcon("star") + '</span></div>';
-
-    card.addEventListener("click", function (e) {
-      if (e.target.classList.contains("card-fav")) {
-        GS.DB.toggleFavorite(asset.id);
-        e.target.classList.toggle("active");
-        return;
-      }
-      selectAsset(asset);
-    });
-
-    card.addEventListener("dragstart", function (e) {
-      handleDragStart(e, asset.file);
-    });
-
-    return card;
+      toast("Applied Text Animation to Timeline!", "ok");
+    };
   }
 
   // ---------------- Asset Selection & Floating Mini-Player ----------------
@@ -667,6 +626,8 @@ GS.UI = (function () {
 
     if (isShakeAsset(asset)) {
       inspectShake(asset);
+    } else if (isTextAsset(asset)) {
+      inspectText(asset);
     } else {
       inspectAudio(asset);
       if (GS.Settings.get("autoPreview") !== false) playAudio(asset);

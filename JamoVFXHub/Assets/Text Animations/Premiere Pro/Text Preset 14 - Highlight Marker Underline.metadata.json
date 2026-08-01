@@ -1,0 +1,22 @@
+{
+  "id": "text_14_premiere_pro",
+  "name": "Text Preset 14 - Highlight Marker Underline",
+  "category": "Text Animations",
+  "group": "Text Animations",
+  "type": "text",
+  "kind": "text",
+  "hostHint": "PPRO",
+  "file": "JamoVFXHub\\Assets\\Text Animations\\Premiere Pro\\Text Preset 14 - Highlight Marker Underline.prfpset",
+  "params": {
+    "markerColor": "#FFB84D",
+    "opacity": 0.8
+  },
+  "tags": [
+    "text",
+    "animation",
+    "typography",
+    "highlight",
+    "titles",
+    "lower third"
+  ]
+}

@@ -1,0 +1,23 @@
+{
+  "id": "text_6_after_effects",
+  "name": "Text Preset 06 - Cinematic Tracking Expand",
+  "category": "Text Animations",
+  "group": "Text Animations",
+  "type": "text",
+  "kind": "text",
+  "hostHint": "AEFT",
+  "file": "JamoVFXHub\\Assets\\Text Animations\\After Effects\\Text Preset 06 - Cinematic Tracking Expand.ffx",
+  "params": {
+    "startSpacing": -5,
+    "endSpacing": 25,
+    "duration": 2
+  },
+  "tags": [
+    "text",
+    "animation",
+    "typography",
+    "tracking",
+    "titles",
+    "lower third"
+  ]
+}

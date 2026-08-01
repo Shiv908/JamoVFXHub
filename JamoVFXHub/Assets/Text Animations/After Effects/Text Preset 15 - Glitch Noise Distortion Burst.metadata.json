@@ -1,0 +1,22 @@
+{
+  "id": "text_15_after_effects",
+  "name": "Text Preset 15 - Glitch Noise Distortion Burst",
+  "category": "Text Animations",
+  "group": "Text Animations",
+  "type": "text",
+  "kind": "text",
+  "hostHint": "AEFT",
+  "file": "JamoVFXHub\\Assets\\Text Animations\\After Effects\\Text Preset 15 - Glitch Noise Distortion Burst.ffx",
+  "params": {
+    "noiseAmount": 90,
+    "duration": 0.5
+  },
+  "tags": [
+    "text",
+    "animation",
+    "typography",
+    "noise_burst",
+    "titles",
+    "lower third"
+  ]
+}

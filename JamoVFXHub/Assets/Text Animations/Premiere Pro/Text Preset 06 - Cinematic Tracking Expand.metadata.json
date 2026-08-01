@@ -1,0 +1,23 @@
+{
+  "id": "text_6_premiere_pro",
+  "name": "Text Preset 06 - Cinematic Tracking Expand",
+  "category": "Text Animations",
+  "group": "Text Animations",
+  "type": "text",
+  "kind": "text",
+  "hostHint": "PPRO",
+  "file": "JamoVFXHub\\Assets\\Text Animations\\Premiere Pro\\Text Preset 06 - Cinematic Tracking Expand.prfpset",
+  "params": {
+    "startSpacing": -5,
+    "endSpacing": 25,
+    "duration": 2
+  },
+  "tags": [
+    "text",
+    "animation",
+    "typography",
+    "tracking",
+    "titles",
+    "lower third"
+  ]
+}

@@ -1,0 +1,23 @@
+{
+  "id": "text_10_after_effects",
+  "name": "Text Preset 10 - Sub-Bass Tremor Title",
+  "category": "Text Animations",
+  "group": "Text Animations",
+  "type": "text",
+  "kind": "text",
+  "hostHint": "AEFT",
+  "file": "JamoVFXHub\\Assets\\Text Animations\\After Effects\\Text Preset 10 - Sub-Bass Tremor Title.ffx",
+  "params": {
+    "pulseZoom": 120,
+    "shudder": 25,
+    "duration": 0.8
+  },
+  "tags": [
+    "text",
+    "animation",
+    "typography",
+    "tremor",
+    "titles",
+    "lower third"
+  ]
+}

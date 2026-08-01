@@ -1,0 +1,22 @@
+{
+  "id": "text_11_premiere_pro",
+  "name": "Text Preset 11 - Liquid Wave Distortion",
+  "category": "Text Animations",
+  "group": "Text Animations",
+  "type": "text",
+  "kind": "text",
+  "hostHint": "PPRO",
+  "file": "JamoVFXHub\\Assets\\Text Animations\\Premiere Pro\\Text Preset 11 - Liquid Wave Distortion.prfpset",
+  "params": {
+    "waveFrequency": 8,
+    "waveAmplitude": 12
+  },
+  "tags": [
+    "text",
+    "animation",
+    "typography",
+    "liquid",
+    "titles",
+    "lower third"
+  ]
+}

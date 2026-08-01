@@ -1,0 +1,23 @@
+{
+  "id": "text_9_after_effects",
+  "name": "Text Preset 09 - Whip Spin Roll Reveal",
+  "category": "Text Animations",
+  "group": "Text Animations",
+  "type": "text",
+  "kind": "text",
+  "hostHint": "AEFT",
+  "file": "JamoVFXHub\\Assets\\Text Animations\\After Effects\\Text Preset 09 - Whip Spin Roll Reveal.ffx",
+  "params": {
+    "rotationStart": 180,
+    "motionBlur": true,
+    "duration": 0.4
+  },
+  "tags": [
+    "text",
+    "animation",
+    "typography",
+    "spin",
+    "titles",
+    "lower third"
+  ]
+}

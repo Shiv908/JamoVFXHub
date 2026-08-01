@@ -1,0 +1,23 @@
+{
+  "id": "text_3_premiere_pro",
+  "name": "Text Preset 03 - Glitch Cyberpunk Strobe",
+  "category": "Text Animations",
+  "group": "Text Animations",
+  "type": "text",
+  "kind": "text",
+  "hostHint": "PPRO",
+  "file": "JamoVFXHub\\Assets\\Text Animations\\Premiere Pro\\Text Preset 03 - Glitch Cyberpunk Strobe.prfpset",
+  "params": {
+    "rgbSplit": 80,
+    "jitter": 15,
+    "duration": 0.6
+  },
+  "tags": [
+    "text",
+    "animation",
+    "typography",
+    "glitch",
+    "titles",
+    "lower third"
+  ]
+}

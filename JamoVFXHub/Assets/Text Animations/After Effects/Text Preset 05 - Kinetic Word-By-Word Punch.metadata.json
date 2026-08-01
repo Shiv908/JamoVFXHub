@@ -1,0 +1,22 @@
+{
+  "id": "text_5_after_effects",
+  "name": "Text Preset 05 - Kinetic Word-By-Word Punch",
+  "category": "Text Animations",
+  "group": "Text Animations",
+  "type": "text",
+  "kind": "text",
+  "hostHint": "AEFT",
+  "file": "JamoVFXHub\\Assets\\Text Animations\\After Effects\\Text Preset 05 - Kinetic Word-By-Word Punch.ffx",
+  "params": {
+    "speedWpm": 300,
+    "scalePulse": 115
+  },
+  "tags": [
+    "text",
+    "animation",
+    "typography",
+    "word_punch",
+    "titles",
+    "lower third"
+  ]
+}

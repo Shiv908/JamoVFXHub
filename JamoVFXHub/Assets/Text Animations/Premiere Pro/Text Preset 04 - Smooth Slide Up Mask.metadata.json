@@ -1,0 +1,23 @@
+{
+  "id": "text_4_premiere_pro",
+  "name": "Text Preset 04 - Smooth Slide Up Mask",
+  "category": "Text Animations",
+  "group": "Text Animations",
+  "type": "text",
+  "kind": "text",
+  "hostHint": "PPRO",
+  "file": "JamoVFXHub\\Assets\\Text Animations\\Premiere Pro\\Text Preset 04 - Smooth Slide Up Mask.prfpset",
+  "params": {
+    "distanceY": 50,
+    "duration": 0.7,
+    "easing": "expo"
+  },
+  "tags": [
+    "text",
+    "animation",
+    "typography",
+    "slide_up",
+    "titles",
+    "lower third"
+  ]
+}
