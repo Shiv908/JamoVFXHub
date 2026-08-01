@@ -16,6 +16,7 @@ GS.UI = (function () {
   var onboardingStep = 0;
   var searchTimer = null;
   var renderBatchSize = 120;
+  var currentShakeTimeout = null;
 
   var SHAKE_DEFAULTS = {
     intensity: 20, duration: 0.6, scale: 4, rotation: 2, frequency: 12,
@@ -188,6 +189,7 @@ GS.UI = (function () {
   function openAssetStudio() {
     var modal = el("assetStudioModal");
     if (!modal) return;
+    stopLiveShakeSimulation();
     modal.style.display = "flex";
     var defaultDuration = el("studioDuration");
     if (defaultDuration) defaultDuration.value = GS.Settings.get("defaultShakeDuration") || 0.6;
@@ -557,7 +559,7 @@ GS.UI = (function () {
   // --- High-Density List Row (32px) ---
   function buildRow(asset) {
     var row = document.createElement("div");
-    row.className = "asset-row";
+    row.className = "asset-row " + (isShakeAsset(asset) ? "shake-asset" : "audio-asset");
     row.draggable = true;
     row.dataset.id = asset.id;
     if (selectedAsset && selectedAsset.id === asset.id) row.classList.add("selected");
@@ -625,7 +627,7 @@ GS.UI = (function () {
   // --- Compact Grid Card ---
   function buildCard(asset) {
     var card = document.createElement("div");
-    card.className = "asset-card";
+    card.className = "asset-card " + (isShakeAsset(asset) ? "shake-asset" : "audio-asset");
     card.draggable = true;
     card.dataset.id = asset.id;
     if (selectedAsset && selectedAsset.id === asset.id) card.classList.add("selected");
@@ -674,12 +676,14 @@ GS.UI = (function () {
   function openSettings() {
     var modal = el("settingsModal");
     if (!modal) return;
-    el("settingAutoPreview").checked = GS.Settings.get("autoPreview") !== false;
-    el("settingTheme").value = GS.Settings.get("theme") || "dark";
-    el("settingAccent").value = GS.Settings.get("accent") || "#A970FF";
-    el("settingVolume").value = GS.Settings.get("volume");
-    el("settingMaxRecent").value = GS.Settings.get("maxRecent");
-    el("settingShakeDuration").value = GS.Settings.get("defaultShakeDuration") || 0.6;
+    stopLiveShakeSimulation();
+    if (el("settingAutoPreview")) el("settingAutoPreview").checked = GS.Settings.get("autoPreview") !== false;
+    if (el("settingTheme")) el("settingTheme").value = GS.Settings.get("theme") || "dark";
+    if (el("settingAccent")) el("settingAccent").value = GS.Settings.get("accent") || "#A970FF";
+    if (el("settingVolume")) el("settingVolume").value = GS.Settings.get("volume");
+    if (el("settingMaxRecent")) el("settingMaxRecent").value = GS.Settings.get("maxRecent");
+    if (el("settingShakeDuration")) el("settingShakeDuration").value = GS.Settings.get("defaultShakeDuration") || 0.6;
+    if (el("settingPerformanceLite")) el("settingPerformanceLite").checked = GS.Settings.get("performanceLite") === true;
     modal.style.display = "flex";
   }
 
@@ -811,6 +815,10 @@ GS.UI = (function () {
       cancelAnimationFrame(currentShakeRaf);
       currentShakeRaf = null;
     }
+    if (currentShakeTimeout) {
+      clearTimeout(currentShakeTimeout);
+      currentShakeTimeout = null;
+    }
   }
 
   function startLiveShakeSimulation(canvas, p, presetNum) {
@@ -896,6 +904,10 @@ GS.UI = (function () {
 
     function step() {
       if (!canvas || !document.body.contains(canvas)) return;
+      if (document.hidden) {
+        currentShakeTimeout = setTimeout(step, 250);
+        return;
+      }
       var now = Date.now();
       if (document.body.classList.contains("performance-lite") && now - lastFrameTime < 33) {
         currentShakeRaf = requestAnimationFrame(step);
@@ -1010,8 +1022,73 @@ GS.UI = (function () {
           break;
       }
 
+      // Shake It Up V2 presets encode their actual motion in the filename.
+      // Override the generic fallback with directional, named motion profiles.
+      if (p.motion === "zoomIn" || p.motion === "zoomOut") {
+        var zoomDirection = p.motion === "zoomIn" ? 1 : -1;
+        dx = Math.sin(loopProgress * Math.PI) * intensity * 0.12;
+        dy = Math.cos(loopProgress * Math.PI) * intensity * 0.08;
+        ds = 1 + zoomDirection * Math.sin(loopProgress * Math.PI) * (p.scale / 100);
+        dr = Math.sin(loopProgress * Math.PI) * (p.rotation / 57.3);
+      } else if (p.motion === "swipeLeft" || p.motion === "swipeRight") {
+        var horizontalDirection = p.motion === "swipeLeft" ? -1 : 1;
+        dx = horizontalDirection * Math.sin(loopProgress * Math.PI) * intensity * 0.9;
+        dy = Math.sin(loopProgress * Math.PI * 2) * intensity * 0.08;
+        dr = horizontalDirection * Math.sin(loopProgress * Math.PI) * (p.rotation / 57.3);
+        ds = 1 + Math.sin(loopProgress * Math.PI) * 0.08;
+      } else if (p.motion === "swipeUp" || p.motion === "swipeDown") {
+        var verticalDirection = p.motion === "swipeUp" ? -1 : 1;
+        dx = Math.sin(loopProgress * Math.PI * 2) * intensity * 0.08;
+        dy = verticalDirection * Math.sin(loopProgress * Math.PI) * intensity * 0.9;
+        dr = verticalDirection * Math.sin(loopProgress * Math.PI) * (p.rotation / 57.3);
+        ds = 1 + Math.sin(loopProgress * Math.PI) * 0.08;
+      } else if (p.motion === "spin" || p.motion === "rotation") {
+        var spinAmount = p.motion === "spin" ? 1.8 : 1;
+        dx = Math.sin(loopProgress * Math.PI * 2) * intensity * 0.14;
+        dy = Math.cos(loopProgress * Math.PI * 2) * intensity * 0.10;
+        dr = Math.sin(loopProgress * Math.PI * 2) * (p.rotation / 57.3) * spinAmount;
+        ds = 1 + Math.sin(loopProgress * Math.PI) * 0.10;
+      } else if (p.motion === "offset") {
+        dx = Math.sin(loopProgress * Math.PI) * intensity * 0.7;
+        dy = Math.sin(loopProgress * Math.PI * 2) * intensity * 0.08;
+        dr = Math.sin(loopProgress * Math.PI) * (p.rotation / 57.3);
+      } else if (p.motion === "impact") {
+        var impactVariant = p.variant || num;
+        if (impactVariant === 1) {
+          dx = Math.sin(loopProgress * Math.PI * 2) * intensity * 0.45;
+          dy = -Math.sin(loopProgress * Math.PI) * intensity * 0.25;
+          dr = Math.sin(loopProgress * Math.PI) * (p.rotation / 57.3);
+          ds = 1 + Math.sin(loopProgress * Math.PI) * 0.08;
+        } else if (impactVariant === 2) {
+          dx = Math.sin(loopProgress * Math.PI * 4) * intensity * 0.65;
+          dy = Math.cos(loopProgress * Math.PI * 3) * intensity * 0.18;
+          dr = Math.sin(loopProgress * Math.PI * 3) * (p.rotation / 57.3);
+          ds = 1 + Math.sin(loopProgress * Math.PI) * 0.12;
+        } else if (impactVariant === 3) {
+          dx = Math.sin(loopProgress * Math.PI * 6) * intensity * 0.38;
+          dy = Math.cos(loopProgress * Math.PI * 5) * intensity * 0.42;
+          dr = Math.sin(loopProgress * Math.PI * 4) * (p.rotation / 57.3);
+          ds = 1 + Math.sin(loopProgress * Math.PI) * 0.22;
+        } else if (impactVariant === 4) {
+          dx = Math.sin(loopProgress * Math.PI * 8) * intensity * 0.75;
+          dy = Math.sin(loopProgress * Math.PI * 2) * intensity * 0.12;
+          dr = Math.sin(loopProgress * Math.PI * 5) * (p.rotation / 57.3);
+          ds = 1 + Math.sin(loopProgress * Math.PI * 2) * 0.10;
+        } else if (impactVariant === 5) {
+          dx = Math.sin(loopProgress * Math.PI * 3) * intensity * 0.55;
+          dy = -Math.abs(Math.sin(loopProgress * Math.PI * 3)) * intensity * 0.48;
+          dr = Math.sin(loopProgress * Math.PI * 2) * (p.rotation / 57.3);
+          ds = 1 + Math.sin(loopProgress * Math.PI) * 0.14;
+        } else {
+          dx = (Math.random() - 0.5) * intensity * 0.65;
+          dy = (Math.sin(loopProgress * Math.PI * 12) > 0 ? 1 : -1) * intensity * 0.35;
+          dr = (Math.random() - 0.5) * (p.rotation / 57.3);
+          ds = 1 + Math.abs(Math.sin(loopProgress * Math.PI * 8)) * 0.10;
+        }
+      }
+
       var speed = Math.sqrt(dx * dx + dy * dy);
-      var rgbSplit = (speed > 4 || num === 3 || num === 8 || num === 10 || num === 13) ? (speed * 0.25 + 1) : 0;
+      var rgbSplit = p.flash ? 2 : ((speed > 4 || num === 3 || num === 8 || num === 10 || num === 13) ? (speed * 0.25 + 1) : 0);
 
       renderScene(ctx, dx, dy, dr, ds, rgbSplit);
       if (typeof onStep === "function") onStep(dx, dy);
@@ -1023,7 +1100,8 @@ GS.UI = (function () {
 
   function getPresetParams(asset) {
     if (asset.params && typeof asset.params === "object" && asset.params.intensity) {
-      return Object.assign({}, asset.params);
+      var inferred = /\.ffx$/i.test(String(asset.file || "")) ? inferShakeMotion(asset) : {};
+      return Object.assign({}, asset.params, inferred);
     }
     var num = 1;
     var m = (asset.name || "").match(/\d+/);
@@ -1054,6 +1132,36 @@ GS.UI = (function () {
     };
 
     return profiles[num] || profiles[1];
+  }
+
+  function inferShakeMotion(asset) {
+    var name = String(asset.name || "").toLowerCase();
+    var category = String(asset.category || "").toLowerCase();
+    var text = name + " " + category;
+    var frameMatch = name.match(/(\d+)\s*[- ]\s*(\d+)\s*frames?/i) || name.match(/(\d+)\s*frames?/i);
+    var frameCount = frameMatch ? (frameMatch[2] ? (parseFloat(frameMatch[1]) + parseFloat(frameMatch[2])) / 2 : parseFloat(frameMatch[1])) : 12;
+    var variantMatch = name.match(/(?:heavy|medium|hit|spin|rotation)\s*(\d+)/i) || name.match(/(?:zoom in|zoom out|swipe left|swipe right|swipe up|swipe down)\s*(\d+)/i);
+    var params = { duration: Math.max(0.08, Math.min(1.2, frameCount / 24)), motion: "impact", flash: /flash|noise/i.test(text), variant: variantMatch ? parseInt(variantMatch[1], 10) : 1 };
+
+    if (text.indexOf("zoom in") !== -1) params.motion = "zoomIn";
+    else if (text.indexOf("zoom out") !== -1) params.motion = "zoomOut";
+    else if (text.indexOf("swipe left") !== -1) params.motion = "swipeLeft";
+    else if (text.indexOf("swipe right") !== -1) params.motion = "swipeRight";
+    else if (text.indexOf("swipe up") !== -1) params.motion = "swipeUp";
+    else if (text.indexOf("swipe down") !== -1) params.motion = "swipeDown";
+    else if (text.indexOf("spin") !== -1) params.motion = "spin";
+    else if (text.indexOf("rotation") !== -1) params.motion = "rotation";
+    else if (text.indexOf("offset slide") !== -1) params.motion = "offset";
+    else if (category.indexOf("heavy") !== -1 || text.indexOf("hit") !== -1) params.motion = "impact";
+
+    if (category.indexOf("heavy") !== -1) params.intensity = 78;
+    else if (category.indexOf("medium") !== -1) params.intensity = 48;
+    else if (params.motion === "impact") params.intensity = 68;
+    else params.intensity = 38;
+    params.scale = params.motion === "zoomIn" || params.motion === "zoomOut" ? 16 : 8;
+    params.rotation = params.motion === "spin" || params.motion === "rotation" ? 12 : 4;
+    params.frequency = params.motion === "impact" ? 24 : 10;
+    return params;
   }
 
   function inspectShake(asset) {
@@ -1274,6 +1382,12 @@ GS.UI = (function () {
     if (shakeDurationSetting) shakeDurationSetting.addEventListener("change", function (e) {
       GS.Settings.set("defaultShakeDuration", Math.max(0.1, Math.min(5, parseFloat(e.target.value) || 0.6)));
     });
+    var performanceSetting = el("settingPerformanceLite");
+    if (performanceSetting) performanceSetting.addEventListener("change", function (e) {
+      GS.Settings.set("performanceLite", e.target.checked);
+      document.body.classList.toggle("performance-lite", e.target.checked);
+      renderBatchSize = e.target.checked ? 40 : 120;
+    });
     var resetSettings = el("resetSettingsBtn");
     if (resetSettings) resetSettings.addEventListener("click", function () {
       GS.Settings.reset();
@@ -1362,6 +1476,7 @@ GS.UI = (function () {
     // Bulk File Dropzone Handlers
     var dropZone = el("bulkDropZone");
     var bulkInput = el("bulkFileInput");
+    var manifestInput = el("bulkManifestInput");
     var bulkList = el("bulkFileList");
     var bulkSaveBtn = el("saveBulkBtn");
     var pendingBulkFiles = [];
@@ -1382,6 +1497,45 @@ GS.UI = (function () {
     if (bulkInput) {
       bulkInput.addEventListener("change", function (e) {
         if (e.target.files && e.target.files.length) handleBulkFiles(e.target.files);
+      });
+    }
+
+    if (manifestInput) {
+      manifestInput.addEventListener("change", function (e) {
+        if (!e.target.files || !e.target.files.length) return;
+        var reader = new FileReader();
+        reader.onload = function (event) {
+          var entries = String(event.target.result || "").split(/\r?\n/).map(function (line) {
+            return line.trim();
+          }).filter(function (line) { return line && line.charAt(0) !== "#"; }).map(function (line) {
+            var parts = line.split("|").map(function (part) { return part.trim(); });
+            var filePath = parts[0];
+            var fileName = filePath.split(/[\\/]/).pop();
+            return {
+              name: fileName,
+              path: filePath,
+              category: parts[1] || "",
+              tags: parts[2] ? parts[2].split(",").map(function (tag) { return tag.trim(); }).filter(Boolean) : []
+            };
+          });
+          var valid = entries.filter(function (entry) { return /\.(wav|mp3|aiff|aif|m4a|flac|ogg)$/i.test(entry.name); });
+          if (!valid.length) {
+            toast("No supported audio paths found in manifest", "err");
+            return;
+          }
+          pendingBulkFiles = valid;
+          bulkList.innerHTML = "";
+          pendingBulkFiles.forEach(function (file) {
+            var div = document.createElement("div");
+            div.style.cssText = "font-size:10px; color:var(--text-hi); padding:3px 0; border-bottom:1px solid var(--line-subtle);";
+            div.textContent = file.name + (file.category ? " - " + file.category : "");
+            bulkList.appendChild(div);
+          });
+          if (bulkSaveBtn) bulkSaveBtn.disabled = false;
+          toast("Loaded " + valid.length + " manifest assets", "ok");
+        };
+        reader.onerror = function () { toast("Could not read manifest", "err"); };
+        reader.readAsText(e.target.files[0]);
       });
     }
 
@@ -1412,11 +1566,13 @@ GS.UI = (function () {
           var asset = {
             id: "audio_custom_" + Date.now() + "_" + Math.floor(Math.random() * 1000),
             name: name,
-            category: cat,
+             category: f.category || cat,
             group: "Custom Audio",
             type: "audio",
             kind: "audio",
-            sourceFile: f.path || f.name,
+             tags: f.tags || [],
+             keywords: f.tags || [],
+             sourceFile: f.path || f.name,
             length: "00:03"
           };
           GS.DB.addCustomAsset(asset);
@@ -1546,7 +1702,7 @@ GS.UI = (function () {
       star: '<path d="m12 3 2.8 5.7 6.2.9-4.5 4.4 1.1 6.2-5.6-2.9-5.6 2.9 1.1-6.2L3 9.6l6.2-.9z"/>',
       add: '<path d="M12 5v14M5 12h14"/>',
       bolt: '<path d="m13 2-8 12h6l-1 8 8-12h-6z"/>',
-      shake: '<path d="m4 9 5 3-5 3M20 9l-5 3 5 3M12 4v16"/>',
+      shake: '<path d="M4 8 8 4M4 16l4 4M20 8l-4-4M20 16l-4 4M9 9h6v6H9z"/>',
       audio: '<path d="M5 10v4h3l4 4V6l-4 4zM16 9a4 4 0 0 1 0 6M18.5 6.5a8 8 0 0 1 0 11"/>',
       list: '<path d="M5 6h14M5 12h14M5 18h14"/>',
       grid: '<path d="M4 5h6v6H4zM14 5h6v6h-6zM4 15h6v6H4zM14 15h6v6h-6z"/>'
@@ -1557,6 +1713,7 @@ GS.UI = (function () {
   function init() {
     if ((navigator.hardwareConcurrency && navigator.hardwareConcurrency <= 4) || (navigator.deviceMemory && navigator.deviceMemory <= 4) || document.body.classList.contains("low-spec")) {
       document.body.classList.add("performance-lite");
+      renderBatchSize = 40;
     }
     document.documentElement.dataset.theme = GS.Settings.get("theme") || "dark";
     document.documentElement.style.setProperty("--accent-cyan", GS.Settings.get("accent") || "#A970FF");

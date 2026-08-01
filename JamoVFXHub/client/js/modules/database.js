@@ -15,7 +15,10 @@ GS.DB = (function () {
     categories: [],
     favorites: {},  // id -> true
     recent: [],     // array of ids, most recent first
-    customAssets: [] // array of user-created custom assets & presets
+    customAssets: [], // array of user-created custom assets & presets
+    searchIndex: [],
+    categoryIndex: {},
+    groupIndex: {}
   };
 
   function extensionRoot() {
@@ -57,6 +60,25 @@ GS.DB = (function () {
     });
   }
 
+  function rebuildIndexes() {
+    state.searchIndex = [];
+    state.categoryIndex = {};
+    state.groupIndex = {};
+    state.assets.forEach(function (asset) {
+      var haystack = [
+        asset.name,
+        asset.category,
+        asset.group,
+        asset.description,
+        (asset.tags || []).join(" "),
+        (asset.keywords || []).join(" ")
+      ].join(" ").toLowerCase();
+      state.searchIndex.push({ asset: asset, haystack: haystack });
+      (state.categoryIndex[asset.category] || (state.categoryIndex[asset.category] = [])).push(asset);
+      (state.groupIndex[asset.group] || (state.groupIndex[asset.group] = [])).push(asset);
+    });
+  }
+
   function loadFromCache() {
     var cached = readJSON(dbPath(), null);
     if (cached && cached.assets) {
@@ -64,6 +86,7 @@ GS.DB = (function () {
       state.categories = cached.categories || [];
       mergeCustomAssets();
       applyFavorites();
+      rebuildIndexes();
       return true;
     }
     return false;
@@ -75,6 +98,7 @@ GS.DB = (function () {
     state.categories = result.categories;
     mergeCustomAssets();
     applyFavorites();
+    rebuildIndexes();
     writeJSON(dbPath(), result);
     return state;
   }
@@ -104,11 +128,11 @@ GS.DB = (function () {
   function getCategories() { return state.categories; }
 
   function getByCategory(catName) {
-    return state.assets.filter(function (a) { return a.category === catName; });
+    return state.categoryIndex[catName] || [];
   }
 
   function getByGroup(groupName) {
-    return state.assets.filter(function (a) { return a.group === groupName; });
+    return state.groupIndex[groupName] || [];
   }
 
   function getFavorites() {
@@ -133,23 +157,24 @@ GS.DB = (function () {
     if (!query || !query.trim()) return [];
     var q = query.toLowerCase().trim();
     var terms = q.split(/\s+/);
-    return state.assets.filter(function (a) {
-      var haystack = [
-        a.name,
-        a.category,
-        a.group,
-        a.description,
-        (a.tags || []).join(" "),
-        (a.keywords || []).join(" ")
-      ].join(" ").toLowerCase();
+    return state.searchIndex.filter(function (entry) {
+      var haystack = entry.haystack;
       return terms.every(function (t) { return haystack.indexOf(t) > -1; });
-    });
+    }).map(function (entry) { return entry.asset; });
   }
 
   function addCustomAsset(asset) {
     try {
       if (!asset || !asset.name || !asset.category) return null;
       if (!asset.id) asset.id = "custom_" + Date.now() + "_" + Math.floor(Math.random() * 1000);
+      var duplicate = state.customAssets.filter(function (existing) {
+        if (asset.type !== existing.type) return false;
+        if (asset.type === "audio" && asset.sourceFile && existing.file) {
+          return path.normalize(asset.sourceFile) === path.normalize(existing.file);
+        }
+        return String(existing.name).toLowerCase() === String(asset.name).toLowerCase() && String(existing.category).toLowerCase() === String(asset.category).toLowerCase();
+      })[0];
+      if (duplicate) return null;
       var root = extensionRoot();
       var customDir = path.join(root, "Assets", "Custom Audio");
 
@@ -173,6 +198,7 @@ GS.DB = (function () {
       asset.custom = true;
       state.customAssets.unshift(asset);
       state.assets.unshift(asset);
+      rebuildIndexes();
       writeJSON(customPath(), state.customAssets);
       return asset;
     } catch (e) {
@@ -188,6 +214,7 @@ GS.DB = (function () {
     }
     state.customAssets = state.customAssets.filter(function (a) { return a.id !== id; });
     state.assets = state.assets.filter(function (a) { return a.id !== id; });
+    rebuildIndexes();
     writeJSON(customPath(), state.customAssets);
   }
 
@@ -201,6 +228,7 @@ GS.DB = (function () {
       live.name = asset.name;
       live.category = asset.category;
     }
+    rebuildIndexes();
     writeJSON(customPath(), state.customAssets);
     if (asset.type === "shake" && asset.file) {
       writeJSON(asset.file, { name: asset.name, category: asset.category, params: asset.params || {} });

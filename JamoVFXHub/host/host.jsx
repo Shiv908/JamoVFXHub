@@ -37,11 +37,17 @@ function gsImportSound(filePathsJSON, dropOnTimeline) {
             app.beginUndoGroup("JamoVFX Hub — Import Sound");
             var items = [];
             try {
+                var folderId = ensureAAPowerFolder();
+                var folderItem = folderId ? app.project.itemByID(folderId) : null;
+
                 for (var i = 0; i < paths.length; i++) {
                     var io = new ImportOptions(new File(paths[i]));
                     io.sequence = false;
                     var item = app.project.importFile(io);
-                    if (item) items.push(item);
+                    if (item) {
+                        if (folderItem) item.parentFolder = folderItem;
+                        items.push(item);
+                    }
                 }
                 if (items.length === 0) return fail("Nothing was imported.");
                 if (dropOnTimeline) {
@@ -60,16 +66,17 @@ function gsImportSound(filePathsJSON, dropOnTimeline) {
 
         // ---------- Premiere Pro ----------
         var imported = false;
+        var aaBin = ensureAAPowerFolder() || app.project.rootItem;
         if (app.project && typeof app.project.importFiles === "function") {
             try {
-                app.project.importFiles(paths, true, app.project.rootItem, false);
+                app.project.importFiles(paths, true, aaBin, false);
                 imported = true;
             } catch (e1) {}
         }
         if (!imported && app.project && typeof app.project.importFile === "function") {
             try {
                 for (var k = 0; k < paths.length; k++) {
-                    app.project.importFile(paths[k], true, app.project.rootItem, false);
+                    app.project.importFile(paths[k], true, aaBin, false);
                 }
                 imported = true;
             } catch (e2) {}
@@ -389,11 +396,149 @@ function getProperty(component, name) {
     return null;
 }
 
-function makeSeededRandom(seed) {
-    var s = seed % 2147483647;
-    if (s <= 0) s += 2147483646;
-    return function () {
-        s = (s * 16807) % 2147483647;
-        return (s - 1) / 2147483646;
-    };
+// ---------- AA POWER STOCK EXTENSION INTEGRATION ----------
+
+/**
+ * Ensures that the AA_POWER folder exists in the project and returns its item ID
+ * @returns {number} The item ID of the AA_POWER folder
+ */
+function ensureAAPowerFolder() {
+  if (!app.project) return null;
+  var project = app.project;
+  var folderItem = null;
+
+  if (isAfterEffects()) {
+    for (var i = 1; i <= project.numItems; i++) {
+      var item = project.item(i);
+      if (item instanceof FolderItem && item.name === "AA_POWER") {
+        folderItem = item;
+        break;
+      }
+    }
+    if (!folderItem) {
+      folderItem = project.items.addFolder("AA_POWER");
+    }
+    return folderItem.id;
+  }
+
+  // Premiere Pro Bin Creation
+  var root = project.rootItem;
+  for (var j = 0; j < root.children.numItems; j++) {
+    var pItem = root.children[j];
+    if (pItem && pItem.name === "AA_POWER") {
+      return pItem;
+    }
+  }
+  return root.createBin("AA_POWER");
 }
+
+/**
+ * Imports a file and places it in the AA_POWER folder
+ * @param {string} filePath - Path to the file to import
+ * @returns {Item} The imported item
+ */
+function importToAAPowerFolder(filePath) {
+  try {
+    if (isAfterEffects()) {
+      var folderId = ensureAAPowerFolder();
+      var folderItem = app.project.itemByID(folderId);
+      var importOptions = new ImportOptions(File(filePath));
+      var importedItem = app.project.importFile(importOptions);
+      if (importedItem && folderItem) {
+        importedItem.parentFolder = folderItem;
+      }
+      return importedItem;
+    }
+    return null;
+  } catch (error) {
+    return null;
+  }
+}
+
+/**
+ * Gets the After Effects / Premiere version information
+ */
+function getAEVersion() {
+  try {
+    if (!app) return JSON.stringify({ error: "Host app not available", supported: false });
+    var versionString = String(app.version);
+    var versionNumber = parseFloat(versionString);
+    var MIN_VERSION = 22.0;
+    return JSON.stringify({
+      version: versionNumber,
+      versionString: versionString,
+      supported: versionNumber >= MIN_VERSION,
+      minVersion: MIN_VERSION
+    });
+  } catch (error) {
+    return JSON.stringify({ error: error.toString(), supported: false });
+  }
+}
+
+/**
+ * Extracts controller layer properties for MOGRT templates
+ */
+function getControllerLayerInfo(controllerLayer) {
+  if (!controllerLayer) return JSON.stringify({ error: "No layer provided" });
+  var layerName = "";
+  var effects = {};
+  var error_message = "";
+  var id = "";
+  var comment = "";
+
+  try {
+    if (controllerLayer.name !== "Controller") {
+      error_message = "Not a controller layer";
+    } else {
+      layerName = controllerLayer.containingComp ? controllerLayer.containingComp.name : controllerLayer.name;
+      var commentText = controllerLayer.comment;
+      if (commentText && typeof commentText === "string") {
+        var commentParts = commentText.split(";");
+        if (commentParts.length > 0) {
+          comment = commentParts[0];
+          id = commentParts[1] || "";
+        }
+      }
+      var effectsProperty = controllerLayer.property("ADBE Effect Parade");
+      if (effectsProperty && effectsProperty.numProperties > 0) {
+        for (var i = 1; i <= effectsProperty.numProperties; i++) {
+          var effect = effectsProperty.property(i);
+          var effectData = {
+            name: effect.name,
+            matchName: effect.matchName,
+            properties: {}
+          };
+          for (var j = 1; j <= effect.numProperties; j++) {
+            var prop = effect.property(j);
+            if (prop.propertyType === PropertyType.PROPERTY) {
+              var propData = {
+                matchName: prop.matchName,
+                value: prop.value,
+                type: prop.propertyValueType
+              };
+              if (prop.hasMin == true && prop.hasMax == true) {
+                propData.min = prop.minValue;
+                propData.max = prop.maxValue;
+              }
+              effectData.properties[prop.name] = propData;
+            }
+          }
+          effects[effect.name] = effectData;
+        }
+      } else {
+        error_message = "No effects found";
+      }
+    }
+  } catch (err) {
+    error_message = err.toString();
+  }
+
+  return JSON.stringify({
+    name: layerName,
+    comment: comment,
+    id: id,
+    effects: effects,
+    error: error_message
+  });
+}
+

@@ -1,0 +1,27 @@
+{
+  "Name": "EP ShakeItUpV2 Hit 5 2 (8 10 Frames)",
+  "Category": "Shake It Up V2   HITs",
+  "Tags": [
+    "shake it up v2 - hits",
+    "shakeitupv2",
+    "hit",
+    "frames"
+  ],
+  "Keywords": [
+    "shake it up v2 - hits",
+    "shakeitupv2",
+    "hit",
+    "frames"
+  ],
+  "Description": "",
+  "Premium": false,
+  "Version": "1.0",
+  "Params": {
+    "intensity": 20,
+    "duration": 0.6,
+    "scale": 4,
+    "rotation": 2,
+    "frequency": 12
+  },
+  "Host": "AEFT"
+}

@@ -1,0 +1,9 @@
+# JamoVFX Hub asset import manifest
+# One audio file per line.
+# Format: full-file-path | Category | tag1, tag2, tag3
+# Category and tags are optional.
+# Lines beginning with # are ignored.
+
+# C:\\Sound Library\\Impacts\\metal_hit_01.wav | Impacts | metal, hit, heavy
+# C:\\Sound Library\\Whooshes\\whoosh_long_01.wav | Whooshes | whoosh, long, transition
+# C:\\Sound Library\\UI\\button_click_01.mp3 | UI | click, button, interface

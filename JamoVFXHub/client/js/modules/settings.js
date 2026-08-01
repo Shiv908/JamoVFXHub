@@ -20,7 +20,8 @@ GS.Settings = (function () {
     autoPreview: true,
     theme: "dark",
     accent: "#A970FF",
-    defaultShakeDuration: 0.6
+    defaultShakeDuration: 0.6,
+    performanceLite: false
   };
 
   var state = Object.assign({}, DEFAULTS);

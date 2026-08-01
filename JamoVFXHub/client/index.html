@@ -271,6 +271,11 @@
             <p style="font-size:9.5px; color:var(--text-mid);">Supports WAV, MP3, AIFF, M4A</p>
             <input type="file" id="bulkFileInput" accept="audio/*" multiple style="display:none;" />
           </div>
+          <div class="manifest-import-row">
+            <label for="bulkManifestInput">OR LOAD A TXT MANIFEST</label>
+            <input type="file" id="bulkManifestInput" accept=".txt,text/plain" />
+            <small>One path per line: <code>file.wav | Category | tag1, tag2</code></small>
+          </div>
           <div class="form-group" style="margin-top:10px;">
             <label>Default Target Category</label>
             <input type="text" id="bulkCategoryInput" value="Imported Pack" />
@@ -292,6 +297,21 @@
             <!-- Populated dynamically -->
           </div>
         </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- SETTINGS -->
+  <div id="settingsModal" class="modal-overlay" style="display:none;">
+    <div class="modal-card settings-card">
+      <div class="modal-header"><div><span class="eyebrow">PREFERENCES</span><h3>Hub Settings</h3></div><button id="closeSettingsBtn" class="close-btn">✕</button></div>
+      <div class="modal-body settings-body">
+        <label class="setting-row"><span><strong>Auto Preview</strong><small>Preview audio when selected</small></span><input id="settingAutoPreview" type="checkbox" /></label>
+        <label class="setting-row"><span><strong>Accent Color</strong><small>Change active controls</small></span><input id="settingAccent" class="setting-color" type="color" /></label>
+        <label class="setting-row"><span><strong>Default Volume</strong><small>Mini player volume</small></span><input id="settingVolume" type="range" min="0" max="1" step="0.05" /></label>
+        <label class="setting-row"><span><strong>Recent Asset Limit</strong><small>Assets remembered in Recent</small></span><input id="settingMaxRecent" class="setting-number" type="number" min="5" max="200" /></label>
+        <label class="setting-row"><span><strong>Compatibility Mode</strong><small>Reduce animation and visual effects</small></span><input id="settingPerformanceLite" type="checkbox" /></label>
+        <button id="resetSettingsBtn" class="secondary-action-btn">RESET PREFERENCES</button>
       </div>
     </div>
   </div>

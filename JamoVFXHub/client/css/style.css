@@ -1399,6 +1399,11 @@ h1, h2, h3, .display-font {
 .custom-asset-actions { display: flex; gap: 5px; align-items: center; }
 .custom-asset-actions button { border: 1px solid var(--line-subtle); border-radius: 5px; background: var(--surface-1); color: var(--text-mid); padding: 4px 6px; font: 700 8px "JetBrains Mono", monospace; cursor: pointer; }
 .custom-asset-actions .edit-btn:hover { color: var(--accent-cyan); border-color: var(--accent-cyan); }
+.manifest-import-row { display: grid; gap: 4px; margin-top: 10px; padding: 9px; border: 1px solid var(--line-subtle); border-radius: 7px; background: rgba(255,255,255,.02); }
+.manifest-import-row label { color: var(--text-mid); font: 700 9px "JetBrains Mono", monospace; letter-spacing: .05em; }
+.manifest-import-row input[type="file"] { width: 100%; color: var(--text-mid); font-size: 10px; }
+.manifest-import-row small { color: var(--text-dim); font-size: 9px; }
+.manifest-import-row code { color: #c9a8ff; font-family: "JetBrains Mono", monospace; }
 
 /* ---------- FINAL UX PASS ---------- */
 :root {
@@ -1448,6 +1453,7 @@ button:focus-visible, input:focus-visible {
 .count-pill { background: rgba(255,255,255,.045); color: #b8bac7; border-color: rgba(255,255,255,.12); }
 .card-grid.list-view { gap: 4px; }
 .card-grid { contain: content; }
+.asset-row, .asset-card { content-visibility: auto; contain-intrinsic-size: 44px; }
 .asset-row { height: 44px; padding-inline: 10px; border-radius: 9px; background: rgba(10,11,16,.84); border-color: rgba(255,255,255,.075); }
 .asset-row:hover { transform: translateX(2px); background: #11131b; border-color: rgba(169,112,255,.42); }
 .asset-row.selected { transform: translateX(2px); background: linear-gradient(90deg, rgba(116,52,232,.19), rgba(23,26,37,.9)); border-color: #a970ff; }
@@ -1455,8 +1461,12 @@ button:focus-visible, input:focus-visible {
 .asset-row .row-meta { gap: 10px; }
 .asset-row .row-play-btn { width: 24px; height: 24px; background: rgba(255,255,255,.07); }
 .asset-row:hover .row-play-btn, .asset-row.is-playing .row-play-btn { background: #a970ff; color: #0b0713; box-shadow: 0 0 12px rgba(169,112,255,.32); }
+.asset-row.shake-asset .row-play-btn { color: #ffb84d; }
+.asset-row.audio-asset .row-play-btn { color: #a970ff; }
 .asset-row .row-insert-btn { padding: 4px 8px; color: #c8c9d4; background: rgba(255,255,255,.045); }
 .asset-row .row-insert-btn:hover { background: #a970ff; color: #11091f; }
+.asset-card.shake-asset .card-preview { color: #ffb84d; background: linear-gradient(135deg, rgba(255,184,77,.12), var(--surface-2)); }
+.asset-card.audio-asset .card-preview { color: #a970ff; }
 
 .sidebar { width: 250px; background: rgba(9,10,15,.985); box-shadow: var(--panel-shadow); }
 .sidebar-header { padding: 15px 14px 12px; }

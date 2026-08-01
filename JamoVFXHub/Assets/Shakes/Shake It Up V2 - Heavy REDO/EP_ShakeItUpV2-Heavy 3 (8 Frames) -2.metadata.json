@@ -1,0 +1,27 @@
+{
+  "Name": "EP ShakeItUpV2 Heavy 3 (8 Frames)  2",
+  "Category": "Shake It Up V2   Heavy REDO",
+  "Tags": [
+    "shake it up v2 - heavy redo",
+    "shakeitupv2",
+    "heavy",
+    "frames"
+  ],
+  "Keywords": [
+    "shake it up v2 - heavy redo",
+    "shakeitupv2",
+    "heavy",
+    "frames"
+  ],
+  "Description": "",
+  "Premium": false,
+  "Version": "1.0",
+  "Params": {
+    "intensity": 20,
+    "duration": 0.6,
+    "scale": 4,
+    "rotation": 2,
+    "frequency": 12
+  },
+  "Host": "AEFT"
+}

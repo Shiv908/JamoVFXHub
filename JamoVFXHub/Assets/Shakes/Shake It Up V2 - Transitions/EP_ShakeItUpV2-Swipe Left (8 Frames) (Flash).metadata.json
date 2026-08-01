@@ -1,0 +1,31 @@
+{
+  "Name": "EP ShakeItUpV2 Swipe Left (8 Frames) (Flash)",
+  "Category": "Shake It Up V2   Transitions",
+  "Tags": [
+    "shake it up v2 - transitions",
+    "shakeitupv2",
+    "swipe",
+    "left",
+    "frames",
+    "flash"
+  ],
+  "Keywords": [
+    "shake it up v2 - transitions",
+    "shakeitupv2",
+    "swipe",
+    "left",
+    "frames",
+    "flash"
+  ],
+  "Description": "",
+  "Premium": false,
+  "Version": "1.0",
+  "Params": {
+    "intensity": 20,
+    "duration": 0.6,
+    "scale": 4,
+    "rotation": 2,
+    "frequency": 12
+  },
+  "Host": "AEFT"
+}

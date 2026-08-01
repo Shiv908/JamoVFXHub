@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ExtensionList>
+  <Extension Id="com.aa-power.stock.cep.main">
+    <HostList>
+      <Host Name="AEFT" Port="8863"/>
+      <Host Name="PPRO" Port="8864"/>
+    </HostList>
+  </Extension>
+</ExtensionList>

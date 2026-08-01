@@ -1,0 +1,29 @@
+{
+  "Name": "EP ShakeItUpV2 Heavy 5 (6 8 Frames) (Flash)",
+  "Category": "Shake It Up V2   Heavy",
+  "Tags": [
+    "shake it up v2 - heavy",
+    "shakeitupv2",
+    "heavy",
+    "frames",
+    "flash"
+  ],
+  "Keywords": [
+    "shake it up v2 - heavy",
+    "shakeitupv2",
+    "heavy",
+    "frames",
+    "flash"
+  ],
+  "Description": "",
+  "Premium": false,
+  "Version": "1.0",
+  "Params": {
+    "intensity": 20,
+    "duration": 0.6,
+    "scale": 4,
+    "rotation": 2,
+    "frequency": 12
+  },
+  "Host": "AEFT"
+}

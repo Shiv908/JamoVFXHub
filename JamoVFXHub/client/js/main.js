@@ -75,11 +75,27 @@ document.addEventListener("DOMContentLoaded", function () {
 
   GS.UI.init();
 
+  var refreshBusy = false;
   document.getElementById("refreshBtn").addEventListener("click", function () {
+    if (refreshBusy) return;
+    refreshBusy = true;
+    var refreshButton = document.getElementById("refreshBtn");
+    if (refreshButton) refreshButton.disabled = true;
     setStatus("Rescanning…");
-    GS.DB.rescan();
-    GS.UI.refreshAll();
-    setStatus("Rescan complete");
+    setTimeout(function () {
+      try {
+        GS.DB.rescan();
+        GS.UI.refreshAll();
+        setStatus("Rescan complete");
+      } catch (e) {
+        console.error("JamoVFX rescan failed", e);
+        setStatus("Rescan failed");
+        if (GS.UI && GS.UI.toast) GS.UI.toast("Rescan failed. Check the asset folders.", "err");
+      } finally {
+        refreshBusy = false;
+        if (refreshButton) refreshButton.disabled = false;
+      }
+    }, 0);
   });
 
   // Host detection for AE vs Premiere

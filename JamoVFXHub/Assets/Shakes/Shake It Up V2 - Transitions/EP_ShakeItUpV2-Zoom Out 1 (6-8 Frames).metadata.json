@@ -1,0 +1,29 @@
+{
+  "Name": "EP ShakeItUpV2 Zoom Out 1 (6 8 Frames)",
+  "Category": "Shake It Up V2   Transitions",
+  "Tags": [
+    "shake it up v2 - transitions",
+    "shakeitupv2",
+    "zoom",
+    "out",
+    "frames"
+  ],
+  "Keywords": [
+    "shake it up v2 - transitions",
+    "shakeitupv2",
+    "zoom",
+    "out",
+    "frames"
+  ],
+  "Description": "",
+  "Premium": false,
+  "Version": "1.0",
+  "Params": {
+    "intensity": 20,
+    "duration": 0.6,
+    "scale": 4,
+    "rotation": 2,
+    "frequency": 12
+  },
+  "Host": "AEFT"
+}

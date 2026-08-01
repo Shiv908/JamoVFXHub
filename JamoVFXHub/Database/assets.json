@@ -60213,6 +60213,2703 @@
       "downloadURL": "",
       "installed": true,
       "thumbnail": ""
+    },
+    {
+      "id": "Shakes/Shake It Up V2 - Heavy/EP_ShakeItUpV2 Heavy 2 (8-10 Frames)",
+      "name": "EP ShakeItUpV2 Heavy 2 (8 10 Frames)",
+      "category": "Shake It Up V2 - Heavy",
+      "group": "Shakes",
+      "type": "shake",
+      "kind": "shake",
+      "tags": [
+        "shake it up v2 - heavy",
+        "shakeitupv2",
+        "heavy",
+        "frames"
+      ],
+      "keywords": [
+        "shake it up v2 - heavy",
+        "shakeitupv2",
+        "heavy",
+        "frames"
+      ],
+      "description": "",
+      "file": "C:\\Users\\user\\Desktop\\SURJEET\\adobe\\The Complete Sound FX Pack\\JamoVFXHub\\Assets\\Shakes\\Shake It Up V2 - Heavy\\EP_ShakeItUpV2 Heavy 2 (8-10 Frames).ffx",
+      "preview": null,
+      "premium": false,
+      "favorite": false,
+      "params": {
+        "intensity": 20,
+        "duration": 0.6,
+        "scale": 4,
+        "rotation": 2,
+        "frequency": 12
+      },
+      "hostHint": "AEFT",
+      "version": "1.0",
+      "length": "",
+      "sampleRate": "",
+      "downloadURL": "",
+      "installed": true,
+      "thumbnail": ""
+    },
+    {
+      "id": "Shakes/Shake It Up V2 - Heavy/EP_ShakeItUpV2-Heavy 1 (8-10 Frames) (Flash) ",
+      "name": "EP ShakeItUpV2 Heavy 1 (8 10 Frames) (Flash) ",
+      "category": "Shake It Up V2 - Heavy",
+      "group": "Shakes",
+      "type": "shake",
+      "kind": "shake",
+      "tags": [
+        "shake it up v2 - heavy",
+        "shakeitupv2",
+        "heavy",
+        "frames",
+        "flash"
+      ],
+      "keywords": [
+        "shake it up v2 - heavy",
+        "shakeitupv2",
+        "heavy",
+        "frames",
+        "flash"
+      ],
+      "description": "",
+      "file": "C:\\Users\\user\\Desktop\\SURJEET\\adobe\\The Complete Sound FX Pack\\JamoVFXHub\\Assets\\Shakes\\Shake It Up V2 - Heavy\\EP_ShakeItUpV2-Heavy 1 (8-10 Frames) (Flash) .ffx",
+      "preview": null,
+      "premium": false,
+      "favorite": false,
+      "params": {
+        "intensity": 20,
+        "duration": 0.6,
+        "scale": 4,
+        "rotation": 2,
+        "frequency": 12
+      },
+      "hostHint": "AEFT",
+      "version": "1.0",
+      "length": "",
+      "sampleRate": "",
+      "downloadURL": "",
+      "installed": true,
+      "thumbnail": ""
+    },
+    {
+      "id": "Shakes/Shake It Up V2 - Heavy/EP_ShakeItUpV2-Heavy 1 (8-10 Frames)",
+      "name": "EP ShakeItUpV2 Heavy 1 (8 10 Frames)",
+      "category": "Shake It Up V2 - Heavy",
+      "group": "Shakes",
+      "type": "shake",
+      "kind": "shake",
+      "tags": [
+        "shake it up v2 - heavy",
+        "shakeitupv2",
+        "heavy",
+        "frames"
+      ],
+      "keywords": [
+        "shake it up v2 - heavy",
+        "shakeitupv2",
+        "heavy",
+        "frames"
+      ],
+      "description": "",
+      "file": "C:\\Users\\user\\Desktop\\SURJEET\\adobe\\The Complete Sound FX Pack\\JamoVFXHub\\Assets\\Shakes\\Shake It Up V2 - Heavy\\EP_ShakeItUpV2-Heavy 1 (8-10 Frames).ffx",
+      "preview": null,
+      "premium": false,
+      "favorite": false,
+      "params": {
+        "intensity": 20,
+        "duration": 0.6,
+        "scale": 4,
+        "rotation": 2,
+        "frequency": 12
+      },
+      "hostHint": "AEFT",
+      "version": "1.0",
+      "length": "",
+      "sampleRate": "",
+      "downloadURL": "",
+      "installed": true,
+      "thumbnail": ""
+    },
+    {
+      "id": "Shakes/Shake It Up V2 - Heavy/EP_ShakeItUpV2-Heavy 2 (8-10 Frames) (Flash)",
+      "name": "EP ShakeItUpV2 Heavy 2 (8 10 Frames) (Flash)",
+      "category": "Shake It Up V2 - Heavy",
+      "group": "Shakes",
+      "type": "shake",
+      "kind": "shake",
+      "tags": [
+        "shake it up v2 - heavy",
+        "shakeitupv2",
+        "heavy",
+        "frames",
+        "flash"
+      ],
+      "keywords": [
+        "shake it up v2 - heavy",
+        "shakeitupv2",
+        "heavy",
+        "frames",
+        "flash"
+      ],
+      "description": "",
+      "file": "C:\\Users\\user\\Desktop\\SURJEET\\adobe\\The Complete Sound FX Pack\\JamoVFXHub\\Assets\\Shakes\\Shake It Up V2 - Heavy\\EP_ShakeItUpV2-Heavy 2 (8-10 Frames) (Flash).ffx",
+      "preview": null,
+      "premium": false,
+      "favorite": false,
+      "params": {
+        "intensity": 20,
+        "duration": 0.6,
+        "scale": 4,
+        "rotation": 2,
+        "frequency": 12
+      },
+      "hostHint": "AEFT",
+      "version": "1.0",
+      "length": "",
+      "sampleRate": "",
+      "downloadURL": "",
+      "installed": true,
+      "thumbnail": ""
+    },
+    {
+      "id": "Shakes/Shake It Up V2 - Heavy/EP_ShakeItUpV2-Heavy 3 (8 Frames) (Flash)",
+      "name": "EP ShakeItUpV2 Heavy 3 (8 Frames) (Flash)",
+      "category": "Shake It Up V2 - Heavy",
+      "group": "Shakes",
+      "type": "shake",
+      "kind": "shake",
+      "tags": [
+        "shake it up v2 - heavy",
+        "shakeitupv2",
+        "heavy",
+        "frames",
+        "flash"
+      ],
+      "keywords": [
+        "shake it up v2 - heavy",
+        "shakeitupv2",
+        "heavy",
+        "frames",
+        "flash"
+      ],
+      "description": "",
+      "file": "C:\\Users\\user\\Desktop\\SURJEET\\adobe\\The Complete Sound FX Pack\\JamoVFXHub\\Assets\\Shakes\\Shake It Up V2 - Heavy\\EP_ShakeItUpV2-Heavy 3 (8 Frames) (Flash).ffx",
+      "preview": null,
+      "premium": false,
+      "favorite": false,
+      "params": {
+        "intensity": 20,
+        "duration": 0.6,
+        "scale": 4,
+        "rotation": 2,
+        "frequency": 12
+      },
+      "hostHint": "AEFT",
+      "version": "1.0",
+      "length": "",
+      "sampleRate": "",
+      "downloadURL": "",
+      "installed": true,
+      "thumbnail": ""
+    },
+    {
+      "id": "Shakes/Shake It Up V2 - Heavy/EP_ShakeItUpV2-Heavy 3 (8 Frames)",
+      "name": "EP ShakeItUpV2 Heavy 3 (8 Frames)",
+      "category": "Shake It Up V2 - Heavy",
+      "group": "Shakes",
+      "type": "shake",
+      "kind": "shake",
+      "tags": [
+        "shake it up v2 - heavy",
+        "shakeitupv2",
+        "heavy",
+        "frames"
+      ],
+      "keywords": [
+        "shake it up v2 - heavy",
+        "shakeitupv2",
+        "heavy",
+        "frames"
+      ],
+      "description": "",
+      "file": "C:\\Users\\user\\Desktop\\SURJEET\\adobe\\The Complete Sound FX Pack\\JamoVFXHub\\Assets\\Shakes\\Shake It Up V2 - Heavy\\EP_ShakeItUpV2-Heavy 3 (8 Frames).ffx",
+      "preview": null,
+      "premium": false,
+      "favorite": false,
+      "params": {
+        "intensity": 20,
+        "duration": 0.6,
+        "scale": 4,
+        "rotation": 2,
+        "frequency": 12
+      },
+      "hostHint": "AEFT",
+      "version": "1.0",
+      "length": "",
+      "sampleRate": "",
+      "downloadURL": "",
+      "installed": true,
+      "thumbnail": ""
+    },
+    {
+      "id": "Shakes/Shake It Up V2 - Heavy/EP_ShakeItUpV2-Heavy 4 (6-8 Frames) (Flash)",
+      "name": "EP ShakeItUpV2 Heavy 4 (6 8 Frames) (Flash)",
+      "category": "Shake It Up V2 - Heavy",
+      "group": "Shakes",
+      "type": "shake",
+      "kind": "shake",
+      "tags": [
+        "shake it up v2 - heavy",
+        "shakeitupv2",
+        "heavy",
+        "frames",
+        "flash"
+      ],
+      "keywords": [
+        "shake it up v2 - heavy",
+        "shakeitupv2",
+        "heavy",
+        "frames",
+        "flash"
+      ],
+      "description": "",
+      "file": "C:\\Users\\user\\Desktop\\SURJEET\\adobe\\The Complete Sound FX Pack\\JamoVFXHub\\Assets\\Shakes\\Shake It Up V2 - Heavy\\EP_ShakeItUpV2-Heavy 4 (6-8 Frames) (Flash).ffx",
+      "preview": null,
+      "premium": false,
+      "favorite": false,
+      "params": {
+        "intensity": 20,
+        "duration": 0.6,
+        "scale": 4,
+        "rotation": 2,
+        "frequency": 12
+      },
+      "hostHint": "AEFT",
+      "version": "1.0",
+      "length": "",
+      "sampleRate": "",
+      "downloadURL": "",
+      "installed": true,
+      "thumbnail": ""
+    },
+    {
+      "id": "Shakes/Shake It Up V2 - Heavy/EP_ShakeItUpV2-Heavy 4 (6-8 Frames)",
+      "name": "EP ShakeItUpV2 Heavy 4 (6 8 Frames)",
+      "category": "Shake It Up V2 - Heavy",
+      "group": "Shakes",
+      "type": "shake",
+      "kind": "shake",
+      "tags": [
+        "shake it up v2 - heavy",
+        "shakeitupv2",
+        "heavy",
+        "frames"
+      ],
+      "keywords": [
+        "shake it up v2 - heavy",
+        "shakeitupv2",
+        "heavy",
+        "frames"
+      ],
+      "description": "",
+      "file": "C:\\Users\\user\\Desktop\\SURJEET\\adobe\\The Complete Sound FX Pack\\JamoVFXHub\\Assets\\Shakes\\Shake It Up V2 - Heavy\\EP_ShakeItUpV2-Heavy 4 (6-8 Frames).ffx",
+      "preview": null,
+      "premium": false,
+      "favorite": false,
+      "params": {
+        "intensity": 20,
+        "duration": 0.6,
+        "scale": 4,
+        "rotation": 2,
+        "frequency": 12
+      },
+      "hostHint": "AEFT",
+      "version": "1.0",
+      "length": "",
+      "sampleRate": "",
+      "downloadURL": "",
+      "installed": true,
+      "thumbnail": ""
+    },
+    {
+      "id": "Shakes/Shake It Up V2 - Heavy/EP_ShakeItUpV2-Heavy 5 (6-8 Frames) (Flash)",
+      "name": "EP ShakeItUpV2 Heavy 5 (6 8 Frames) (Flash)",
+      "category": "Shake It Up V2 - Heavy",
+      "group": "Shakes",
+      "type": "shake",
+      "kind": "shake",
+      "tags": [
+        "shake it up v2 - heavy",
+        "shakeitupv2",
+        "heavy",
+        "frames",
+        "flash"
+      ],
+      "keywords": [
+        "shake it up v2 - heavy",
+        "shakeitupv2",
+        "heavy",
+        "frames",
+        "flash"
+      ],
+      "description": "",
+      "file": "C:\\Users\\user\\Desktop\\SURJEET\\adobe\\The Complete Sound FX Pack\\JamoVFXHub\\Assets\\Shakes\\Shake It Up V2 - Heavy\\EP_ShakeItUpV2-Heavy 5 (6-8 Frames) (Flash).ffx",
+      "preview": null,
+      "premium": false,
+      "favorite": false,
+      "params": {
+        "intensity": 20,
+        "duration": 0.6,
+        "scale": 4,
+        "rotation": 2,
+        "frequency": 12
+      },
+      "hostHint": "AEFT",
+      "version": "1.0",
+      "length": "",
+      "sampleRate": "",
+      "downloadURL": "",
+      "installed": true,
+      "thumbnail": ""
+    },
+    {
+      "id": "Shakes/Shake It Up V2 - Heavy/EP_ShakeItUpV2-Heavy 5 (6-8 Frames)",
+      "name": "EP ShakeItUpV2 Heavy 5 (6 8 Frames)",
+      "category": "Shake It Up V2 - Heavy",
+      "group": "Shakes",
+      "type": "shake",
+      "kind": "shake",
+      "tags": [
+        "shake it up v2 - heavy",
+        "shakeitupv2",
+        "heavy",
+        "frames"
+      ],
+      "keywords": [
+        "shake it up v2 - heavy",
+        "shakeitupv2",
+        "heavy",
+        "frames"
+      ],
+      "description": "",
+      "file": "C:\\Users\\user\\Desktop\\SURJEET\\adobe\\The Complete Sound FX Pack\\JamoVFXHub\\Assets\\Shakes\\Shake It Up V2 - Heavy\\EP_ShakeItUpV2-Heavy 5 (6-8 Frames).ffx",
+      "preview": null,
+      "premium": false,
+      "favorite": false,
+      "params": {
+        "intensity": 20,
+        "duration": 0.6,
+        "scale": 4,
+        "rotation": 2,
+        "frequency": 12
+      },
+      "hostHint": "AEFT",
+      "version": "1.0",
+      "length": "",
+      "sampleRate": "",
+      "downloadURL": "",
+      "installed": true,
+      "thumbnail": ""
+    },
+    {
+      "id": "Shakes/Shake It Up V2 - Heavy/EP_ShakeItUpV2-Heavy 6 (8-10 Frames) (Flash + Noise)",
+      "name": "EP ShakeItUpV2 Heavy 6 (8 10 Frames) (Flash + Noise)",
+      "category": "Shake It Up V2 - Heavy",
+      "group": "Shakes",
+      "type": "shake",
+      "kind": "shake",
+      "tags": [
+        "shake it up v2 - heavy",
+        "shakeitupv2",
+        "heavy",
+        "frames",
+        "flash",
+        "noise"
+      ],
+      "keywords": [
+        "shake it up v2 - heavy",
+        "shakeitupv2",
+        "heavy",
+        "frames",
+        "flash",
+        "noise"
+      ],
+      "description": "",
+      "file": "C:\\Users\\user\\Desktop\\SURJEET\\adobe\\The Complete Sound FX Pack\\JamoVFXHub\\Assets\\Shakes\\Shake It Up V2 - Heavy\\EP_ShakeItUpV2-Heavy 6 (8-10 Frames) (Flash + Noise).ffx",
+      "preview": null,
+      "premium": false,
+      "favorite": false,
+      "params": {
+        "intensity": 20,
+        "duration": 0.6,
+        "scale": 4,
+        "rotation": 2,
+        "frequency": 12
+      },
+      "hostHint": "AEFT",
+      "version": "1.0",
+      "length": "",
+      "sampleRate": "",
+      "downloadURL": "",
+      "installed": true,
+      "thumbnail": ""
+    },
+    {
+      "id": "Shakes/Shake It Up V2 - Heavy/EP_ShakeItUpV2-Heavy 6 (8-10 Frames) (Noise)",
+      "name": "EP ShakeItUpV2 Heavy 6 (8 10 Frames) (Noise)",
+      "category": "Shake It Up V2 - Heavy",
+      "group": "Shakes",
+      "type": "shake",
+      "kind": "shake",
+      "tags": [
+        "shake it up v2 - heavy",
+        "shakeitupv2",
+        "heavy",
+        "frames",
+        "noise"
+      ],
+      "keywords": [
+        "shake it up v2 - heavy",
+        "shakeitupv2",
+        "heavy",
+        "frames",
+        "noise"
+      ],
+      "description": "",
+      "file": "C:\\Users\\user\\Desktop\\SURJEET\\adobe\\The Complete Sound FX Pack\\JamoVFXHub\\Assets\\Shakes\\Shake It Up V2 - Heavy\\EP_ShakeItUpV2-Heavy 6 (8-10 Frames) (Noise).ffx",
+      "preview": null,
+      "premium": false,
+      "favorite": false,
+      "params": {
+        "intensity": 20,
+        "duration": 0.6,
+        "scale": 4,
+        "rotation": 2,
+        "frequency": 12
+      },
+      "hostHint": "AEFT",
+      "version": "1.0",
+      "length": "",
+      "sampleRate": "",
+      "downloadURL": "",
+      "installed": true,
+      "thumbnail": ""
+    },
+    {
+      "id": "Shakes/Shake It Up V2 - Heavy REDO/EP_ShakeItUpV2 Heavy 2 (8-10 Frames) -2",
+      "name": "EP ShakeItUpV2 Heavy 2 (8 10 Frames)  2",
+      "category": "Shake It Up V2 - Heavy REDO",
+      "group": "Shakes",
+      "type": "shake",
+      "kind": "shake",
+      "tags": [
+        "shake it up v2 - heavy redo",
+        "shakeitupv2",
+        "heavy",
+        "frames"
+      ],
+      "keywords": [
+        "shake it up v2 - heavy redo",
+        "shakeitupv2",
+        "heavy",
+        "frames"
+      ],
+      "description": "",
+      "file": "C:\\Users\\user\\Desktop\\SURJEET\\adobe\\The Complete Sound FX Pack\\JamoVFXHub\\Assets\\Shakes\\Shake It Up V2 - Heavy REDO\\EP_ShakeItUpV2 Heavy 2 (8-10 Frames) -2.ffx",
+      "preview": null,
+      "premium": false,
+      "favorite": false,
+      "params": {
+        "intensity": 20,
+        "duration": 0.6,
+        "scale": 4,
+        "rotation": 2,
+        "frequency": 12
+      },
+      "hostHint": "AEFT",
+      "version": "1.0",
+      "length": "",
+      "sampleRate": "",
+      "downloadURL": "",
+      "installed": true,
+      "thumbnail": ""
+    },
+    {
+      "id": "Shakes/Shake It Up V2 - Heavy REDO/EP_ShakeItUpV2-Heavy 1 (Flash) -2",
+      "name": "EP ShakeItUpV2 Heavy 1 (Flash)  2",
+      "category": "Shake It Up V2 - Heavy REDO",
+      "group": "Shakes",
+      "type": "shake",
+      "kind": "shake",
+      "tags": [
+        "shake it up v2 - heavy redo",
+        "shakeitupv2",
+        "heavy",
+        "flash"
+      ],
+      "keywords": [
+        "shake it up v2 - heavy redo",
+        "shakeitupv2",
+        "heavy",
+        "flash"
+      ],
+      "description": "",
+      "file": "C:\\Users\\user\\Desktop\\SURJEET\\adobe\\The Complete Sound FX Pack\\JamoVFXHub\\Assets\\Shakes\\Shake It Up V2 - Heavy REDO\\EP_ShakeItUpV2-Heavy 1 (Flash) -2.ffx",
+      "preview": null,
+      "premium": false,
+      "favorite": false,
+      "params": {
+        "intensity": 20,
+        "duration": 0.6,
+        "scale": 4,
+        "rotation": 2,
+        "frequency": 12
+      },
+      "hostHint": "AEFT",
+      "version": "1.0",
+      "length": "",
+      "sampleRate": "",
+      "downloadURL": "",
+      "installed": true,
+      "thumbnail": ""
+    },
+    {
+      "id": "Shakes/Shake It Up V2 - Heavy REDO/EP_ShakeItUpV2-Heavy 1 -2",
+      "name": "EP ShakeItUpV2 Heavy 1  2",
+      "category": "Shake It Up V2 - Heavy REDO",
+      "group": "Shakes",
+      "type": "shake",
+      "kind": "shake",
+      "tags": [
+        "shake it up v2 - heavy redo",
+        "shakeitupv2",
+        "heavy"
+      ],
+      "keywords": [
+        "shake it up v2 - heavy redo",
+        "shakeitupv2",
+        "heavy"
+      ],
+      "description": "",
+      "file": "C:\\Users\\user\\Desktop\\SURJEET\\adobe\\The Complete Sound FX Pack\\JamoVFXHub\\Assets\\Shakes\\Shake It Up V2 - Heavy REDO\\EP_ShakeItUpV2-Heavy 1 -2.ffx",
+      "preview": null,
+      "premium": false,
+      "favorite": false,
+      "params": {
+        "intensity": 20,
+        "duration": 0.6,
+        "scale": 4,
+        "rotation": 2,
+        "frequency": 12
+      },
+      "hostHint": "AEFT",
+      "version": "1.0",
+      "length": "",
+      "sampleRate": "",
+      "downloadURL": "",
+      "installed": true,
+      "thumbnail": ""
+    },
+    {
+      "id": "Shakes/Shake It Up V2 - Heavy REDO/EP_ShakeItUpV2-Heavy 2 (8-10 Frames) (Flash) -2",
+      "name": "EP ShakeItUpV2 Heavy 2 (8 10 Frames) (Flash)  2",
+      "category": "Shake It Up V2 - Heavy REDO",
+      "group": "Shakes",
+      "type": "shake",
+      "kind": "shake",
+      "tags": [
+        "shake it up v2 - heavy redo",
+        "shakeitupv2",
+        "heavy",
+        "frames",
+        "flash"
+      ],
+      "keywords": [
+        "shake it up v2 - heavy redo",
+        "shakeitupv2",
+        "heavy",
+        "frames",
+        "flash"
+      ],
+      "description": "",
+      "file": "C:\\Users\\user\\Desktop\\SURJEET\\adobe\\The Complete Sound FX Pack\\JamoVFXHub\\Assets\\Shakes\\Shake It Up V2 - Heavy REDO\\EP_ShakeItUpV2-Heavy 2 (8-10 Frames) (Flash) -2.ffx",
+      "preview": null,
+      "premium": false,
+      "favorite": false,
+      "params": {
+        "intensity": 20,
+        "duration": 0.6,
+        "scale": 4,
+        "rotation": 2,
+        "frequency": 12
+      },
+      "hostHint": "AEFT",
+      "version": "1.0",
+      "length": "",
+      "sampleRate": "",
+      "downloadURL": "",
+      "installed": true,
+      "thumbnail": ""
+    },
+    {
+      "id": "Shakes/Shake It Up V2 - Heavy REDO/EP_ShakeItUpV2-Heavy 3 (8 Frames) (Flash) -2",
+      "name": "EP ShakeItUpV2 Heavy 3 (8 Frames) (Flash)  2",
+      "category": "Shake It Up V2 - Heavy REDO",
+      "group": "Shakes",
+      "type": "shake",
+      "kind": "shake",
+      "tags": [
+        "shake it up v2 - heavy redo",
+        "shakeitupv2",
+        "heavy",
+        "frames",
+        "flash"
+      ],
+      "keywords": [
+        "shake it up v2 - heavy redo",
+        "shakeitupv2",
+        "heavy",
+        "frames",
+        "flash"
+      ],
+      "description": "",
+      "file": "C:\\Users\\user\\Desktop\\SURJEET\\adobe\\The Complete Sound FX Pack\\JamoVFXHub\\Assets\\Shakes\\Shake It Up V2 - Heavy REDO\\EP_ShakeItUpV2-Heavy 3 (8 Frames) (Flash) -2.ffx",
+      "preview": null,
+      "premium": false,
+      "favorite": false,
+      "params": {
+        "intensity": 20,
+        "duration": 0.6,
+        "scale": 4,
+        "rotation": 2,
+        "frequency": 12
+      },
+      "hostHint": "AEFT",
+      "version": "1.0",
+      "length": "",
+      "sampleRate": "",
+      "downloadURL": "",
+      "installed": true,
+      "thumbnail": ""
+    },
+    {
+      "id": "Shakes/Shake It Up V2 - Heavy REDO/EP_ShakeItUpV2-Heavy 3 (8 Frames) -2",
+      "name": "EP ShakeItUpV2 Heavy 3 (8 Frames)  2",
+      "category": "Shake It Up V2 - Heavy REDO",
+      "group": "Shakes",
+      "type": "shake",
+      "kind": "shake",
+      "tags": [
+        "shake it up v2 - heavy redo",
+        "shakeitupv2",
+        "heavy",
+        "frames"
+      ],
+      "keywords": [
+        "shake it up v2 - heavy redo",
+        "shakeitupv2",
+        "heavy",
+        "frames"
+      ],
+      "description": "",
+      "file": "C:\\Users\\user\\Desktop\\SURJEET\\adobe\\The Complete Sound FX Pack\\JamoVFXHub\\Assets\\Shakes\\Shake It Up V2 - Heavy REDO\\EP_ShakeItUpV2-Heavy 3 (8 Frames) -2.ffx",
+      "preview": null,
+      "premium": false,
+      "favorite": false,
+      "params": {
+        "intensity": 20,
+        "duration": 0.6,
+        "scale": 4,
+        "rotation": 2,
+        "frequency": 12
+      },
+      "hostHint": "AEFT",
+      "version": "1.0",
+      "length": "",
+      "sampleRate": "",
+      "downloadURL": "",
+      "installed": true,
+      "thumbnail": ""
+    },
+    {
+      "id": "Shakes/Shake It Up V2 - Heavy REDO/EP_ShakeItUpV2-Heavy 4 (6-8 Frames) (Flash) -2",
+      "name": "EP ShakeItUpV2 Heavy 4 (6 8 Frames) (Flash)  2",
+      "category": "Shake It Up V2 - Heavy REDO",
+      "group": "Shakes",
+      "type": "shake",
+      "kind": "shake",
+      "tags": [
+        "shake it up v2 - heavy redo",
+        "shakeitupv2",
+        "heavy",
+        "frames",
+        "flash"
+      ],
+      "keywords": [
+        "shake it up v2 - heavy redo",
+        "shakeitupv2",
+        "heavy",
+        "frames",
+        "flash"
+      ],
+      "description": "",
+      "file": "C:\\Users\\user\\Desktop\\SURJEET\\adobe\\The Complete Sound FX Pack\\JamoVFXHub\\Assets\\Shakes\\Shake It Up V2 - Heavy REDO\\EP_ShakeItUpV2-Heavy 4 (6-8 Frames) (Flash) -2.ffx",
+      "preview": null,
+      "premium": false,
+      "favorite": false,
+      "params": {
+        "intensity": 20,
+        "duration": 0.6,
+        "scale": 4,
+        "rotation": 2,
+        "frequency": 12
+      },
+      "hostHint": "AEFT",
+      "version": "1.0",
+      "length": "",
+      "sampleRate": "",
+      "downloadURL": "",
+      "installed": true,
+      "thumbnail": ""
+    },
+    {
+      "id": "Shakes/Shake It Up V2 - Heavy REDO/EP_ShakeItUpV2-Heavy 4 (6-8 Frames) -2",
+      "name": "EP ShakeItUpV2 Heavy 4 (6 8 Frames)  2",
+      "category": "Shake It Up V2 - Heavy REDO",
+      "group": "Shakes",
+      "type": "shake",
+      "kind": "shake",
+      "tags": [
+        "shake it up v2 - heavy redo",
+        "shakeitupv2",
+        "heavy",
+        "frames"
+      ],
+      "keywords": [
+        "shake it up v2 - heavy redo",
+        "shakeitupv2",
+        "heavy",
+        "frames"
+      ],
+      "description": "",
+      "file": "C:\\Users\\user\\Desktop\\SURJEET\\adobe\\The Complete Sound FX Pack\\JamoVFXHub\\Assets\\Shakes\\Shake It Up V2 - Heavy REDO\\EP_ShakeItUpV2-Heavy 4 (6-8 Frames) -2.ffx",
+      "preview": null,
+      "premium": false,
+      "favorite": false,
+      "params": {
+        "intensity": 20,
+        "duration": 0.6,
+        "scale": 4,
+        "rotation": 2,
+        "frequency": 12
+      },
+      "hostHint": "AEFT",
+      "version": "1.0",
+      "length": "",
+      "sampleRate": "",
+      "downloadURL": "",
+      "installed": true,
+      "thumbnail": ""
+    },
+    {
+      "id": "Shakes/Shake It Up V2 - Heavy REDO/EP_ShakeItUpV2-Heavy 5 (6-8 Frames) (Flash) -2",
+      "name": "EP ShakeItUpV2 Heavy 5 (6 8 Frames) (Flash)  2",
+      "category": "Shake It Up V2 - Heavy REDO",
+      "group": "Shakes",
+      "type": "shake",
+      "kind": "shake",
+      "tags": [
+        "shake it up v2 - heavy redo",
+        "shakeitupv2",
+        "heavy",
+        "frames",
+        "flash"
+      ],
+      "keywords": [
+        "shake it up v2 - heavy redo",
+        "shakeitupv2",
+        "heavy",
+        "frames",
+        "flash"
+      ],
+      "description": "",
+      "file": "C:\\Users\\user\\Desktop\\SURJEET\\adobe\\The Complete Sound FX Pack\\JamoVFXHub\\Assets\\Shakes\\Shake It Up V2 - Heavy REDO\\EP_ShakeItUpV2-Heavy 5 (6-8 Frames) (Flash) -2.ffx",
+      "preview": null,
+      "premium": false,
+      "favorite": false,
+      "params": {
+        "intensity": 20,
+        "duration": 0.6,
+        "scale": 4,
+        "rotation": 2,
+        "frequency": 12
+      },
+      "hostHint": "AEFT",
+      "version": "1.0",
+      "length": "",
+      "sampleRate": "",
+      "downloadURL": "",
+      "installed": true,
+      "thumbnail": ""
+    },
+    {
+      "id": "Shakes/Shake It Up V2 - Heavy REDO/EP_ShakeItUpV2-Heavy 5 (6-8 Frames) -2",
+      "name": "EP ShakeItUpV2 Heavy 5 (6 8 Frames)  2",
+      "category": "Shake It Up V2 - Heavy REDO",
+      "group": "Shakes",
+      "type": "shake",
+      "kind": "shake",
+      "tags": [
+        "shake it up v2 - heavy redo",
+        "shakeitupv2",
+        "heavy",
+        "frames"
+      ],
+      "keywords": [
+        "shake it up v2 - heavy redo",
+        "shakeitupv2",
+        "heavy",
+        "frames"
+      ],
+      "description": "",
+      "file": "C:\\Users\\user\\Desktop\\SURJEET\\adobe\\The Complete Sound FX Pack\\JamoVFXHub\\Assets\\Shakes\\Shake It Up V2 - Heavy REDO\\EP_ShakeItUpV2-Heavy 5 (6-8 Frames) -2.ffx",
+      "preview": null,
+      "premium": false,
+      "favorite": false,
+      "params": {
+        "intensity": 20,
+        "duration": 0.6,
+        "scale": 4,
+        "rotation": 2,
+        "frequency": 12
+      },
+      "hostHint": "AEFT",
+      "version": "1.0",
+      "length": "",
+      "sampleRate": "",
+      "downloadURL": "",
+      "installed": true,
+      "thumbnail": ""
+    },
+    {
+      "id": "Shakes/Shake It Up V2 - Heavy REDO/EP_ShakeItUpV2-Heavy 6 (8-10 Frames) (Flash + Noise) -2",
+      "name": "EP ShakeItUpV2 Heavy 6 (8 10 Frames) (Flash + Noise)  2",
+      "category": "Shake It Up V2 - Heavy REDO",
+      "group": "Shakes",
+      "type": "shake",
+      "kind": "shake",
+      "tags": [
+        "shake it up v2 - heavy redo",
+        "shakeitupv2",
+        "heavy",
+        "frames",
+        "flash",
+        "noise"
+      ],
+      "keywords": [
+        "shake it up v2 - heavy redo",
+        "shakeitupv2",
+        "heavy",
+        "frames",
+        "flash",
+        "noise"
+      ],
+      "description": "",
+      "file": "C:\\Users\\user\\Desktop\\SURJEET\\adobe\\The Complete Sound FX Pack\\JamoVFXHub\\Assets\\Shakes\\Shake It Up V2 - Heavy REDO\\EP_ShakeItUpV2-Heavy 6 (8-10 Frames) (Flash + Noise) -2.ffx",
+      "preview": null,
+      "premium": false,
+      "favorite": false,
+      "params": {
+        "intensity": 20,
+        "duration": 0.6,
+        "scale": 4,
+        "rotation": 2,
+        "frequency": 12
+      },
+      "hostHint": "AEFT",
+      "version": "1.0",
+      "length": "",
+      "sampleRate": "",
+      "downloadURL": "",
+      "installed": true,
+      "thumbnail": ""
+    },
+    {
+      "id": "Shakes/Shake It Up V2 - Heavy REDO/EP_ShakeItUpV2-Heavy 6 (8-10 Frames) (Noise) -2",
+      "name": "EP ShakeItUpV2 Heavy 6 (8 10 Frames) (Noise)  2",
+      "category": "Shake It Up V2 - Heavy REDO",
+      "group": "Shakes",
+      "type": "shake",
+      "kind": "shake",
+      "tags": [
+        "shake it up v2 - heavy redo",
+        "shakeitupv2",
+        "heavy",
+        "frames",
+        "noise"
+      ],
+      "keywords": [
+        "shake it up v2 - heavy redo",
+        "shakeitupv2",
+        "heavy",
+        "frames",
+        "noise"
+      ],
+      "description": "",
+      "file": "C:\\Users\\user\\Desktop\\SURJEET\\adobe\\The Complete Sound FX Pack\\JamoVFXHub\\Assets\\Shakes\\Shake It Up V2 - Heavy REDO\\EP_ShakeItUpV2-Heavy 6 (8-10 Frames) (Noise) -2.ffx",
+      "preview": null,
+      "premium": false,
+      "favorite": false,
+      "params": {
+        "intensity": 20,
+        "duration": 0.6,
+        "scale": 4,
+        "rotation": 2,
+        "frequency": 12
+      },
+      "hostHint": "AEFT",
+      "version": "1.0",
+      "length": "",
+      "sampleRate": "",
+      "downloadURL": "",
+      "installed": true,
+      "thumbnail": ""
+    },
+    {
+      "id": "Shakes/Shake It Up V2 - HITs/EP_ShakeItUpV2- Hit 1-2 (6-8 Frames) (Flash)",
+      "name": "EP ShakeItUpV2  Hit 1 2 (6 8 Frames) (Flash)",
+      "category": "Shake It Up V2 - HITs",
+      "group": "Shakes",
+      "type": "shake",
+      "kind": "shake",
+      "tags": [
+        "shake it up v2 - hits",
+        "shakeitupv2",
+        "hit",
+        "frames",
+        "flash"
+      ],
+      "keywords": [
+        "shake it up v2 - hits",
+        "shakeitupv2",
+        "hit",
+        "frames",
+        "flash"
+      ],
+      "description": "",
+      "file": "C:\\Users\\user\\Desktop\\SURJEET\\adobe\\The Complete Sound FX Pack\\JamoVFXHub\\Assets\\Shakes\\Shake It Up V2 - HITs\\EP_ShakeItUpV2- Hit 1-2 (6-8 Frames) (Flash).ffx",
+      "preview": null,
+      "premium": false,
+      "favorite": false,
+      "params": {
+        "intensity": 20,
+        "duration": 0.6,
+        "scale": 4,
+        "rotation": 2,
+        "frequency": 12
+      },
+      "hostHint": "AEFT",
+      "version": "1.0",
+      "length": "",
+      "sampleRate": "",
+      "downloadURL": "",
+      "installed": true,
+      "thumbnail": ""
+    },
+    {
+      "id": "Shakes/Shake It Up V2 - HITs/EP_ShakeItUpV2- Hit 1-2 (6-8 Frames)",
+      "name": "EP ShakeItUpV2  Hit 1 2 (6 8 Frames)",
+      "category": "Shake It Up V2 - HITs",
+      "group": "Shakes",
+      "type": "shake",
+      "kind": "shake",
+      "tags": [
+        "shake it up v2 - hits",
+        "shakeitupv2",
+        "hit",
+        "frames"
+      ],
+      "keywords": [
+        "shake it up v2 - hits",
+        "shakeitupv2",
+        "hit",
+        "frames"
+      ],
+      "description": "",
+      "file": "C:\\Users\\user\\Desktop\\SURJEET\\adobe\\The Complete Sound FX Pack\\JamoVFXHub\\Assets\\Shakes\\Shake It Up V2 - HITs\\EP_ShakeItUpV2- Hit 1-2 (6-8 Frames).ffx",
+      "preview": null,
+      "premium": false,
+      "favorite": false,
+      "params": {
+        "intensity": 20,
+        "duration": 0.6,
+        "scale": 4,
+        "rotation": 2,
+        "frequency": 12
+      },
+      "hostHint": "AEFT",
+      "version": "1.0",
+      "length": "",
+      "sampleRate": "",
+      "downloadURL": "",
+      "installed": true,
+      "thumbnail": ""
+    },
+    {
+      "id": "Shakes/Shake It Up V2 - HITs/EP_ShakeItUpV2- Hit 2-2 (8-10 Frames) (Flash)",
+      "name": "EP ShakeItUpV2  Hit 2 2 (8 10 Frames) (Flash)",
+      "category": "Shake It Up V2 - HITs",
+      "group": "Shakes",
+      "type": "shake",
+      "kind": "shake",
+      "tags": [
+        "shake it up v2 - hits",
+        "shakeitupv2",
+        "hit",
+        "frames",
+        "flash"
+      ],
+      "keywords": [
+        "shake it up v2 - hits",
+        "shakeitupv2",
+        "hit",
+        "frames",
+        "flash"
+      ],
+      "description": "",
+      "file": "C:\\Users\\user\\Desktop\\SURJEET\\adobe\\The Complete Sound FX Pack\\JamoVFXHub\\Assets\\Shakes\\Shake It Up V2 - HITs\\EP_ShakeItUpV2- Hit 2-2 (8-10 Frames) (Flash).ffx",
+      "preview": null,
+      "premium": false,
+      "favorite": false,
+      "params": {
+        "intensity": 20,
+        "duration": 0.6,
+        "scale": 4,
+        "rotation": 2,
+        "frequency": 12
+      },
+      "hostHint": "AEFT",
+      "version": "1.0",
+      "length": "",
+      "sampleRate": "",
+      "downloadURL": "",
+      "installed": true,
+      "thumbnail": ""
+    },
+    {
+      "id": "Shakes/Shake It Up V2 - HITs/EP_ShakeItUpV2- Hit 2-2 (8-10 Frames)",
+      "name": "EP ShakeItUpV2  Hit 2 2 (8 10 Frames)",
+      "category": "Shake It Up V2 - HITs",
+      "group": "Shakes",
+      "type": "shake",
+      "kind": "shake",
+      "tags": [
+        "shake it up v2 - hits",
+        "shakeitupv2",
+        "hit",
+        "frames"
+      ],
+      "keywords": [
+        "shake it up v2 - hits",
+        "shakeitupv2",
+        "hit",
+        "frames"
+      ],
+      "description": "",
+      "file": "C:\\Users\\user\\Desktop\\SURJEET\\adobe\\The Complete Sound FX Pack\\JamoVFXHub\\Assets\\Shakes\\Shake It Up V2 - HITs\\EP_ShakeItUpV2- Hit 2-2 (8-10 Frames).ffx",
+      "preview": null,
+      "premium": false,
+      "favorite": false,
+      "params": {
+        "intensity": 20,
+        "duration": 0.6,
+        "scale": 4,
+        "rotation": 2,
+        "frequency": 12
+      },
+      "hostHint": "AEFT",
+      "version": "1.0",
+      "length": "",
+      "sampleRate": "",
+      "downloadURL": "",
+      "installed": true,
+      "thumbnail": ""
+    },
+    {
+      "id": "Shakes/Shake It Up V2 - HITs/EP_ShakeItUpV2-Hit 3-2 (8-10 Frames) (Flash)",
+      "name": "EP ShakeItUpV2 Hit 3 2 (8 10 Frames) (Flash)",
+      "category": "Shake It Up V2 - HITs",
+      "group": "Shakes",
+      "type": "shake",
+      "kind": "shake",
+      "tags": [
+        "shake it up v2 - hits",
+        "shakeitupv2",
+        "hit",
+        "frames",
+        "flash"
+      ],
+      "keywords": [
+        "shake it up v2 - hits",
+        "shakeitupv2",
+        "hit",
+        "frames",
+        "flash"
+      ],
+      "description": "",
+      "file": "C:\\Users\\user\\Desktop\\SURJEET\\adobe\\The Complete Sound FX Pack\\JamoVFXHub\\Assets\\Shakes\\Shake It Up V2 - HITs\\EP_ShakeItUpV2-Hit 3-2 (8-10 Frames) (Flash).ffx",
+      "preview": null,
+      "premium": false,
+      "favorite": false,
+      "params": {
+        "intensity": 20,
+        "duration": 0.6,
+        "scale": 4,
+        "rotation": 2,
+        "frequency": 12
+      },
+      "hostHint": "AEFT",
+      "version": "1.0",
+      "length": "",
+      "sampleRate": "",
+      "downloadURL": "",
+      "installed": true,
+      "thumbnail": ""
+    },
+    {
+      "id": "Shakes/Shake It Up V2 - HITs/EP_ShakeItUpV2-Hit 3-2 (8-10 Frames)",
+      "name": "EP ShakeItUpV2 Hit 3 2 (8 10 Frames)",
+      "category": "Shake It Up V2 - HITs",
+      "group": "Shakes",
+      "type": "shake",
+      "kind": "shake",
+      "tags": [
+        "shake it up v2 - hits",
+        "shakeitupv2",
+        "hit",
+        "frames"
+      ],
+      "keywords": [
+        "shake it up v2 - hits",
+        "shakeitupv2",
+        "hit",
+        "frames"
+      ],
+      "description": "",
+      "file": "C:\\Users\\user\\Desktop\\SURJEET\\adobe\\The Complete Sound FX Pack\\JamoVFXHub\\Assets\\Shakes\\Shake It Up V2 - HITs\\EP_ShakeItUpV2-Hit 3-2 (8-10 Frames).ffx",
+      "preview": null,
+      "premium": false,
+      "favorite": false,
+      "params": {
+        "intensity": 20,
+        "duration": 0.6,
+        "scale": 4,
+        "rotation": 2,
+        "frequency": 12
+      },
+      "hostHint": "AEFT",
+      "version": "1.0",
+      "length": "",
+      "sampleRate": "",
+      "downloadURL": "",
+      "installed": true,
+      "thumbnail": ""
+    },
+    {
+      "id": "Shakes/Shake It Up V2 - HITs/EP_ShakeItUpV2-Hit 4-2 (8-10 Frames) (Flash)",
+      "name": "EP ShakeItUpV2 Hit 4 2 (8 10 Frames) (Flash)",
+      "category": "Shake It Up V2 - HITs",
+      "group": "Shakes",
+      "type": "shake",
+      "kind": "shake",
+      "tags": [
+        "shake it up v2 - hits",
+        "shakeitupv2",
+        "hit",
+        "frames",
+        "flash"
+      ],
+      "keywords": [
+        "shake it up v2 - hits",
+        "shakeitupv2",
+        "hit",
+        "frames",
+        "flash"
+      ],
+      "description": "",
+      "file": "C:\\Users\\user\\Desktop\\SURJEET\\adobe\\The Complete Sound FX Pack\\JamoVFXHub\\Assets\\Shakes\\Shake It Up V2 - HITs\\EP_ShakeItUpV2-Hit 4-2 (8-10 Frames) (Flash).ffx",
+      "preview": null,
+      "premium": false,
+      "favorite": false,
+      "params": {
+        "intensity": 20,
+        "duration": 0.6,
+        "scale": 4,
+        "rotation": 2,
+        "frequency": 12
+      },
+      "hostHint": "AEFT",
+      "version": "1.0",
+      "length": "",
+      "sampleRate": "",
+      "downloadURL": "",
+      "installed": true,
+      "thumbnail": ""
+    },
+    {
+      "id": "Shakes/Shake It Up V2 - HITs/EP_ShakeItUpV2-Hit 4-2 (8-10 Frames)",
+      "name": "EP ShakeItUpV2 Hit 4 2 (8 10 Frames)",
+      "category": "Shake It Up V2 - HITs",
+      "group": "Shakes",
+      "type": "shake",
+      "kind": "shake",
+      "tags": [
+        "shake it up v2 - hits",
+        "shakeitupv2",
+        "hit",
+        "frames"
+      ],
+      "keywords": [
+        "shake it up v2 - hits",
+        "shakeitupv2",
+        "hit",
+        "frames"
+      ],
+      "description": "",
+      "file": "C:\\Users\\user\\Desktop\\SURJEET\\adobe\\The Complete Sound FX Pack\\JamoVFXHub\\Assets\\Shakes\\Shake It Up V2 - HITs\\EP_ShakeItUpV2-Hit 4-2 (8-10 Frames).ffx",
+      "preview": null,
+      "premium": false,
+      "favorite": false,
+      "params": {
+        "intensity": 20,
+        "duration": 0.6,
+        "scale": 4,
+        "rotation": 2,
+        "frequency": 12
+      },
+      "hostHint": "AEFT",
+      "version": "1.0",
+      "length": "",
+      "sampleRate": "",
+      "downloadURL": "",
+      "installed": true,
+      "thumbnail": ""
+    },
+    {
+      "id": "Shakes/Shake It Up V2 - HITs/EP_ShakeItUpV2-Hit 5-2 (8-10 Frames) (Flash)",
+      "name": "EP ShakeItUpV2 Hit 5 2 (8 10 Frames) (Flash)",
+      "category": "Shake It Up V2 - HITs",
+      "group": "Shakes",
+      "type": "shake",
+      "kind": "shake",
+      "tags": [
+        "shake it up v2 - hits",
+        "shakeitupv2",
+        "hit",
+        "frames",
+        "flash"
+      ],
+      "keywords": [
+        "shake it up v2 - hits",
+        "shakeitupv2",
+        "hit",
+        "frames",
+        "flash"
+      ],
+      "description": "",
+      "file": "C:\\Users\\user\\Desktop\\SURJEET\\adobe\\The Complete Sound FX Pack\\JamoVFXHub\\Assets\\Shakes\\Shake It Up V2 - HITs\\EP_ShakeItUpV2-Hit 5-2 (8-10 Frames) (Flash).ffx",
+      "preview": null,
+      "premium": false,
+      "favorite": false,
+      "params": {
+        "intensity": 20,
+        "duration": 0.6,
+        "scale": 4,
+        "rotation": 2,
+        "frequency": 12
+      },
+      "hostHint": "AEFT",
+      "version": "1.0",
+      "length": "",
+      "sampleRate": "",
+      "downloadURL": "",
+      "installed": true,
+      "thumbnail": ""
+    },
+    {
+      "id": "Shakes/Shake It Up V2 - HITs/EP_ShakeItUpV2-Hit 5-2 (8-10 Frames)",
+      "name": "EP ShakeItUpV2 Hit 5 2 (8 10 Frames)",
+      "category": "Shake It Up V2 - HITs",
+      "group": "Shakes",
+      "type": "shake",
+      "kind": "shake",
+      "tags": [
+        "shake it up v2 - hits",
+        "shakeitupv2",
+        "hit",
+        "frames"
+      ],
+      "keywords": [
+        "shake it up v2 - hits",
+        "shakeitupv2",
+        "hit",
+        "frames"
+      ],
+      "description": "",
+      "file": "C:\\Users\\user\\Desktop\\SURJEET\\adobe\\The Complete Sound FX Pack\\JamoVFXHub\\Assets\\Shakes\\Shake It Up V2 - HITs\\EP_ShakeItUpV2-Hit 5-2 (8-10 Frames).ffx",
+      "preview": null,
+      "premium": false,
+      "favorite": false,
+      "params": {
+        "intensity": 20,
+        "duration": 0.6,
+        "scale": 4,
+        "rotation": 2,
+        "frequency": 12
+      },
+      "hostHint": "AEFT",
+      "version": "1.0",
+      "length": "",
+      "sampleRate": "",
+      "downloadURL": "",
+      "installed": true,
+      "thumbnail": ""
+    },
+    {
+      "id": "Shakes/Shake It Up V2 - HITs/EP_ShakeItUpV2-Hit 6-2 (6-8 Frames) (Flash)",
+      "name": "EP ShakeItUpV2 Hit 6 2 (6 8 Frames) (Flash)",
+      "category": "Shake It Up V2 - HITs",
+      "group": "Shakes",
+      "type": "shake",
+      "kind": "shake",
+      "tags": [
+        "shake it up v2 - hits",
+        "shakeitupv2",
+        "hit",
+        "frames",
+        "flash"
+      ],
+      "keywords": [
+        "shake it up v2 - hits",
+        "shakeitupv2",
+        "hit",
+        "frames",
+        "flash"
+      ],
+      "description": "",
+      "file": "C:\\Users\\user\\Desktop\\SURJEET\\adobe\\The Complete Sound FX Pack\\JamoVFXHub\\Assets\\Shakes\\Shake It Up V2 - HITs\\EP_ShakeItUpV2-Hit 6-2 (6-8 Frames) (Flash).ffx",
+      "preview": null,
+      "premium": false,
+      "favorite": false,
+      "params": {
+        "intensity": 20,
+        "duration": 0.6,
+        "scale": 4,
+        "rotation": 2,
+        "frequency": 12
+      },
+      "hostHint": "AEFT",
+      "version": "1.0",
+      "length": "",
+      "sampleRate": "",
+      "downloadURL": "",
+      "installed": true,
+      "thumbnail": ""
+    },
+    {
+      "id": "Shakes/Shake It Up V2 - HITs/EP_ShakeItUpV2-Hit 6-2 (6-8 Frames)",
+      "name": "EP ShakeItUpV2 Hit 6 2 (6 8 Frames)",
+      "category": "Shake It Up V2 - HITs",
+      "group": "Shakes",
+      "type": "shake",
+      "kind": "shake",
+      "tags": [
+        "shake it up v2 - hits",
+        "shakeitupv2",
+        "hit",
+        "frames"
+      ],
+      "keywords": [
+        "shake it up v2 - hits",
+        "shakeitupv2",
+        "hit",
+        "frames"
+      ],
+      "description": "",
+      "file": "C:\\Users\\user\\Desktop\\SURJEET\\adobe\\The Complete Sound FX Pack\\JamoVFXHub\\Assets\\Shakes\\Shake It Up V2 - HITs\\EP_ShakeItUpV2-Hit 6-2 (6-8 Frames).ffx",
+      "preview": null,
+      "premium": false,
+      "favorite": false,
+      "params": {
+        "intensity": 20,
+        "duration": 0.6,
+        "scale": 4,
+        "rotation": 2,
+        "frequency": 12
+      },
+      "hostHint": "AEFT",
+      "version": "1.0",
+      "length": "",
+      "sampleRate": "",
+      "downloadURL": "",
+      "installed": true,
+      "thumbnail": ""
+    },
+    {
+      "id": "Shakes/Shake It Up V2 - Medium/EP_ShakeItUpV2-Medium 1 (6-8 Frames) (Flash)",
+      "name": "EP ShakeItUpV2 Medium 1 (6 8 Frames) (Flash)",
+      "category": "Shake It Up V2 - Medium",
+      "group": "Shakes",
+      "type": "shake",
+      "kind": "shake",
+      "tags": [
+        "shake it up v2 - medium",
+        "shakeitupv2",
+        "medium",
+        "frames",
+        "flash"
+      ],
+      "keywords": [
+        "shake it up v2 - medium",
+        "shakeitupv2",
+        "medium",
+        "frames",
+        "flash"
+      ],
+      "description": "",
+      "file": "C:\\Users\\user\\Desktop\\SURJEET\\adobe\\The Complete Sound FX Pack\\JamoVFXHub\\Assets\\Shakes\\Shake It Up V2 - Medium\\EP_ShakeItUpV2-Medium 1 (6-8 Frames) (Flash).ffx",
+      "preview": null,
+      "premium": false,
+      "favorite": false,
+      "params": {
+        "intensity": 20,
+        "duration": 0.6,
+        "scale": 4,
+        "rotation": 2,
+        "frequency": 12
+      },
+      "hostHint": "AEFT",
+      "version": "1.0",
+      "length": "",
+      "sampleRate": "",
+      "downloadURL": "",
+      "installed": true,
+      "thumbnail": ""
+    },
+    {
+      "id": "Shakes/Shake It Up V2 - Medium/EP_ShakeItUpV2-Medium 1 (6-8 Frames) copy",
+      "name": "EP ShakeItUpV2 Medium 1 (6 8 Frames) Copy",
+      "category": "Shake It Up V2 - Medium",
+      "group": "Shakes",
+      "type": "shake",
+      "kind": "shake",
+      "tags": [
+        "shake it up v2 - medium",
+        "shakeitupv2",
+        "medium",
+        "frames",
+        "copy"
+      ],
+      "keywords": [
+        "shake it up v2 - medium",
+        "shakeitupv2",
+        "medium",
+        "frames",
+        "copy"
+      ],
+      "description": "",
+      "file": "C:\\Users\\user\\Desktop\\SURJEET\\adobe\\The Complete Sound FX Pack\\JamoVFXHub\\Assets\\Shakes\\Shake It Up V2 - Medium\\EP_ShakeItUpV2-Medium 1 (6-8 Frames) copy.ffx",
+      "preview": null,
+      "premium": false,
+      "favorite": false,
+      "params": {
+        "intensity": 20,
+        "duration": 0.6,
+        "scale": 4,
+        "rotation": 2,
+        "frequency": 12
+      },
+      "hostHint": "AEFT",
+      "version": "1.0",
+      "length": "",
+      "sampleRate": "",
+      "downloadURL": "",
+      "installed": true,
+      "thumbnail": ""
+    },
+    {
+      "id": "Shakes/Shake It Up V2 - Medium/EP_ShakeItUpV2-Medium 1 (6-8 Frames)",
+      "name": "EP ShakeItUpV2 Medium 1 (6 8 Frames)",
+      "category": "Shake It Up V2 - Medium",
+      "group": "Shakes",
+      "type": "shake",
+      "kind": "shake",
+      "tags": [
+        "shake it up v2 - medium",
+        "shakeitupv2",
+        "medium",
+        "frames"
+      ],
+      "keywords": [
+        "shake it up v2 - medium",
+        "shakeitupv2",
+        "medium",
+        "frames"
+      ],
+      "description": "",
+      "file": "C:\\Users\\user\\Desktop\\SURJEET\\adobe\\The Complete Sound FX Pack\\JamoVFXHub\\Assets\\Shakes\\Shake It Up V2 - Medium\\EP_ShakeItUpV2-Medium 1 (6-8 Frames).ffx",
+      "preview": null,
+      "premium": false,
+      "favorite": false,
+      "params": {
+        "intensity": 20,
+        "duration": 0.6,
+        "scale": 4,
+        "rotation": 2,
+        "frequency": 12
+      },
+      "hostHint": "AEFT",
+      "version": "1.0",
+      "length": "",
+      "sampleRate": "",
+      "downloadURL": "",
+      "installed": true,
+      "thumbnail": ""
+    },
+    {
+      "id": "Shakes/Shake It Up V2 - Medium/EP_ShakeItUpV2-Medium 2 (8 Frames) (Flash)",
+      "name": "EP ShakeItUpV2 Medium 2 (8 Frames) (Flash)",
+      "category": "Shake It Up V2 - Medium",
+      "group": "Shakes",
+      "type": "shake",
+      "kind": "shake",
+      "tags": [
+        "shake it up v2 - medium",
+        "shakeitupv2",
+        "medium",
+        "frames",
+        "flash"
+      ],
+      "keywords": [
+        "shake it up v2 - medium",
+        "shakeitupv2",
+        "medium",
+        "frames",
+        "flash"
+      ],
+      "description": "",
+      "file": "C:\\Users\\user\\Desktop\\SURJEET\\adobe\\The Complete Sound FX Pack\\JamoVFXHub\\Assets\\Shakes\\Shake It Up V2 - Medium\\EP_ShakeItUpV2-Medium 2 (8 Frames) (Flash).ffx",
+      "preview": null,
+      "premium": false,
+      "favorite": false,
+      "params": {
+        "intensity": 20,
+        "duration": 0.6,
+        "scale": 4,
+        "rotation": 2,
+        "frequency": 12
+      },
+      "hostHint": "AEFT",
+      "version": "1.0",
+      "length": "",
+      "sampleRate": "",
+      "downloadURL": "",
+      "installed": true,
+      "thumbnail": ""
+    },
+    {
+      "id": "Shakes/Shake It Up V2 - Medium/EP_ShakeItUpV2-Medium 2 (8 Frames)",
+      "name": "EP ShakeItUpV2 Medium 2 (8 Frames)",
+      "category": "Shake It Up V2 - Medium",
+      "group": "Shakes",
+      "type": "shake",
+      "kind": "shake",
+      "tags": [
+        "shake it up v2 - medium",
+        "shakeitupv2",
+        "medium",
+        "frames"
+      ],
+      "keywords": [
+        "shake it up v2 - medium",
+        "shakeitupv2",
+        "medium",
+        "frames"
+      ],
+      "description": "",
+      "file": "C:\\Users\\user\\Desktop\\SURJEET\\adobe\\The Complete Sound FX Pack\\JamoVFXHub\\Assets\\Shakes\\Shake It Up V2 - Medium\\EP_ShakeItUpV2-Medium 2 (8 Frames).ffx",
+      "preview": null,
+      "premium": false,
+      "favorite": false,
+      "params": {
+        "intensity": 20,
+        "duration": 0.6,
+        "scale": 4,
+        "rotation": 2,
+        "frequency": 12
+      },
+      "hostHint": "AEFT",
+      "version": "1.0",
+      "length": "",
+      "sampleRate": "",
+      "downloadURL": "",
+      "installed": true,
+      "thumbnail": ""
+    },
+    {
+      "id": "Shakes/Shake It Up V2 - Medium/EP_ShakeItUpV2-Medium 3 (8-10 Frames) (Flash)",
+      "name": "EP ShakeItUpV2 Medium 3 (8 10 Frames) (Flash)",
+      "category": "Shake It Up V2 - Medium",
+      "group": "Shakes",
+      "type": "shake",
+      "kind": "shake",
+      "tags": [
+        "shake it up v2 - medium",
+        "shakeitupv2",
+        "medium",
+        "frames",
+        "flash"
+      ],
+      "keywords": [
+        "shake it up v2 - medium",
+        "shakeitupv2",
+        "medium",
+        "frames",
+        "flash"
+      ],
+      "description": "",
+      "file": "C:\\Users\\user\\Desktop\\SURJEET\\adobe\\The Complete Sound FX Pack\\JamoVFXHub\\Assets\\Shakes\\Shake It Up V2 - Medium\\EP_ShakeItUpV2-Medium 3 (8-10 Frames) (Flash).ffx",
+      "preview": null,
+      "premium": false,
+      "favorite": false,
+      "params": {
+        "intensity": 20,
+        "duration": 0.6,
+        "scale": 4,
+        "rotation": 2,
+        "frequency": 12
+      },
+      "hostHint": "AEFT",
+      "version": "1.0",
+      "length": "",
+      "sampleRate": "",
+      "downloadURL": "",
+      "installed": true,
+      "thumbnail": ""
+    },
+    {
+      "id": "Shakes/Shake It Up V2 - Medium/EP_ShakeItUpV2-Medium 3 (8-10 Frames)",
+      "name": "EP ShakeItUpV2 Medium 3 (8 10 Frames)",
+      "category": "Shake It Up V2 - Medium",
+      "group": "Shakes",
+      "type": "shake",
+      "kind": "shake",
+      "tags": [
+        "shake it up v2 - medium",
+        "shakeitupv2",
+        "medium",
+        "frames"
+      ],
+      "keywords": [
+        "shake it up v2 - medium",
+        "shakeitupv2",
+        "medium",
+        "frames"
+      ],
+      "description": "",
+      "file": "C:\\Users\\user\\Desktop\\SURJEET\\adobe\\The Complete Sound FX Pack\\JamoVFXHub\\Assets\\Shakes\\Shake It Up V2 - Medium\\EP_ShakeItUpV2-Medium 3 (8-10 Frames).ffx",
+      "preview": null,
+      "premium": false,
+      "favorite": false,
+      "params": {
+        "intensity": 20,
+        "duration": 0.6,
+        "scale": 4,
+        "rotation": 2,
+        "frequency": 12
+      },
+      "hostHint": "AEFT",
+      "version": "1.0",
+      "length": "",
+      "sampleRate": "",
+      "downloadURL": "",
+      "installed": true,
+      "thumbnail": ""
+    },
+    {
+      "id": "Shakes/Shake It Up V2 - Medium/EP_ShakeItUpV2-Medium 4 (8-10 Frames) (Flash)",
+      "name": "EP ShakeItUpV2 Medium 4 (8 10 Frames) (Flash)",
+      "category": "Shake It Up V2 - Medium",
+      "group": "Shakes",
+      "type": "shake",
+      "kind": "shake",
+      "tags": [
+        "shake it up v2 - medium",
+        "shakeitupv2",
+        "medium",
+        "frames",
+        "flash"
+      ],
+      "keywords": [
+        "shake it up v2 - medium",
+        "shakeitupv2",
+        "medium",
+        "frames",
+        "flash"
+      ],
+      "description": "",
+      "file": "C:\\Users\\user\\Desktop\\SURJEET\\adobe\\The Complete Sound FX Pack\\JamoVFXHub\\Assets\\Shakes\\Shake It Up V2 - Medium\\EP_ShakeItUpV2-Medium 4 (8-10 Frames) (Flash).ffx",
+      "preview": null,
+      "premium": false,
+      "favorite": false,
+      "params": {
+        "intensity": 20,
+        "duration": 0.6,
+        "scale": 4,
+        "rotation": 2,
+        "frequency": 12
+      },
+      "hostHint": "AEFT",
+      "version": "1.0",
+      "length": "",
+      "sampleRate": "",
+      "downloadURL": "",
+      "installed": true,
+      "thumbnail": ""
+    },
+    {
+      "id": "Shakes/Shake It Up V2 - Medium/EP_ShakeItUpV2-Medium 4 (8-10 Frames)",
+      "name": "EP ShakeItUpV2 Medium 4 (8 10 Frames)",
+      "category": "Shake It Up V2 - Medium",
+      "group": "Shakes",
+      "type": "shake",
+      "kind": "shake",
+      "tags": [
+        "shake it up v2 - medium",
+        "shakeitupv2",
+        "medium",
+        "frames"
+      ],
+      "keywords": [
+        "shake it up v2 - medium",
+        "shakeitupv2",
+        "medium",
+        "frames"
+      ],
+      "description": "",
+      "file": "C:\\Users\\user\\Desktop\\SURJEET\\adobe\\The Complete Sound FX Pack\\JamoVFXHub\\Assets\\Shakes\\Shake It Up V2 - Medium\\EP_ShakeItUpV2-Medium 4 (8-10 Frames).ffx",
+      "preview": null,
+      "premium": false,
+      "favorite": false,
+      "params": {
+        "intensity": 20,
+        "duration": 0.6,
+        "scale": 4,
+        "rotation": 2,
+        "frequency": 12
+      },
+      "hostHint": "AEFT",
+      "version": "1.0",
+      "length": "",
+      "sampleRate": "",
+      "downloadURL": "",
+      "installed": true,
+      "thumbnail": ""
+    },
+    {
+      "id": "Shakes/Shake It Up V2 - Transitions/EP_ShakeItUpV2-Offset Slide 1 (20-24 Frames)",
+      "name": "EP ShakeItUpV2 Offset Slide 1 (20 24 Frames)",
+      "category": "Shake It Up V2 - Transitions",
+      "group": "Shakes",
+      "type": "shake",
+      "kind": "shake",
+      "tags": [
+        "shake it up v2 - transitions",
+        "shakeitupv2",
+        "offset",
+        "slide",
+        "frames"
+      ],
+      "keywords": [
+        "shake it up v2 - transitions",
+        "shakeitupv2",
+        "offset",
+        "slide",
+        "frames"
+      ],
+      "description": "",
+      "file": "C:\\Users\\user\\Desktop\\SURJEET\\adobe\\The Complete Sound FX Pack\\JamoVFXHub\\Assets\\Shakes\\Shake It Up V2 - Transitions\\EP_ShakeItUpV2-Offset Slide 1 (20-24 Frames).ffx",
+      "preview": null,
+      "premium": false,
+      "favorite": false,
+      "params": {
+        "intensity": 20,
+        "duration": 0.6,
+        "scale": 4,
+        "rotation": 2,
+        "frequency": 12
+      },
+      "hostHint": "AEFT",
+      "version": "1.0",
+      "length": "",
+      "sampleRate": "",
+      "downloadURL": "",
+      "installed": true,
+      "thumbnail": ""
+    },
+    {
+      "id": "Shakes/Shake It Up V2 - Transitions/EP_ShakeItUpV2-Offset Slide 2 (20-24 Frames)",
+      "name": "EP ShakeItUpV2 Offset Slide 2 (20 24 Frames)",
+      "category": "Shake It Up V2 - Transitions",
+      "group": "Shakes",
+      "type": "shake",
+      "kind": "shake",
+      "tags": [
+        "shake it up v2 - transitions",
+        "shakeitupv2",
+        "offset",
+        "slide",
+        "frames"
+      ],
+      "keywords": [
+        "shake it up v2 - transitions",
+        "shakeitupv2",
+        "offset",
+        "slide",
+        "frames"
+      ],
+      "description": "",
+      "file": "C:\\Users\\user\\Desktop\\SURJEET\\adobe\\The Complete Sound FX Pack\\JamoVFXHub\\Assets\\Shakes\\Shake It Up V2 - Transitions\\EP_ShakeItUpV2-Offset Slide 2 (20-24 Frames).ffx",
+      "preview": null,
+      "premium": false,
+      "favorite": false,
+      "params": {
+        "intensity": 20,
+        "duration": 0.6,
+        "scale": 4,
+        "rotation": 2,
+        "frequency": 12
+      },
+      "hostHint": "AEFT",
+      "version": "1.0",
+      "length": "",
+      "sampleRate": "",
+      "downloadURL": "",
+      "installed": true,
+      "thumbnail": ""
+    },
+    {
+      "id": "Shakes/Shake It Up V2 - Transitions/EP_ShakeItUpV2-Rotation 1 (18-24 Frames) (Flash)",
+      "name": "EP ShakeItUpV2 Rotation 1 (18 24 Frames) (Flash)",
+      "category": "Shake It Up V2 - Transitions",
+      "group": "Shakes",
+      "type": "shake",
+      "kind": "shake",
+      "tags": [
+        "shake it up v2 - transitions",
+        "shakeitupv2",
+        "rotation",
+        "frames",
+        "flash"
+      ],
+      "keywords": [
+        "shake it up v2 - transitions",
+        "shakeitupv2",
+        "rotation",
+        "frames",
+        "flash"
+      ],
+      "description": "",
+      "file": "C:\\Users\\user\\Desktop\\SURJEET\\adobe\\The Complete Sound FX Pack\\JamoVFXHub\\Assets\\Shakes\\Shake It Up V2 - Transitions\\EP_ShakeItUpV2-Rotation 1 (18-24 Frames) (Flash).ffx",
+      "preview": null,
+      "premium": false,
+      "favorite": false,
+      "params": {
+        "intensity": 20,
+        "duration": 0.6,
+        "scale": 4,
+        "rotation": 2,
+        "frequency": 12
+      },
+      "hostHint": "AEFT",
+      "version": "1.0",
+      "length": "",
+      "sampleRate": "",
+      "downloadURL": "",
+      "installed": true,
+      "thumbnail": ""
+    },
+    {
+      "id": "Shakes/Shake It Up V2 - Transitions/EP_ShakeItUpV2-Rotation 1 (18-24 Frames)",
+      "name": "EP ShakeItUpV2 Rotation 1 (18 24 Frames)",
+      "category": "Shake It Up V2 - Transitions",
+      "group": "Shakes",
+      "type": "shake",
+      "kind": "shake",
+      "tags": [
+        "shake it up v2 - transitions",
+        "shakeitupv2",
+        "rotation",
+        "frames"
+      ],
+      "keywords": [
+        "shake it up v2 - transitions",
+        "shakeitupv2",
+        "rotation",
+        "frames"
+      ],
+      "description": "",
+      "file": "C:\\Users\\user\\Desktop\\SURJEET\\adobe\\The Complete Sound FX Pack\\JamoVFXHub\\Assets\\Shakes\\Shake It Up V2 - Transitions\\EP_ShakeItUpV2-Rotation 1 (18-24 Frames).ffx",
+      "preview": null,
+      "premium": false,
+      "favorite": false,
+      "params": {
+        "intensity": 20,
+        "duration": 0.6,
+        "scale": 4,
+        "rotation": 2,
+        "frequency": 12
+      },
+      "hostHint": "AEFT",
+      "version": "1.0",
+      "length": "",
+      "sampleRate": "",
+      "downloadURL": "",
+      "installed": true,
+      "thumbnail": ""
+    },
+    {
+      "id": "Shakes/Shake It Up V2 - Transitions/EP_ShakeItUpV2-Spin 1 (10-12 Frames)",
+      "name": "EP ShakeItUpV2 Spin 1 (10 12 Frames)",
+      "category": "Shake It Up V2 - Transitions",
+      "group": "Shakes",
+      "type": "shake",
+      "kind": "shake",
+      "tags": [
+        "shake it up v2 - transitions",
+        "shakeitupv2",
+        "spin",
+        "frames"
+      ],
+      "keywords": [
+        "shake it up v2 - transitions",
+        "shakeitupv2",
+        "spin",
+        "frames"
+      ],
+      "description": "",
+      "file": "C:\\Users\\user\\Desktop\\SURJEET\\adobe\\The Complete Sound FX Pack\\JamoVFXHub\\Assets\\Shakes\\Shake It Up V2 - Transitions\\EP_ShakeItUpV2-Spin 1 (10-12 Frames).ffx",
+      "preview": null,
+      "premium": false,
+      "favorite": false,
+      "params": {
+        "intensity": 20,
+        "duration": 0.6,
+        "scale": 4,
+        "rotation": 2,
+        "frequency": 12
+      },
+      "hostHint": "AEFT",
+      "version": "1.0",
+      "length": "",
+      "sampleRate": "",
+      "downloadURL": "",
+      "installed": true,
+      "thumbnail": ""
+    },
+    {
+      "id": "Shakes/Shake It Up V2 - Transitions/EP_ShakeItUpV2-Spin 2 (10-12 Frames)",
+      "name": "EP ShakeItUpV2 Spin 2 (10 12 Frames)",
+      "category": "Shake It Up V2 - Transitions",
+      "group": "Shakes",
+      "type": "shake",
+      "kind": "shake",
+      "tags": [
+        "shake it up v2 - transitions",
+        "shakeitupv2",
+        "spin",
+        "frames"
+      ],
+      "keywords": [
+        "shake it up v2 - transitions",
+        "shakeitupv2",
+        "spin",
+        "frames"
+      ],
+      "description": "",
+      "file": "C:\\Users\\user\\Desktop\\SURJEET\\adobe\\The Complete Sound FX Pack\\JamoVFXHub\\Assets\\Shakes\\Shake It Up V2 - Transitions\\EP_ShakeItUpV2-Spin 2 (10-12 Frames).ffx",
+      "preview": null,
+      "premium": false,
+      "favorite": false,
+      "params": {
+        "intensity": 20,
+        "duration": 0.6,
+        "scale": 4,
+        "rotation": 2,
+        "frequency": 12
+      },
+      "hostHint": "AEFT",
+      "version": "1.0",
+      "length": "",
+      "sampleRate": "",
+      "downloadURL": "",
+      "installed": true,
+      "thumbnail": ""
+    },
+    {
+      "id": "Shakes/Shake It Up V2 - Transitions/EP_ShakeItUpV2-Spin 3 (10-12 Frames)",
+      "name": "EP ShakeItUpV2 Spin 3 (10 12 Frames)",
+      "category": "Shake It Up V2 - Transitions",
+      "group": "Shakes",
+      "type": "shake",
+      "kind": "shake",
+      "tags": [
+        "shake it up v2 - transitions",
+        "shakeitupv2",
+        "spin",
+        "frames"
+      ],
+      "keywords": [
+        "shake it up v2 - transitions",
+        "shakeitupv2",
+        "spin",
+        "frames"
+      ],
+      "description": "",
+      "file": "C:\\Users\\user\\Desktop\\SURJEET\\adobe\\The Complete Sound FX Pack\\JamoVFXHub\\Assets\\Shakes\\Shake It Up V2 - Transitions\\EP_ShakeItUpV2-Spin 3 (10-12 Frames).ffx",
+      "preview": null,
+      "premium": false,
+      "favorite": false,
+      "params": {
+        "intensity": 20,
+        "duration": 0.6,
+        "scale": 4,
+        "rotation": 2,
+        "frequency": 12
+      },
+      "hostHint": "AEFT",
+      "version": "1.0",
+      "length": "",
+      "sampleRate": "",
+      "downloadURL": "",
+      "installed": true,
+      "thumbnail": ""
+    },
+    {
+      "id": "Shakes/Shake It Up V2 - Transitions/EP_ShakeItUpV2-Spin 4 (10-12 Frames)",
+      "name": "EP ShakeItUpV2 Spin 4 (10 12 Frames)",
+      "category": "Shake It Up V2 - Transitions",
+      "group": "Shakes",
+      "type": "shake",
+      "kind": "shake",
+      "tags": [
+        "shake it up v2 - transitions",
+        "shakeitupv2",
+        "spin",
+        "frames"
+      ],
+      "keywords": [
+        "shake it up v2 - transitions",
+        "shakeitupv2",
+        "spin",
+        "frames"
+      ],
+      "description": "",
+      "file": "C:\\Users\\user\\Desktop\\SURJEET\\adobe\\The Complete Sound FX Pack\\JamoVFXHub\\Assets\\Shakes\\Shake It Up V2 - Transitions\\EP_ShakeItUpV2-Spin 4 (10-12 Frames).ffx",
+      "preview": null,
+      "premium": false,
+      "favorite": false,
+      "params": {
+        "intensity": 20,
+        "duration": 0.6,
+        "scale": 4,
+        "rotation": 2,
+        "frequency": 12
+      },
+      "hostHint": "AEFT",
+      "version": "1.0",
+      "length": "",
+      "sampleRate": "",
+      "downloadURL": "",
+      "installed": true,
+      "thumbnail": ""
+    },
+    {
+      "id": "Shakes/Shake It Up V2 - Transitions/EP_ShakeItUpV2-Spin 5 (14-18 Frames)",
+      "name": "EP ShakeItUpV2 Spin 5 (14 18 Frames)",
+      "category": "Shake It Up V2 - Transitions",
+      "group": "Shakes",
+      "type": "shake",
+      "kind": "shake",
+      "tags": [
+        "shake it up v2 - transitions",
+        "shakeitupv2",
+        "spin",
+        "frames"
+      ],
+      "keywords": [
+        "shake it up v2 - transitions",
+        "shakeitupv2",
+        "spin",
+        "frames"
+      ],
+      "description": "",
+      "file": "C:\\Users\\user\\Desktop\\SURJEET\\adobe\\The Complete Sound FX Pack\\JamoVFXHub\\Assets\\Shakes\\Shake It Up V2 - Transitions\\EP_ShakeItUpV2-Spin 5 (14-18 Frames).ffx",
+      "preview": null,
+      "premium": false,
+      "favorite": false,
+      "params": {
+        "intensity": 20,
+        "duration": 0.6,
+        "scale": 4,
+        "rotation": 2,
+        "frequency": 12
+      },
+      "hostHint": "AEFT",
+      "version": "1.0",
+      "length": "",
+      "sampleRate": "",
+      "downloadURL": "",
+      "installed": true,
+      "thumbnail": ""
+    },
+    {
+      "id": "Shakes/Shake It Up V2 - Transitions/EP_ShakeItUpV2-Spin 6 (14-18 Frames)",
+      "name": "EP ShakeItUpV2 Spin 6 (14 18 Frames)",
+      "category": "Shake It Up V2 - Transitions",
+      "group": "Shakes",
+      "type": "shake",
+      "kind": "shake",
+      "tags": [
+        "shake it up v2 - transitions",
+        "shakeitupv2",
+        "spin",
+        "frames"
+      ],
+      "keywords": [
+        "shake it up v2 - transitions",
+        "shakeitupv2",
+        "spin",
+        "frames"
+      ],
+      "description": "",
+      "file": "C:\\Users\\user\\Desktop\\SURJEET\\adobe\\The Complete Sound FX Pack\\JamoVFXHub\\Assets\\Shakes\\Shake It Up V2 - Transitions\\EP_ShakeItUpV2-Spin 6 (14-18 Frames).ffx",
+      "preview": null,
+      "premium": false,
+      "favorite": false,
+      "params": {
+        "intensity": 20,
+        "duration": 0.6,
+        "scale": 4,
+        "rotation": 2,
+        "frequency": 12
+      },
+      "hostHint": "AEFT",
+      "version": "1.0",
+      "length": "",
+      "sampleRate": "",
+      "downloadURL": "",
+      "installed": true,
+      "thumbnail": ""
+    },
+    {
+      "id": "Shakes/Shake It Up V2 - Transitions/EP_ShakeItUpV2-Swipe Down (8 Frames) (Flash)",
+      "name": "EP ShakeItUpV2 Swipe Down (8 Frames) (Flash)",
+      "category": "Shake It Up V2 - Transitions",
+      "group": "Shakes",
+      "type": "shake",
+      "kind": "shake",
+      "tags": [
+        "shake it up v2 - transitions",
+        "shakeitupv2",
+        "swipe",
+        "down",
+        "frames",
+        "flash"
+      ],
+      "keywords": [
+        "shake it up v2 - transitions",
+        "shakeitupv2",
+        "swipe",
+        "down",
+        "frames",
+        "flash"
+      ],
+      "description": "",
+      "file": "C:\\Users\\user\\Desktop\\SURJEET\\adobe\\The Complete Sound FX Pack\\JamoVFXHub\\Assets\\Shakes\\Shake It Up V2 - Transitions\\EP_ShakeItUpV2-Swipe Down (8 Frames) (Flash).ffx",
+      "preview": null,
+      "premium": false,
+      "favorite": false,
+      "params": {
+        "intensity": 20,
+        "duration": 0.6,
+        "scale": 4,
+        "rotation": 2,
+        "frequency": 12
+      },
+      "hostHint": "AEFT",
+      "version": "1.0",
+      "length": "",
+      "sampleRate": "",
+      "downloadURL": "",
+      "installed": true,
+      "thumbnail": ""
+    },
+    {
+      "id": "Shakes/Shake It Up V2 - Transitions/EP_ShakeItUpV2-Swipe Down (8 Frames)",
+      "name": "EP ShakeItUpV2 Swipe Down (8 Frames)",
+      "category": "Shake It Up V2 - Transitions",
+      "group": "Shakes",
+      "type": "shake",
+      "kind": "shake",
+      "tags": [
+        "shake it up v2 - transitions",
+        "shakeitupv2",
+        "swipe",
+        "down",
+        "frames"
+      ],
+      "keywords": [
+        "shake it up v2 - transitions",
+        "shakeitupv2",
+        "swipe",
+        "down",
+        "frames"
+      ],
+      "description": "",
+      "file": "C:\\Users\\user\\Desktop\\SURJEET\\adobe\\The Complete Sound FX Pack\\JamoVFXHub\\Assets\\Shakes\\Shake It Up V2 - Transitions\\EP_ShakeItUpV2-Swipe Down (8 Frames).ffx",
+      "preview": null,
+      "premium": false,
+      "favorite": false,
+      "params": {
+        "intensity": 20,
+        "duration": 0.6,
+        "scale": 4,
+        "rotation": 2,
+        "frequency": 12
+      },
+      "hostHint": "AEFT",
+      "version": "1.0",
+      "length": "",
+      "sampleRate": "",
+      "downloadURL": "",
+      "installed": true,
+      "thumbnail": ""
+    },
+    {
+      "id": "Shakes/Shake It Up V2 - Transitions/EP_ShakeItUpV2-Swipe Left (8 Frames) (Flash)",
+      "name": "EP ShakeItUpV2 Swipe Left (8 Frames) (Flash)",
+      "category": "Shake It Up V2 - Transitions",
+      "group": "Shakes",
+      "type": "shake",
+      "kind": "shake",
+      "tags": [
+        "shake it up v2 - transitions",
+        "shakeitupv2",
+        "swipe",
+        "left",
+        "frames",
+        "flash"
+      ],
+      "keywords": [
+        "shake it up v2 - transitions",
+        "shakeitupv2",
+        "swipe",
+        "left",
+        "frames",
+        "flash"
+      ],
+      "description": "",
+      "file": "C:\\Users\\user\\Desktop\\SURJEET\\adobe\\The Complete Sound FX Pack\\JamoVFXHub\\Assets\\Shakes\\Shake It Up V2 - Transitions\\EP_ShakeItUpV2-Swipe Left (8 Frames) (Flash).ffx",
+      "preview": null,
+      "premium": false,
+      "favorite": false,
+      "params": {
+        "intensity": 20,
+        "duration": 0.6,
+        "scale": 4,
+        "rotation": 2,
+        "frequency": 12
+      },
+      "hostHint": "AEFT",
+      "version": "1.0",
+      "length": "",
+      "sampleRate": "",
+      "downloadURL": "",
+      "installed": true,
+      "thumbnail": ""
+    },
+    {
+      "id": "Shakes/Shake It Up V2 - Transitions/EP_ShakeItUpV2-Swipe Left (8 Frames)",
+      "name": "EP ShakeItUpV2 Swipe Left (8 Frames)",
+      "category": "Shake It Up V2 - Transitions",
+      "group": "Shakes",
+      "type": "shake",
+      "kind": "shake",
+      "tags": [
+        "shake it up v2 - transitions",
+        "shakeitupv2",
+        "swipe",
+        "left",
+        "frames"
+      ],
+      "keywords": [
+        "shake it up v2 - transitions",
+        "shakeitupv2",
+        "swipe",
+        "left",
+        "frames"
+      ],
+      "description": "",
+      "file": "C:\\Users\\user\\Desktop\\SURJEET\\adobe\\The Complete Sound FX Pack\\JamoVFXHub\\Assets\\Shakes\\Shake It Up V2 - Transitions\\EP_ShakeItUpV2-Swipe Left (8 Frames).ffx",
+      "preview": null,
+      "premium": false,
+      "favorite": false,
+      "params": {
+        "intensity": 20,
+        "duration": 0.6,
+        "scale": 4,
+        "rotation": 2,
+        "frequency": 12
+      },
+      "hostHint": "AEFT",
+      "version": "1.0",
+      "length": "",
+      "sampleRate": "",
+      "downloadURL": "",
+      "installed": true,
+      "thumbnail": ""
+    },
+    {
+      "id": "Shakes/Shake It Up V2 - Transitions/EP_ShakeItUpV2-Swipe Right (8 Frames) (Flash)",
+      "name": "EP ShakeItUpV2 Swipe Right (8 Frames) (Flash)",
+      "category": "Shake It Up V2 - Transitions",
+      "group": "Shakes",
+      "type": "shake",
+      "kind": "shake",
+      "tags": [
+        "shake it up v2 - transitions",
+        "shakeitupv2",
+        "swipe",
+        "right",
+        "frames",
+        "flash"
+      ],
+      "keywords": [
+        "shake it up v2 - transitions",
+        "shakeitupv2",
+        "swipe",
+        "right",
+        "frames",
+        "flash"
+      ],
+      "description": "",
+      "file": "C:\\Users\\user\\Desktop\\SURJEET\\adobe\\The Complete Sound FX Pack\\JamoVFXHub\\Assets\\Shakes\\Shake It Up V2 - Transitions\\EP_ShakeItUpV2-Swipe Right (8 Frames) (Flash).ffx",
+      "preview": null,
+      "premium": false,
+      "favorite": false,
+      "params": {
+        "intensity": 20,
+        "duration": 0.6,
+        "scale": 4,
+        "rotation": 2,
+        "frequency": 12
+      },
+      "hostHint": "AEFT",
+      "version": "1.0",
+      "length": "",
+      "sampleRate": "",
+      "downloadURL": "",
+      "installed": true,
+      "thumbnail": ""
+    },
+    {
+      "id": "Shakes/Shake It Up V2 - Transitions/EP_ShakeItUpV2-Swipe Right (8 Frames)",
+      "name": "EP ShakeItUpV2 Swipe Right (8 Frames)",
+      "category": "Shake It Up V2 - Transitions",
+      "group": "Shakes",
+      "type": "shake",
+      "kind": "shake",
+      "tags": [
+        "shake it up v2 - transitions",
+        "shakeitupv2",
+        "swipe",
+        "right",
+        "frames"
+      ],
+      "keywords": [
+        "shake it up v2 - transitions",
+        "shakeitupv2",
+        "swipe",
+        "right",
+        "frames"
+      ],
+      "description": "",
+      "file": "C:\\Users\\user\\Desktop\\SURJEET\\adobe\\The Complete Sound FX Pack\\JamoVFXHub\\Assets\\Shakes\\Shake It Up V2 - Transitions\\EP_ShakeItUpV2-Swipe Right (8 Frames).ffx",
+      "preview": null,
+      "premium": false,
+      "favorite": false,
+      "params": {
+        "intensity": 20,
+        "duration": 0.6,
+        "scale": 4,
+        "rotation": 2,
+        "frequency": 12
+      },
+      "hostHint": "AEFT",
+      "version": "1.0",
+      "length": "",
+      "sampleRate": "",
+      "downloadURL": "",
+      "installed": true,
+      "thumbnail": ""
+    },
+    {
+      "id": "Shakes/Shake It Up V2 - Transitions/EP_ShakeItUpV2-Swipe Up (8 Frames) (Flash)",
+      "name": "EP ShakeItUpV2 Swipe Up (8 Frames) (Flash)",
+      "category": "Shake It Up V2 - Transitions",
+      "group": "Shakes",
+      "type": "shake",
+      "kind": "shake",
+      "tags": [
+        "shake it up v2 - transitions",
+        "shakeitupv2",
+        "swipe",
+        "frames",
+        "flash"
+      ],
+      "keywords": [
+        "shake it up v2 - transitions",
+        "shakeitupv2",
+        "swipe",
+        "frames",
+        "flash"
+      ],
+      "description": "",
+      "file": "C:\\Users\\user\\Desktop\\SURJEET\\adobe\\The Complete Sound FX Pack\\JamoVFXHub\\Assets\\Shakes\\Shake It Up V2 - Transitions\\EP_ShakeItUpV2-Swipe Up (8 Frames) (Flash).ffx",
+      "preview": null,
+      "premium": false,
+      "favorite": false,
+      "params": {
+        "intensity": 20,
+        "duration": 0.6,
+        "scale": 4,
+        "rotation": 2,
+        "frequency": 12
+      },
+      "hostHint": "AEFT",
+      "version": "1.0",
+      "length": "",
+      "sampleRate": "",
+      "downloadURL": "",
+      "installed": true,
+      "thumbnail": ""
+    },
+    {
+      "id": "Shakes/Shake It Up V2 - Transitions/EP_ShakeItUpV2-Swipe Up (8 Frames)",
+      "name": "EP ShakeItUpV2 Swipe Up (8 Frames)",
+      "category": "Shake It Up V2 - Transitions",
+      "group": "Shakes",
+      "type": "shake",
+      "kind": "shake",
+      "tags": [
+        "shake it up v2 - transitions",
+        "shakeitupv2",
+        "swipe",
+        "frames"
+      ],
+      "keywords": [
+        "shake it up v2 - transitions",
+        "shakeitupv2",
+        "swipe",
+        "frames"
+      ],
+      "description": "",
+      "file": "C:\\Users\\user\\Desktop\\SURJEET\\adobe\\The Complete Sound FX Pack\\JamoVFXHub\\Assets\\Shakes\\Shake It Up V2 - Transitions\\EP_ShakeItUpV2-Swipe Up (8 Frames).ffx",
+      "preview": null,
+      "premium": false,
+      "favorite": false,
+      "params": {
+        "intensity": 20,
+        "duration": 0.6,
+        "scale": 4,
+        "rotation": 2,
+        "frequency": 12
+      },
+      "hostHint": "AEFT",
+      "version": "1.0",
+      "length": "",
+      "sampleRate": "",
+      "downloadURL": "",
+      "installed": true,
+      "thumbnail": ""
+    },
+    {
+      "id": "Shakes/Shake It Up V2 - Transitions/EP_ShakeItUpV2-Zoom In 1 (6-8 Frames) (Flash)",
+      "name": "EP ShakeItUpV2 Zoom In 1 (6 8 Frames) (Flash)",
+      "category": "Shake It Up V2 - Transitions",
+      "group": "Shakes",
+      "type": "shake",
+      "kind": "shake",
+      "tags": [
+        "shake it up v2 - transitions",
+        "shakeitupv2",
+        "zoom",
+        "frames",
+        "flash"
+      ],
+      "keywords": [
+        "shake it up v2 - transitions",
+        "shakeitupv2",
+        "zoom",
+        "frames",
+        "flash"
+      ],
+      "description": "",
+      "file": "C:\\Users\\user\\Desktop\\SURJEET\\adobe\\The Complete Sound FX Pack\\JamoVFXHub\\Assets\\Shakes\\Shake It Up V2 - Transitions\\EP_ShakeItUpV2-Zoom In 1 (6-8 Frames) (Flash).ffx",
+      "preview": null,
+      "premium": false,
+      "favorite": false,
+      "params": {
+        "intensity": 20,
+        "duration": 0.6,
+        "scale": 4,
+        "rotation": 2,
+        "frequency": 12
+      },
+      "hostHint": "AEFT",
+      "version": "1.0",
+      "length": "",
+      "sampleRate": "",
+      "downloadURL": "",
+      "installed": true,
+      "thumbnail": ""
+    },
+    {
+      "id": "Shakes/Shake It Up V2 - Transitions/EP_ShakeItUpV2-Zoom In 1 (6-8 Frames)",
+      "name": "EP ShakeItUpV2 Zoom In 1 (6 8 Frames)",
+      "category": "Shake It Up V2 - Transitions",
+      "group": "Shakes",
+      "type": "shake",
+      "kind": "shake",
+      "tags": [
+        "shake it up v2 - transitions",
+        "shakeitupv2",
+        "zoom",
+        "frames"
+      ],
+      "keywords": [
+        "shake it up v2 - transitions",
+        "shakeitupv2",
+        "zoom",
+        "frames"
+      ],
+      "description": "",
+      "file": "C:\\Users\\user\\Desktop\\SURJEET\\adobe\\The Complete Sound FX Pack\\JamoVFXHub\\Assets\\Shakes\\Shake It Up V2 - Transitions\\EP_ShakeItUpV2-Zoom In 1 (6-8 Frames).ffx",
+      "preview": null,
+      "premium": false,
+      "favorite": false,
+      "params": {
+        "intensity": 20,
+        "duration": 0.6,
+        "scale": 4,
+        "rotation": 2,
+        "frequency": 12
+      },
+      "hostHint": "AEFT",
+      "version": "1.0",
+      "length": "",
+      "sampleRate": "",
+      "downloadURL": "",
+      "installed": true,
+      "thumbnail": ""
+    },
+    {
+      "id": "Shakes/Shake It Up V2 - Transitions/EP_ShakeItUpV2-Zoom Out 1 (6-8 Frames) (Flash)",
+      "name": "EP ShakeItUpV2 Zoom Out 1 (6 8 Frames) (Flash)",
+      "category": "Shake It Up V2 - Transitions",
+      "group": "Shakes",
+      "type": "shake",
+      "kind": "shake",
+      "tags": [
+        "shake it up v2 - transitions",
+        "shakeitupv2",
+        "zoom",
+        "out",
+        "frames",
+        "flash"
+      ],
+      "keywords": [
+        "shake it up v2 - transitions",
+        "shakeitupv2",
+        "zoom",
+        "out",
+        "frames",
+        "flash"
+      ],
+      "description": "",
+      "file": "C:\\Users\\user\\Desktop\\SURJEET\\adobe\\The Complete Sound FX Pack\\JamoVFXHub\\Assets\\Shakes\\Shake It Up V2 - Transitions\\EP_ShakeItUpV2-Zoom Out 1 (6-8 Frames) (Flash).ffx",
+      "preview": null,
+      "premium": false,
+      "favorite": false,
+      "params": {
+        "intensity": 20,
+        "duration": 0.6,
+        "scale": 4,
+        "rotation": 2,
+        "frequency": 12
+      },
+      "hostHint": "AEFT",
+      "version": "1.0",
+      "length": "",
+      "sampleRate": "",
+      "downloadURL": "",
+      "installed": true,
+      "thumbnail": ""
+    },
+    {
+      "id": "Shakes/Shake It Up V2 - Transitions/EP_ShakeItUpV2-Zoom Out 1 (6-8 Frames)",
+      "name": "EP ShakeItUpV2 Zoom Out 1 (6 8 Frames)",
+      "category": "Shake It Up V2 - Transitions",
+      "group": "Shakes",
+      "type": "shake",
+      "kind": "shake",
+      "tags": [
+        "shake it up v2 - transitions",
+        "shakeitupv2",
+        "zoom",
+        "out",
+        "frames"
+      ],
+      "keywords": [
+        "shake it up v2 - transitions",
+        "shakeitupv2",
+        "zoom",
+        "out",
+        "frames"
+      ],
+      "description": "",
+      "file": "C:\\Users\\user\\Desktop\\SURJEET\\adobe\\The Complete Sound FX Pack\\JamoVFXHub\\Assets\\Shakes\\Shake It Up V2 - Transitions\\EP_ShakeItUpV2-Zoom Out 1 (6-8 Frames).ffx",
+      "preview": null,
+      "premium": false,
+      "favorite": false,
+      "params": {
+        "intensity": 20,
+        "duration": 0.6,
+        "scale": 4,
+        "rotation": 2,
+        "frequency": 12
+      },
+      "hostHint": "AEFT",
+      "version": "1.0",
+      "length": "",
+      "sampleRate": "",
+      "downloadURL": "",
+      "installed": true,
+      "thumbnail": ""
     }
   ],
   "categories": [
@@ -60691,5 +63388,5 @@
       "count": 4
     }
   ],
-  "scannedAt": 1785597451432
+  "scannedAt": 1785605866258
 }

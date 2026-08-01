@@ -1,0 +1,29 @@
+{
+  "Name": "EP ShakeItUpV2 Offset Slide 1 (20 24 Frames)",
+  "Category": "Shake It Up V2   Transitions",
+  "Tags": [
+    "shake it up v2 - transitions",
+    "shakeitupv2",
+    "offset",
+    "slide",
+    "frames"
+  ],
+  "Keywords": [
+    "shake it up v2 - transitions",
+    "shakeitupv2",
+    "offset",
+    "slide",
+    "frames"
+  ],
+  "Description": "",
+  "Premium": false,
+  "Version": "1.0",
+  "Params": {
+    "intensity": 20,
+    "duration": 0.6,
+    "scale": 4,
+    "rotation": 2,
+    "frequency": 12
+  },
+  "Host": "AEFT"
+}
