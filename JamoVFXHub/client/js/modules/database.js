@@ -155,7 +155,7 @@ GS.DB = (function () {
 
       if (asset.type === "audio") {
         if (!asset.sourceFile || !fs.existsSync(asset.sourceFile)) return null;
-        if (!fs.existsSync(customDir)) fs.mkdirSync(customDir, { recursive: true });
+        if (!fs.existsSync(customDir)) fs.mkdirSync(customDir);
         var sourceName = path.basename(asset.sourceFile).replace(/[^a-zA-Z0-9._ -]/g, "_");
         var destination = path.join(customDir, asset.id + "_" + sourceName);
         fs.copyFileSync(asset.sourceFile, destination);
@@ -165,7 +165,7 @@ GS.DB = (function () {
 
       if (asset.type === "shake") {
         var shakeDir = path.join(root, "Config", "Custom Shakes");
-        if (!fs.existsSync(shakeDir)) fs.mkdirSync(shakeDir, { recursive: true });
+        if (!fs.existsSync(shakeDir)) fs.mkdirSync(shakeDir);
         asset.file = path.join(shakeDir, asset.id + ".json");
         writeJSON(asset.file, { name: asset.name, category: asset.category, params: asset.params || {} });
       }

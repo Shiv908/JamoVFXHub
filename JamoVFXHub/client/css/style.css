@@ -1241,14 +1241,86 @@ h1, h2, h3, .display-font {
   max-width: 95vw;
 }
 
-.studio-badge {
-  background: linear-gradient(135deg, var(--accent-cyan), var(--accent-violet));
-  color: #000;
+.studio-badge.ai-badge {
+  background: linear-gradient(135deg, var(--accent-amber), var(--accent-rose));
+  color: #fff;
   font-size: 8px;
   font-weight: 800;
   border-radius: 4px;
-  padding: 2px 5px;
+  padding: 2px 6px;
   font-family: "JetBrains Mono", monospace;
+  box-shadow: 0 0 10px rgba(244, 63, 94, 0.4);
+}
+
+.ai-prompt-bar {
+  display: flex;
+  gap: 6px;
+  margin-bottom: 6px;
+}
+
+#aiMotionPrompt {
+  flex: 1;
+  background: var(--surface-0);
+  border: 1px solid var(--line-highlight);
+  border-radius: 6px;
+  padding: 6px 10px;
+  font-size: 11px;
+  color: var(--text-hi);
+  outline: none;
+  font-family: inherit;
+  transition: border-color 0.15s ease;
+}
+
+#aiMotionPrompt:focus {
+  border-color: var(--accent-amber);
+  box-shadow: 0 0 12px rgba(255, 184, 77, 0.3);
+}
+
+.ai-gen-btn {
+  background: linear-gradient(135deg, var(--accent-amber), var(--accent-rose));
+  color: #fff;
+  border: none;
+  border-radius: 6px;
+  font-size: 9.5px;
+  font-weight: 800;
+  padding: 0 12px;
+  cursor: pointer;
+  box-shadow: 0 0 12px rgba(244, 63, 94, 0.3);
+  transition: transform 0.15s ease;
+}
+
+.ai-gen-btn:hover {
+  transform: scale(1.04);
+}
+
+.ai-suggestions-row {
+  display: flex;
+  gap: 4px;
+  overflow-x: auto;
+  padding-bottom: 4px;
+  margin-bottom: 6px;
+  scrollbar-width: none;
+}
+
+.ai-suggestions-row::-webkit-scrollbar { display: none; }
+
+.ai-chip {
+  background: var(--surface-0);
+  border: 1px solid var(--line-subtle);
+  color: var(--text-mid);
+  border-radius: 12px;
+  font-size: 9px;
+  font-weight: 600;
+  padding: 3px 8px;
+  cursor: pointer;
+  white-space: nowrap;
+  transition: all 0.15s ease;
+}
+
+.ai-chip:hover {
+  border-color: var(--accent-amber);
+  color: var(--accent-amber);
+  background: var(--surface-1);
 }
 
 .motion-graph-container {
@@ -1375,6 +1447,7 @@ button:focus-visible, input:focus-visible {
 .title-group { display: flex; flex-direction: column; gap: 4px; }
 .count-pill { background: rgba(255,255,255,.045); color: #b8bac7; border-color: rgba(255,255,255,.12); }
 .card-grid.list-view { gap: 4px; }
+.card-grid { contain: content; }
 .asset-row { height: 44px; padding-inline: 10px; border-radius: 9px; background: rgba(10,11,16,.84); border-color: rgba(255,255,255,.075); }
 .asset-row:hover { transform: translateX(2px); background: #11131b; border-color: rgba(169,112,255,.42); }
 .asset-row.selected { transform: translateX(2px); background: linear-gradient(90deg, rgba(116,52,232,.19), rgba(23,26,37,.9)); border-color: #a970ff; }
@@ -1510,3 +1583,18 @@ button:focus-visible, input:focus-visible {
 .setting-row input[type="range"] { width: 120px; accent-color: var(--accent-cyan); }
 .setting-number { width: 64px; min-height: 28px; padding: 0 7px; border: 1px solid var(--line-subtle); border-radius: 6px; background: var(--surface-0); color: var(--text-hi); }
 .settings-divider { height: 8px; }
+[data-theme="contrast"] { --surface-0: #101119; --surface-1: #171a25; --surface-2: #222638; --text-mid: #c4c5d0; --text-dim: #858895; --line-subtle: rgba(255,255,255,.17); }
+.setting-select, .setting-color { min-width: 90px; min-height: 28px; border: 1px solid var(--line-subtle); border-radius: 6px; background: var(--surface-0); color: var(--text-hi); }
+.setting-color { width: 42px; min-width: 42px; padding: 2px; }
+.field-hint { color: var(--text-dim); font-weight: 400; }
+
+/* Automatically applied on machines with limited CPU/RAM. */
+body.performance-lite #app::before { display: none; }
+body.performance-lite * { backdrop-filter: none !important; }
+body.performance-lite .asset-row,
+body.performance-lite .asset-card,
+body.performance-lite .icon-btn,
+body.performance-lite .pill { transition-duration: .08s; box-shadow: none; }
+body.performance-lite .asset-row:hover { transform: none; }
+body.performance-lite .asset-row.is-playing .row-waveform { animation: none; }
+body.performance-lite .onboarding-overlay { backdrop-filter: none !important; }

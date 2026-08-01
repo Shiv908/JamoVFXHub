@@ -29,7 +29,7 @@
       </div>
 
       <div class="top-actions">
-        <button id="buildAssetBtn" class="icon-btn highlight-btn" title="Create & Manage Custom Assets">🛠️</button>
+        <button id="buildAssetBtn" class="icon-btn highlight-btn" title="AI Motion Lab & Asset Studio">🪄</button>
         <button id="viewToggleBtn" class="icon-btn" title="Toggle List / Grid View">☰</button>
         <button id="reloadPanelBtn" class="icon-btn" title="Force Reload UI">⚡</button>
         <button id="refreshBtn" class="icon-btn" title="Rescan Assets">⟳</button>
@@ -95,7 +95,7 @@
 
         <div id="emptyState" class="empty-state" style="display:none;">
           <p>No matching assets found.</p>
-          <p class="empty-sub">Drop files into <code>Assets/</code> or use 🛠️ to create custom assets.</p>
+          <p class="empty-sub">Drop files into <code>Assets/</code> or use 🪄 AI Studio to create custom assets.</p>
         </div>
       </main>
 
@@ -135,79 +135,93 @@
 
   </div>
 
-  <!-- 100X ADVANCED PRO MOTION & ASSET STUDIO MODAL -->
+  <!-- CYBERNETIC AI MOTION LAB & ASSET STUDIO MODAL -->
   <div id="assetStudioModal" class="modal-overlay" style="display:none;">
     <div class="modal-card studio-modal-card">
       <div class="modal-header">
         <div style="display:flex; align-items:center; gap:6px;">
-          <span class="studio-badge">100X PRO STUDIO</span>
-          <h3>Motion & Asset Creator</h3>
+          <span class="studio-badge ai-badge">✨ AI MOTION LAB v3.0</span>
+          <h3>Cybernetic Motion Studio</h3>
         </div>
         <button id="closeStudioBtn" class="close-btn">✕</button>
       </div>
       <div class="modal-tabs">
-        <button class="tab-btn active" data-tab="createShakeTab">🫨 Shake Studio</button>
-        <button class="tab-btn" data-tab="importAudioTab">🔊 Audio Import</button>
-        <button class="tab-btn" data-tab="bulkAudioTab">▦ Bulk Builder</button>
+        <button class="tab-btn active" data-tab="aiMotionTab">✨ AI Prompt Lab</button>
+        <button class="tab-btn" data-tab="audioReactiveTab">🎵 Audio-Reactive</button>
+        <button class="tab-btn" data-tab="curveLabTab">📈 Curve Designer</button>
+        <button class="tab-btn" data-tab="bulkAudioTab">▦ Bulk Import</button>
         <button class="tab-btn" data-tab="manageTab">🗂️ My Assets</button>
       </div>
 
       <div class="modal-body">
-        <!-- TAB 1: 100X ADVANCED SHAKE STUDIO -->
-        <div id="createShakeTab" class="tab-content active">
-          <div class="shake-preview-viewport" style="height:120px;">
+        <!-- TAB 1: AI PROMPT MOTION LAB -->
+        <div id="aiMotionTab" class="tab-content active">
+          <div class="ai-prompt-bar">
+            <input type="text" id="aiMotionPrompt" placeholder="✨ e.g. 'Violent Michael Bay Bomb Blast with Cyber Glitch'" />
+            <button id="generateAiMotionBtn" class="ai-gen-btn">🪄 SYNTHESIZE</button>
+          </div>
+
+          <div class="ai-suggestions-row">
+            <span class="ai-chip" data-prompt="Michael Bay Explosion Shockwave">💥 Bomb Blast</span>
+            <span class="ai-chip" data-prompt="Fast Sniper Rifle Kickback Recoil">🔫 Sniper Recoil</span>
+            <span class="ai-chip" data-prompt="Cyberpunk Digital Glitch Strobe">👾 Cyber Glitch</span>
+            <span class="ai-chip" data-prompt="Earthquake Ground Tremor Rumble">🌋 Earthquake</span>
+            <span class="ai-chip" data-prompt="Gentle Organic Vlog Camera Drift">🎥 Organic Drift</span>
+          </div>
+
+          <div class="shake-preview-viewport" style="height:125px; margin-top:10px;">
             <canvas id="studioShakeCanvas" class="shake-canvas"></canvas>
             <div class="hud-layer">
               <div class="hud-top">
-                <span class="rec-badge"><span class="rec-dot"></span>STUDIO 60FPS</span>
-                <span id="studioFpsBadge">REALTIME PHYSICS</span>
+                <span class="rec-badge"><span class="rec-dot"></span>AI ENGINE 60FPS</span>
+                <span id="aiSynthesisBadge">READY</span>
               </div>
               <div class="hud-center"><div class="hud-crosshair"></div></div>
               <div class="hud-bottom">
-                <span>MOTION MATRIX</span>
-                <span>[ LIVE TEST ]</span>
+                <span id="aiParamSummary">INTENSITY 45 • FREQ 18Hz</span>
+                <span>[ LIVE PHYSICS ]</span>
               </div>
             </div>
           </div>
 
           <!-- KEYFRAME MOTION OSCILLOSCOPE GRAPH -->
           <div class="motion-graph-container">
-            <span class="graph-label">PHYSICS MOTION CURVE GRAPH (X/Y DELTA)</span>
-            <canvas id="studioGraphCanvas" class="graph-canvas" width="280" height="35"></canvas>
+            <span class="graph-label">PHYSICS OSCILLOSCOPE (REALTIME X/Y WAVEFORM)</span>
+            <canvas id="studioGraphCanvas" class="graph-canvas" width="300" height="35"></canvas>
           </div>
 
-          <div class="form-group" style="margin-top:8px;">
-            <label>Trajectory Preset Base</label>
-            <select id="studioPresetBase" class="studio-select">
-              <option value="1">1 — Handheld Organic Drift (Perlin Float)</option>
-              <option value="2">2 — Micro Impact Snap (Fast Recoil)</option>
-              <option value="3" selected>3 — Explosion Blast Shockwave (RGB Flash)</option>
-              <option value="4">4 — Earthquake Tremor (Horizontal Rumble)</option>
-              <option value="5">5 — Fast Action Punch (Diagonal Snap)</option>
-              <option value="6">6 — Vertical Drop Plunge (Bounce Recoil)</option>
-              <option value="7">7 — Wobble Rolling Wave (S-Curve Roll)</option>
-              <option value="8">8 — Gunfire 30Hz Chatter (Machine Gun)</option>
-              <option value="9">9 — Cinematic Tracking Dolly (Zoom Drift)</option>
-              <option value="10">10 — Cyberpunk Glitch Strobe (Digital Jitter)</option>
-              <option value="11">11 — Sub-Bass Drop Pulse (Heartbeat Zoom)</option>
-              <option value="12">12 — Quick Camera Twitch Jerk</option>
-              <option value="13">13 — Vehicle Collision Crash (25° Roll)</option>
-              <option value="14">14 — Running Handheld Stride (Footstep Bounce)</option>
-              <option value="15">15 — Hyper Whip Zoom Snap (140% Zoom)</option>
-            </select>
-          </div>
-
-          <div class="form-row">
+          <div class="form-row" style="margin-top:8px;">
             <div class="form-group">
               <label>Preset Title</label>
-              <input type="text" id="customShakeName" placeholder="e.g. Impact Shockwave Pro" />
+              <input type="text" id="customShakeName" value="AI Synthesized Motion" />
             </div>
             <div class="form-group">
               <label>Category</label>
-              <input type="text" id="customShakeCategory" value="Custom Shakes" />
+              <input type="text" id="customShakeCategory" value="AI Presets" />
             </div>
           </div>
 
+          <button id="saveCustomShakeBtn" class="insert-action-btn" style="width:100%; height:34px; margin-top:6px;">💾 SAVE PRESET TO LIBRARY</button>
+        </div>
+
+        <!-- TAB 2: AUDIO-REACTIVE MOTION SYNTHESIZER -->
+        <div id="audioReactiveTab" class="tab-content" style="display:none;">
+          <div class="form-group">
+            <label>Select Audio Sound FX for Beat-Sync Analysis</label>
+            <input type="file" id="reactiveAudioInput" accept="audio/*" />
+          </div>
+          <div class="audio-sync-preview" id="audioSyncPreview" style="background:#07080C; border:1px solid var(--line-subtle); border-radius:6px; padding:10px; text-align:center; color:var(--text-mid); font-size:10px;">
+            Upload an audio track to analyze transient peaks & auto-generate synchronized camera shake!
+          </div>
+          <button id="synthesizeAudioShakeBtn" class="insert-action-btn" style="width:100%; height:34px; margin-top:10px;" disabled>⚡ SYNTHESIZE BEAT-SYNC SHAKE</button>
+        </div>
+
+        <!-- TAB 3: BEZIER CURVE & NODE DESIGNER -->
+        <div id="curveLabTab" class="tab-content" style="display:none;">
+          <div class="form-group">
+            <label>Bézier Motion Curve Editor (Control Points)</label>
+            <canvas id="bezierCurveCanvas" width="300" height="90" style="background:#07080C; border:1px solid var(--line-subtle); border-radius:6px; cursor:crosshair;"></canvas>
+          </div>
           <div class="form-row">
             <div>
               <label>Intensity (<span id="studioValIntensity">45</span>)</label>
@@ -218,7 +232,6 @@
               <input type="range" id="studioDuration" min="0.1" max="5" step="0.1" value="0.8" />
             </div>
           </div>
-
           <div class="form-row">
             <div>
               <label>Zoom Scale (<span id="studioValScale">15%</span>)</label>
@@ -229,53 +242,28 @@
               <input type="range" id="studioRotation" min="0" max="45" value="10" />
             </div>
           </div>
-
           <div class="form-row">
             <div>
               <label>Frequency (<span id="studioValFrequency">18Hz</span>)</label>
               <input type="range" id="studioFrequency" min="1" max="60" value="18" />
             </div>
             <div>
-              <label>RGB Aberration (<span id="studioValRgb">40%</span>)</label>
+              <label>RGB Split (<span id="studioValRgb">40%</span>)</label>
               <input type="range" id="studioRgb" min="0" max="100" value="40" />
             </div>
           </div>
-
           <div class="form-group">
-            <label>Easing Curve Dampening</label>
+            <label>Easing Profile</label>
             <select id="studioEasingCurve" class="studio-select">
-              <option value="expo" selected>Exponential Decay (Shockwave)</option>
-              <option value="elastic">Elastic Rebound (Spring Bounce)</option>
-              <option value="linear">Linear Chatter (Continuous Chatter)</option>
-              <option value="smooth">S-Curve Ease-In-Out (Organic Floating)</option>
+              <option value="expo" selected>Exponential Decay Shockwave</option>
+              <option value="elastic">Elastic Rebound Spring</option>
+              <option value="linear">Linear Chatter</option>
+              <option value="smooth">S-Curve Smooth Ease</option>
             </select>
           </div>
-
-          <button id="saveCustomShakeBtn" class="insert-action-btn" style="width:100%; height:34px; margin-top:8px;">💾 BUILD & SAVE PRESET TO LIBRARY</button>
         </div>
 
-        <!-- TAB 2: SINGLE AUDIO IMPORT & SOUND DESIGNER -->
-        <div id="importAudioTab" class="tab-content" style="display:none;">
-          <div class="form-group">
-            <label>Select Audio File (.wav, .mp3, .aiff, .m4a)</label>
-            <input type="file" id="audioFileInput" accept="audio/*" />
-          </div>
-          <div class="form-group">
-            <label>Sound Title</label>
-            <input type="text" id="customAudioName" placeholder="e.g. Cyberpunk Whoosh Impact" />
-          </div>
-          <div class="form-group">
-            <label>Category</label>
-            <input type="text" id="customAudioCategory" value="My Custom Sounds" />
-          </div>
-          <div class="form-group">
-            <label>Keywords / Tags (comma separated)</label>
-            <input type="text" id="customAudioTags" placeholder="whoosh, impact, cinematic, riser" />
-          </div>
-          <button id="saveCustomAudioBtn" class="insert-action-btn" style="width:100%; height:34px; margin-top:8px;">📥 ADD SOUND TO LIBRARY</button>
-        </div>
-
-        <!-- TAB 3: BULK BATCH BUILDER -->
+        <!-- TAB 4: BULK BATCH BUILDER -->
         <div id="bulkAudioTab" class="tab-content" style="display:none;">
           <div class="drop-zone" id="bulkDropZone">
             <span style="font-size:24px;">📁</span>
@@ -293,7 +281,7 @@
           <button id="saveBulkBtn" class="insert-action-btn" style="width:100%; height:34px; margin-top:10px;" disabled>⚡ BATCH IMPORT ALL FILES</button>
         </div>
 
-        <!-- TAB 4: MANAGE & EXPORT PRESET PACKS -->
+        <!-- TAB 5: MANAGE & EXPORT PRESET PACKS -->
         <div id="manageTab" class="tab-content" style="display:none;">
           <div style="display:flex; gap:6px; margin-bottom:10px;">
             <button id="exportPackBtn" class="icon-btn-text" style="flex:1;">📤 Export Presets (.json)</button>

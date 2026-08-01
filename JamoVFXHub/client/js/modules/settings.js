@@ -17,7 +17,10 @@ GS.Settings = (function () {
     licenseKey: "",
     volume: 0.8,
     maxRecent: 40,
-    autoPreview: true
+    autoPreview: true,
+    theme: "dark",
+    accent: "#A970FF",
+    defaultShakeDuration: 0.6
   };
 
   var state = Object.assign({}, DEFAULTS);

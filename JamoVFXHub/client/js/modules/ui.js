@@ -14,6 +14,8 @@ GS.UI = (function () {
   var viewMode = "list"; // "list" | "grid"
   var bulkAudioQueue = [];
   var onboardingStep = 0;
+  var searchTimer = null;
+  var renderBatchSize = 120;
 
   var SHAKE_DEFAULTS = {
     intensity: 20, duration: 0.6, scale: 4, rotation: 2, frequency: 12,
@@ -126,11 +128,69 @@ GS.UI = (function () {
     renderGrid(assets);
   }
 
+  // ---------------- AI PROMPT MOTION SYNTHESIZER ----------------
+  function synthesizeAiMotion(promptText) {
+    if (!promptText || !promptText.trim()) {
+      toast("Please enter an AI prompt!", "err");
+      return;
+    }
+    var txt = promptText.toLowerCase();
+    toast("AI Synthesizing Motion Parameters…", "ok");
+
+    var p = {
+      presetBase: 3,
+      name: "AI " + promptText.slice(0, 20),
+      category: "AI Presets",
+      intensity: 50,
+      duration: 0.8,
+      scale: 15,
+      rotation: 8,
+      frequency: 18,
+      rgb: 40,
+      easing: "expo"
+    };
+
+    if (txt.indexOf("explosion") !== -1 || txt.indexOf("bomb") !== -1 || txt.indexOf("blast") !== -1) {
+      p.presetBase = 3; p.intensity = 85; p.duration = 0.9; p.scale = 22; p.rotation = 14; p.frequency = 22; p.rgb = 85; p.easing = "expo";
+    } else if (txt.indexOf("sniper") !== -1 || txt.indexOf("gun") !== -1 || txt.indexOf("recoil") !== -1 || txt.indexOf("shot") !== -1) {
+      p.presetBase = 8; p.intensity = 75; p.duration = 0.35; p.scale = 12; p.rotation = 8; p.frequency = 30; p.rgb = 50; p.easing = "elastic";
+    } else if (txt.indexOf("glitch") !== -1 || txt.indexOf("cyber") !== -1 || txt.indexOf("strobe") !== -1) {
+      p.presetBase = 10; p.intensity = 65; p.duration = 0.45; p.scale = 14; p.rotation = 14; p.frequency = 32; p.rgb = 100; p.easing = "linear";
+    } else if (txt.indexOf("earthquake") !== -1 || txt.indexOf("tremor") !== -1 || txt.indexOf("rumble") !== -1) {
+      p.presetBase = 4; p.intensity = 65; p.duration = 2.5; p.scale = 8; p.rotation = 0; p.frequency = 12; p.rgb = 20; p.easing = "linear";
+    } else if (txt.indexOf("vlog") !== -1 || txt.indexOf("drift") !== -1 || txt.indexOf("drone") !== -1 || txt.indexOf("organic") !== -1) {
+      p.presetBase = 1; p.intensity = 15; p.duration = 1.8; p.scale = 3; p.rotation = 2; p.frequency = 5; p.rgb = 10; p.easing = "smooth";
+    } else if (txt.indexOf("whip") !== -1 || txt.indexOf("zoom") !== -1 || txt.indexOf("fast") !== -1) {
+      p.presetBase = 15; p.intensity = 70; p.duration = 0.5; p.scale = 35; p.rotation = 6; p.frequency = 25; p.rgb = 40; p.easing = "expo";
+    } else if (txt.indexOf("crash") !== -1 || txt.indexOf("car") !== -1 || txt.indexOf("collision") !== -1) {
+      p.presetBase = 13; p.intensity = 95; p.duration = 1.0; p.scale = 25; p.rotation = 22; p.frequency = 20; p.rgb = 90; p.easing = "elastic";
+    }
+
+    if (el("customShakeName")) el("customShakeName").value = "AI: " + promptText.slice(0, 24);
+    if (el("studioIntensity")) el("studioIntensity").value = p.intensity;
+    if (el("studioDuration")) el("studioDuration").value = p.duration;
+    if (el("studioScale")) el("studioScale").value = p.scale;
+    if (el("studioRotation")) el("studioRotation").value = p.rotation;
+    if (el("studioFrequency")) el("studioFrequency").value = p.frequency;
+    if (el("studioRgb")) el("studioRgb").value = p.rgb;
+
+    var badge = el("aiSynthesisBadge");
+    if (badge) badge.textContent = "SYNTHESIZED ✨";
+    var summary = el("aiParamSummary");
+    if (summary) summary.textContent = "INTENSITY " + p.intensity + " • FREQ " + p.frequency + "Hz • RGB " + p.rgb + "%";
+
+    var canvas = el("studioShakeCanvas");
+    if (canvas) startLiveShakeSimulation(canvas, p, p.presetBase, drawMotionGraph);
+    toast("AI Motion Synthesized!", "ok");
+  }
+
   // ---------------- ASSET STUDIO & BUILDER MODAL ----------------
   function openAssetStudio() {
     var modal = el("assetStudioModal");
     if (!modal) return;
     modal.style.display = "flex";
+    var defaultDuration = el("studioDuration");
+    if (defaultDuration) defaultDuration.value = GS.Settings.get("defaultShakeDuration") || 0.6;
 
     var canvas = el("studioShakeCanvas");
     if (canvas) startLiveStudioShake();
@@ -461,12 +521,28 @@ GS.UI = (function () {
     el("emptyState").style.display = assets.length ? "none" : "block";
     if (!assets.length) return;
 
+    // Keep the full result set in memory, but only mount a small batch of DOM
+    // nodes. This prevents a low-end CEP machine from creating 1,912 rows at once.
+    grid._assetResults = assets;
+    grid._assetCursor = 0;
+    grid._loadingBatch = false;
+    appendAssetBatch(grid);
+    grid.onscroll = function () {
+      if (grid.scrollTop + grid.clientHeight >= grid.scrollHeight - 180) appendAssetBatch(grid);
+    };
+  }
+
+  function appendAssetBatch(grid) {
+    if (!grid || grid._loadingBatch || !grid._assetResults || grid._assetCursor >= grid._assetResults.length) return;
+    grid._loadingBatch = true;
+    var end = Math.min(grid._assetCursor + (viewMode === "list" ? renderBatchSize : 72), grid._assetResults.length);
     var doc = document.createDocumentFragment();
-    for (var i = 0; i < assets.length; i++) {
-      if (viewMode === "list") doc.appendChild(buildRow(assets[i]));
-      else doc.appendChild(buildCard(assets[i]));
+    for (var i = grid._assetCursor; i < end; i++) {
+      doc.appendChild(viewMode === "list" ? buildRow(grid._assetResults[i]) : buildCard(grid._assetResults[i]));
     }
     grid.appendChild(doc);
+    grid._assetCursor = end;
+    grid._loadingBatch = false;
   }
 
   function isShakeAsset(asset) {
@@ -506,11 +582,6 @@ GS.UI = (function () {
     playBtn.addEventListener("click", function (e) {
       e.stopPropagation();
       selectAsset(asset);
-      if (isShakeAsset(asset)) {
-        inspectShake(asset);
-      } else {
-        playAudio(asset);
-      }
     });
 
     row.querySelector(".row-insert-btn").addEventListener("click", function (e) {
@@ -604,8 +675,11 @@ GS.UI = (function () {
     var modal = el("settingsModal");
     if (!modal) return;
     el("settingAutoPreview").checked = GS.Settings.get("autoPreview") !== false;
+    el("settingTheme").value = GS.Settings.get("theme") || "dark";
+    el("settingAccent").value = GS.Settings.get("accent") || "#A970FF";
     el("settingVolume").value = GS.Settings.get("volume");
     el("settingMaxRecent").value = GS.Settings.get("maxRecent");
+    el("settingShakeDuration").value = GS.Settings.get("defaultShakeDuration") || 0.6;
     modal.style.display = "flex";
   }
 
@@ -747,6 +821,7 @@ GS.UI = (function () {
     var h = canvas.height = 125;
     var startTime = Date.now();
     var num = presetNum || 1;
+    var lastFrameTime = 0;
 
     function renderScene(targetCtx, offsetX, offsetY, rot, sca, rgbSplit) {
       targetCtx.save();
@@ -821,7 +896,13 @@ GS.UI = (function () {
 
     function step() {
       if (!canvas || !document.body.contains(canvas)) return;
-      var elapsed = (Date.now() - startTime) / 1000;
+      var now = Date.now();
+      if (document.body.classList.contains("performance-lite") && now - lastFrameTime < 33) {
+        currentShakeRaf = requestAnimationFrame(step);
+        return;
+      }
+      lastFrameTime = now;
+      var elapsed = (now - startTime) / 1000;
       var dur = Math.max(0.1, p.duration || 0.6);
       var loopProgress = (elapsed % dur) / dur;
       var decay = Math.pow(1 - loopProgress, 1.4);
@@ -1175,10 +1256,24 @@ GS.UI = (function () {
     if (closeSettingsButton) closeSettingsButton.addEventListener("click", closeSettings);
     var autoPreviewSetting = el("settingAutoPreview");
     if (autoPreviewSetting) autoPreviewSetting.addEventListener("change", function (e) { GS.Settings.set("autoPreview", e.target.checked); });
+    var themeSetting = el("settingTheme");
+    if (themeSetting) themeSetting.addEventListener("change", function (e) {
+      GS.Settings.set("theme", e.target.value);
+      document.documentElement.dataset.theme = e.target.value;
+    });
+    var accentSetting = el("settingAccent");
+    if (accentSetting) accentSetting.addEventListener("input", function (e) {
+      GS.Settings.set("accent", e.target.value);
+      document.documentElement.style.setProperty("--accent-cyan", e.target.value);
+    });
     var settingVolume = el("settingVolume");
     if (settingVolume) settingVolume.addEventListener("input", function (e) { GS.Player.setVolume(e.target.value); });
     var maxRecentSetting = el("settingMaxRecent");
     if (maxRecentSetting) maxRecentSetting.addEventListener("change", function (e) { GS.Settings.set("maxRecent", Math.max(5, Math.min(200, parseInt(e.target.value, 10) || 40))); });
+    var shakeDurationSetting = el("settingShakeDuration");
+    if (shakeDurationSetting) shakeDurationSetting.addEventListener("change", function (e) {
+      GS.Settings.set("defaultShakeDuration", Math.max(0.1, Math.min(5, parseFloat(e.target.value) || 0.6)));
+    });
     var resetSettings = el("resetSettingsBtn");
     if (resetSettings) resetSettings.addEventListener("click", function () {
       GS.Settings.reset();
@@ -1186,12 +1281,15 @@ GS.UI = (function () {
       toast("Preferences reset", "ok");
     });
 
-    el("searchInput").addEventListener("input", function (e) {
+      el("searchInput").addEventListener("input", function (e) {
       var q = e.target.value;
-      if (!q.trim()) { selectCategory(currentCategory); return; }
-      var results = GS.DB.search(q);
-      el("contentTitle").textContent = 'Search: "' + q + '"';
-      renderGrid(results);
+      clearTimeout(searchTimer);
+      searchTimer = setTimeout(function () {
+        if (!q.trim()) { selectCategory(currentCategory); return; }
+        var results = GS.DB.search(q);
+        el("contentTitle").textContent = 'Search: "' + q + '"';
+        renderGrid(results);
+      }, 120);
     });
 
     // ---------------- Asset Studio & Builder Modal Events ----------------
@@ -1219,6 +1317,26 @@ GS.UI = (function () {
     if (bulkOrganize) bulkOrganize.addEventListener("click", organizeBulkQueue);
     var bulkImport = el("bulkImportBtn");
     if (bulkImport) bulkImport.addEventListener("click", importBulkQueue);
+
+    // ---------------- AI PROMPT MOTION SYNTHESIZER EVENTS ----------------
+    var aiGenBtn = el("generateAiMotionBtn");
+    var aiPromptInput = el("aiMotionPrompt");
+    if (aiGenBtn && aiPromptInput) {
+      aiGenBtn.addEventListener("click", function () {
+        synthesizeAiMotion(aiPromptInput.value);
+      });
+      aiPromptInput.addEventListener("keydown", function (e) {
+        if (e.key === "Enter") synthesizeAiMotion(aiPromptInput.value);
+      });
+    }
+
+    document.querySelectorAll(".ai-chip").forEach(function (chip) {
+      chip.addEventListener("click", function () {
+        var pText = chip.dataset.prompt;
+        if (aiPromptInput) aiPromptInput.value = pText;
+        synthesizeAiMotion(pText);
+      });
+    });
 
     // ---------------- 100X PRO MOTION STUDIO EVENTS ----------------
     var presetBaseSelect = el("studioPresetBase");
@@ -1338,9 +1456,9 @@ GS.UI = (function () {
           duration: parseFloat(el("studioDuration").value),
           scale: parseFloat(el("studioScale").value),
           rotation: parseFloat(el("studioRotation").value),
-          frequency: parseFloat(el("studioFrequency").value),
-          rgb: parseFloat(el("studioRgb").value),
-          easing: el("studioEasingCurve").value
+           frequency: parseFloat((el("studioFrequency") && el("studioFrequency").value) || "14"),
+           rgb: parseFloat((el("studioRgb") && el("studioRgb").value) || "0"),
+           easing: (el("studioEasingCurve") && el("studioEasingCurve").value) || "linear"
         };
         var asset = {
           id: "shake_custom_" + Date.now(),
@@ -1369,7 +1487,8 @@ GS.UI = (function () {
         var fileInput = el("audioFileInput");
         var name = (el("customAudioName").value || "").trim();
         var cat = (el("customAudioCategory").value || "").trim() || "My Custom Sounds";
-        var tagsStr = (el("customAudioTags").value || "").trim();
+         var tagsField = el("customAudioTags");
+         var tagsStr = tagsField ? (tagsField.value || "").trim() : "";
 
         if (!fileInput.files || !fileInput.files.length) {
           toast("Please select an audio file first!", "err");
@@ -1436,6 +1555,11 @@ GS.UI = (function () {
   }
 
   function init() {
+    if ((navigator.hardwareConcurrency && navigator.hardwareConcurrency <= 4) || (navigator.deviceMemory && navigator.deviceMemory <= 4) || document.body.classList.contains("low-spec")) {
+      document.body.classList.add("performance-lite");
+    }
+    document.documentElement.dataset.theme = GS.Settings.get("theme") || "dark";
+    document.documentElement.style.setProperty("--accent-cyan", GS.Settings.get("accent") || "#A970FF");
     wireEvents();
     renderSidebar();
     selectCategory("__home");
