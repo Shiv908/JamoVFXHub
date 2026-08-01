@@ -14,7 +14,8 @@ GS.DB = (function () {
     assets: [],
     categories: [],
     favorites: {},  // id -> true
-    recent: []       // array of ids, most recent first
+    recent: [],     // array of ids, most recent first
+    customAssets: [] // array of user-created custom assets & presets
   };
 
   function extensionRoot() {
@@ -25,6 +26,7 @@ GS.DB = (function () {
   function dbPath() { return path.join(extensionRoot(), "Database", "assets.json"); }
   function favPath() { return path.join(extensionRoot(), "Config", "favorites.json"); }
   function recentPath() { return path.join(extensionRoot(), "Config", "recent.json"); }
+  function customPath() { return path.join(extensionRoot(), "Config", "customAssets.json"); }
 
   function readJSON(p, fallback) {
     try {
@@ -41,6 +43,18 @@ GS.DB = (function () {
   function loadPersisted() {
     state.favorites = readJSON(favPath(), {});
     state.recent = readJSON(recentPath(), []);
+    state.customAssets = readJSON(customPath(), []);
+  }
+
+  function mergeCustomAssets() {
+    if (!state.customAssets || !state.customAssets.length) return;
+    var existingIds = {};
+    state.assets.forEach(function (a) { existingIds[a.id] = true; });
+    state.customAssets.forEach(function (ca) {
+      if (!existingIds[ca.id]) {
+        state.assets.unshift(ca);
+      }
+    });
   }
 
   function loadFromCache() {
@@ -48,6 +62,7 @@ GS.DB = (function () {
     if (cached && cached.assets) {
       state.assets = cached.assets;
       state.categories = cached.categories || [];
+      mergeCustomAssets();
       applyFavorites();
       return true;
     }
@@ -58,6 +73,7 @@ GS.DB = (function () {
     var result = GS.Scanner.scanAll();
     state.assets = result.assets;
     state.categories = result.categories;
+    mergeCustomAssets();
     applyFavorites();
     writeJSON(dbPath(), result);
     return state;
@@ -130,6 +146,25 @@ GS.DB = (function () {
     });
   }
 
+  function addCustomAsset(asset) {
+    if (!asset.id) asset.id = "custom_" + Date.now() + "_" + Math.floor(Math.random() * 1000);
+    asset.custom = true;
+    state.customAssets.unshift(asset);
+    state.assets.unshift(asset);
+    writeJSON(customPath(), state.customAssets);
+    return asset;
+  }
+
+  function deleteCustomAsset(id) {
+    state.customAssets = state.customAssets.filter(function (a) { return a.id !== id; });
+    state.assets = state.assets.filter(function (a) { return a.id !== id; });
+    writeJSON(customPath(), state.customAssets);
+  }
+
+  function getCustomAssets() {
+    return state.customAssets;
+  }
+
   return {
     loadPersisted: loadPersisted,
     loadFromCache: loadFromCache,
@@ -143,6 +178,9 @@ GS.DB = (function () {
     getDownloads: getDownloads,
     search: search,
     toggleFavorite: toggleFavorite,
-    markRecent: markRecent
+    markRecent: markRecent,
+    addCustomAsset: addCustomAsset,
+    deleteCustomAsset: deleteCustomAsset,
+    getCustomAssets: getCustomAssets
   };
 })();

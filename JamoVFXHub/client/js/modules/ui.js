@@ -110,6 +110,7 @@ GS.UI = (function () {
 
     var title = cat, assets = [];
     if (cat === "__home") { title = "Home"; renderHome(); return; }
+    else if (cat === "__custom") { title = "My Custom Assets"; assets = GS.DB.getCustomAssets(); }
     else if (cat === "__favorites") { title = "Favorites"; assets = GS.DB.getFavorites(); }
     else if (cat === "__recent") { title = "Recent"; assets = GS.DB.getRecent(); }
     else if (cat === "__downloads") { renderDownloads(); return; }
@@ -118,6 +119,65 @@ GS.UI = (function () {
 
     el("contentTitle").textContent = title;
     renderGrid(assets);
+  }
+
+  // ---------------- ASSET STUDIO & BUILDER MODAL ----------------
+  function openAssetStudio() {
+    var modal = el("assetStudioModal");
+    if (!modal) return;
+    modal.style.display = "flex";
+
+    var canvas = el("studioShakeCanvas");
+    if (canvas) startLiveStudioShake();
+
+    renderCustomAssetsManagerList();
+  }
+
+  function closeAssetStudio() {
+    var modal = el("assetStudioModal");
+    if (modal) modal.style.display = "none";
+  }
+
+  function startLiveStudioShake() {
+    var canvas = el("studioShakeCanvas");
+    if (!canvas) return;
+    var p = {
+      intensity: parseFloat(el("studioIntensity").value || 40),
+      duration: parseFloat(el("studioDuration").value || 0.6),
+      scale: parseFloat(el("studioScale").value || 10),
+      rotation: parseFloat(el("studioRotation").value || 6),
+      frequency: 14
+    };
+    startLiveShakeSimulation(canvas, p, 1);
+  }
+
+  function renderCustomAssetsManagerList() {
+    var list = el("customAssetsList");
+    if (!list) return;
+    var custom = GS.DB.getCustomAssets();
+    if (!custom || !custom.length) {
+      list.innerHTML = '<p style="color:var(--text-mid); font-size:10px; text-align:center; padding:10px;">No custom assets created yet.</p>';
+      return;
+    }
+    list.innerHTML = "";
+    custom.forEach(function (ca) {
+      var item = document.createElement("div");
+      item.className = "custom-asset-item";
+      item.innerHTML =
+        '<div>' +
+          '<div style="font-weight:700; color:var(--text-hi);">' + escapeHTML(ca.name) + '</div>' +
+          '<div style="font-size:9px; color:var(--text-mid);">' + escapeHTML(ca.category) + ' (' + (ca.type || "custom") + ')</div>' +
+        '</div>' +
+        '<button class="delete-btn">🗑️ Delete</button>';
+
+      item.querySelector(".delete-btn").onclick = function () {
+        GS.DB.deleteCustomAsset(ca.id);
+        toast("Deleted custom asset", "ok");
+        renderCustomAssetsManagerList();
+        refreshAll();
+      };
+      list.appendChild(item);
+    });
   }
 
   // ---------------- Home Overview ----------------
@@ -172,7 +232,7 @@ GS.UI = (function () {
     if (selectedAsset && selectedAsset.id === asset.id) row.classList.add("selected");
     if (playingAssetId === asset.id) row.classList.add("is-playing");
 
-    var playIcon = isShakeAsset(asset) ? "◆" : (playingAssetId === asset.id ? "❚❚" : "▶");
+    var playIcon = isShakeAsset(asset) ? svgIcon("shake") : (playingAssetId === asset.id ? svgIcon("pause") : svgIcon("play"));
     var duration = asset.length || asset.duration || "--:--";
 
     row.innerHTML =
@@ -183,8 +243,8 @@ GS.UI = (function () {
         '<span>' + escapeHTML(asset.category.replace(/^\d+\s*/, "")) + '</span>' +
         '<span>' + escapeHTML(duration) + '</span>' +
         (playingAssetId === asset.id ? '<span class="playing-label">PLAYING</span>' : '') +
-        '<span class="card-fav' + (asset.favorite ? " active" : "") + '">★</span>' +
-        '<button class="row-insert-btn" title="Insert to timeline">ADD</button>' +
+        '<span class="card-fav' + (asset.favorite ? " active" : "") + '">' + svgIcon("star") + '</span>' +
+        '<button class="row-insert-btn" title="Insert to timeline">' + svgIcon("add") + 'ADD</button>' +
       '</div>';
 
     var playBtn = row.querySelector(".row-play-btn");
@@ -245,13 +305,13 @@ GS.UI = (function () {
     if (selectedAsset && selectedAsset.id === asset.id) card.classList.add("selected");
     if (playingAssetId === asset.id) card.classList.add("is-playing");
 
-    var icon = isShakeAsset(asset) ? "🎬" : "🔊";
+    var icon = isShakeAsset(asset) ? svgIcon("shake") : svgIcon("audio");
 
     card.innerHTML =
       '<div class="card-preview">' + icon + '</div>' +
       '<div class="card-name">' + escapeHTML(asset.name) + '</div>' +
       '<div class="card-meta"><span>' + asset.category.replace(/^\d+\s*/, "") + '</span>' +
-      '<span class="card-fav' + (asset.favorite ? " active" : "") + '">★</span></div>';
+      '<span class="card-fav' + (asset.favorite ? " active" : "") + '">' + svgIcon("star") + '</span></div>';
 
     card.addEventListener("click", function (e) {
       if (e.target.classList.contains("card-fav")) {
@@ -295,13 +355,13 @@ GS.UI = (function () {
       var active = playingAssetId && node.dataset.id === playingAssetId;
       node.classList.toggle("is-playing", !!active);
       var play = node.querySelector(".row-play-btn");
-      if (play) play.textContent = active ? "❚❚" : (selectedAsset && selectedAsset.id === node.dataset.id ? "▶" : play.textContent);
+      if (play) play.innerHTML = active ? svgIcon("pause") : svgIcon("play");
     });
     if (asset) {
       var playerButton = el("playerPlayBtn");
-      if (playerButton) playerButton.textContent = isPlaying ? "❚❚" : "▶";
+      if (playerButton) playerButton.innerHTML = isPlaying ? svgIcon("pause") : svgIcon("play");
       var inspectorButton = el("audioPlayBtn");
-      if (inspectorButton) inspectorButton.textContent = isPlaying ? "❚❚  PAUSE" : "▶  PLAY PREVIEW";
+      if (inspectorButton) inspectorButton.innerHTML = isPlaying ? svgIcon("pause") + "PAUSE" : svgIcon("play") + "PLAY PREVIEW";
     }
   }
 
@@ -350,7 +410,7 @@ GS.UI = (function () {
         '<div class="audio-time-row"><span id="audioCurrentTime">00:00</span><span id="audioDuration">' + escapeHTML(asset.length || "--:--") + '</span></div>' +
         '<h3 class="audio-title">' + escapeHTML(asset.name) + '</h3>' +
         '<p class="audio-meta">' + escapeHTML(asset.category.replace(/^\d+\s*/, "")) + ' <span>•</span> ' + escapeHTML(asset.sampleRate || "STEREO") + '</p>' +
-        '<div class="audio-actions"><button id="audioPlayBtn" class="audio-play-btn">▶  PLAY PREVIEW</button><button id="audioInsertBtn" class="audio-insert-btn">ADD TO TIMELINE</button></div>' +
+        '<div class="audio-actions"><button id="audioPlayBtn" class="audio-play-btn">' + svgIcon("play") + 'PLAY PREVIEW</button><button id="audioInsertBtn" class="audio-insert-btn">' + svgIcon("add") + 'ADD TO TIMELINE</button></div>' +
       '</div>';
     var preview = el("audioWaveformCanvas");
     if (preview && GS.Player.drawWaveform) GS.Player.drawWaveform(preview);
@@ -379,7 +439,7 @@ GS.UI = (function () {
       if (GS.Player.isPlaying() && playingAssetId === asset.id) {
         GS.Player.stop();
         setPlayingState(asset, false);
-        el("playerPlayBtn").textContent = "▶";
+        el("playerPlayBtn").innerHTML = svgIcon("play");
       } else {
         playAudio(asset);
       }
@@ -660,7 +720,7 @@ GS.UI = (function () {
         '<h3>' + escapeHTML(asset.name) + '</h3>' +
         '<p style="color:var(--text-mid); font-size:10px; margin-bottom:10px;">' + escapeHTML(asset.category) + '</p>' +
         '<div id="shakeControls"></div>' +
-        '<button id="applyShakeBtn" class="insert-action-btn" style="width:100%; margin-top:12px; height:32px;">⚡ APPLY SHAKE TO TIMELINE</button>';
+          '<button id="applyShakeBtn" class="insert-action-btn" style="width:100%; margin-top:12px; height:32px;">' + svgIcon("bolt") + 'APPLY SHAKE TO TIMELINE</button>';
     } else {
       container.innerHTML =
         '<div class="shake-preview-viewport">' +
@@ -680,7 +740,7 @@ GS.UI = (function () {
         '<h3>' + escapeHTML(asset.name) + '</h3>' +
         '<p style="color:var(--text-mid); font-size:10px; margin-bottom:10px;">' + escapeHTML(asset.category) + '</p>' +
         '<div id="shakeControls"></div>' +
-        '<button id="applyShakeBtn" class="insert-action-btn" style="width:100%; margin-top:12px; height:32px;">⚡ APPLY SHAKE TO TIMELINE</button>';
+          '<button id="applyShakeBtn" class="insert-action-btn" style="width:100%; margin-top:12px; height:32px;">' + svgIcon("bolt") + 'APPLY SHAKE TO TIMELINE</button>';
     }
 
     var p = getPresetParams(asset);
@@ -766,7 +826,7 @@ GS.UI = (function () {
 
     el("viewToggleBtn").addEventListener("click", function () {
       viewMode = viewMode === "list" ? "grid" : "list";
-      el("viewToggleBtn").textContent = viewMode === "list" ? "☰" : "☷";
+      el("viewToggleBtn").innerHTML = viewMode === "list" ? svgIcon("list") : svgIcon("grid");
       selectCategory(currentCategory);
     });
 
@@ -800,12 +860,118 @@ GS.UI = (function () {
       el("contentTitle").textContent = 'Search: "' + q + '"';
       renderGrid(results);
     });
+
+    // ---------------- Asset Studio & Builder Modal Events ----------------
+    var buildBtn = el("buildAssetBtn");
+    if (buildBtn) buildBtn.addEventListener("click", openAssetStudio);
+
+    var closeStudioBtn = el("closeStudioBtn");
+    if (closeStudioBtn) closeStudioBtn.addEventListener("click", closeAssetStudio);
+
+    document.querySelectorAll("#assetStudioModal .tab-btn").forEach(function (tab) {
+      tab.addEventListener("click", function () {
+        document.querySelectorAll("#assetStudioModal .tab-btn").forEach(function (t) { t.classList.remove("active"); });
+        document.querySelectorAll("#assetStudioModal .tab-content").forEach(function (c) { c.style.display = "none"; });
+        tab.classList.add("active");
+        var targetId = tab.dataset.tab;
+        var targetEl = el(targetId);
+        if (targetEl) targetEl.style.display = "block";
+        if (targetId === "manageTab") renderCustomAssetsManagerList();
+      });
+    });
+
+    ["Intensity", "Duration", "Scale", "Rotation"].forEach(function (k) {
+      var input = el("studio" + k);
+      if (input) {
+        input.addEventListener("input", function (e) {
+          var valEl = el("studioVal" + k);
+          if (valEl) valEl.textContent = e.target.value + (k === "Duration" ? "s" : k === "Rotation" ? "°" : k === "Scale" ? "%" : "");
+          startLiveStudioShake();
+        });
+      }
+    });
+
+    var saveShakeBtn = el("saveCustomShakeBtn");
+    if (saveShakeBtn) {
+      saveShakeBtn.addEventListener("click", function () {
+        var name = (el("customShakeName").value || "").trim() || "Custom Shake Preset";
+        var cat = (el("customShakeCategory").value || "").trim() || "Custom Shakes";
+        var p = {
+          intensity: parseFloat(el("studioIntensity").value),
+          duration: parseFloat(el("studioDuration").value),
+          scale: parseFloat(el("studioScale").value),
+          rotation: parseFloat(el("studioRotation").value),
+          frequency: 14
+        };
+        var asset = {
+          id: "shake_custom_" + Date.now(),
+          name: name,
+          category: cat,
+          group: "Shakes",
+          type: "shake",
+          kind: "shake",
+          file: "custom_shake.json",
+          params: p
+        };
+        GS.DB.addCustomAsset(asset);
+        toast("Saved Custom Shake Preset to Library!", "ok");
+        closeAssetStudio();
+        refreshAll();
+        selectCategory("__custom");
+      });
+    }
+
+    var saveAudioBtn = el("saveCustomAudioBtn");
+    if (saveAudioBtn) {
+      saveAudioBtn.addEventListener("click", function () {
+        var fileInput = el("audioFileInput");
+        var name = (el("customAudioName").value || "").trim();
+        var cat = (el("customAudioCategory").value || "").trim() || "My Custom Sounds";
+
+        if (!fileInput.files || !fileInput.files.length) {
+          toast("Please select an audio file first!", "err");
+          return;
+        }
+        var file = fileInput.files[0];
+        var assetName = name || file.name.replace(/\.[^/.]+$/, "");
+        var asset = {
+          id: "audio_custom_" + Date.now(),
+          name: assetName,
+          category: cat,
+          group: "Custom Audio",
+          type: "audio",
+          kind: "audio",
+          file: file.path || file.name,
+          length: "00:03"
+        };
+        GS.DB.addCustomAsset(asset);
+        toast("Added Audio Asset to Library!", "ok");
+        closeAssetStudio();
+        refreshAll();
+        selectCategory("__custom");
+      });
+    }
   }
 
   function escapeHTML(str) {
     return String(str || "").replace(/[&<>"']/g, function (c) {
       return { "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;", "'": "&#39;" }[c];
     });
+  }
+
+  function svgIcon(name) {
+    var paths = {
+      play: '<path d="m8 5 11 7-11 7z"/>',
+      pause: '<path d="M7 5h3v14H7zM14 5h3v14h-3z"/>',
+      star: '<path d="m12 3 2.8 5.7 6.2.9-4.5 4.4 1.1 6.2-5.6-2.9-5.6 2.9 1.1-6.2L3 9.6l6.2-.9z"/>',
+      add: '<path d="M12 5v14M5 12h14"/>',
+      bolt: '<path d="m13 2-8 12h6l-1 8 8-12h-6z"/>',
+      shake: '<path d="m4 9 5 3-5 3M20 9l-5 3 5 3M12 4v16"/>',
+      audio: '<path d="M5 10v4h3l4 4V6l-4 4zM16 9a4 4 0 0 1 0 6M18.5 6.5a8 8 0 0 1 0 11"/>',
+      list: '<path d="M5 6h14M5 12h14M5 18h14"/>',
+      grid: '<path d="M4 5h6v6H4zM14 5h6v6h-6zM4 15h6v6H4zM14 15h6v6h-6z"/>'
+    };
+    return '<svg class="icon" viewBox="0 0 24 24" aria-hidden="true">' + (paths[name] || paths.audio) + '</svg>';
   }
 
   function init() {

@@ -4,15 +4,6 @@
 <meta charset="UTF-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 <title>JamoVFX Hub</title>
-<style>
-  @font-face {
-    font-family: "Angila";
-    src: url("../../Angila.ttf") format("truetype");
-    font-style: normal;
-    font-weight: 400;
-    font-display: swap;
-  }
-</style>
 <!-- Google Fonts with local system font fallback -->
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -26,7 +17,7 @@
 
     <!-- TOP CONTROL BAR -->
     <header class="topbar">
-      <button id="toggleSidebarBtn" class="icon-btn sidebar-toggle" title="Toggle Categories Drawer"><svg class="icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M4 6h16M4 12h16M4 18h16"/></svg></button>
+      <button id="toggleSidebarBtn" class="icon-btn sidebar-toggle" title="Toggle Categories Drawer">☰</button>
       
       <div class="brand-badge" title="JamoVFX Hub">
         <span class="brand-mark">JV</span>
@@ -38,28 +29,30 @@
       </div>
 
       <div class="top-actions">
-        <button id="viewToggleBtn" class="icon-btn" title="Toggle List / Grid View"><svg class="icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M4 5h6v6H4zM14 5h6v6h-6zM4 15h6v6H4zM14 15h6v6h-6z"/></svg></button>
-        <button id="reloadPanelBtn" class="icon-btn" title="Force Reload UI"><svg class="icon" viewBox="0 0 24 24" aria-hidden="true"><path d="m13 2-8 12h6l-1 8 8-12h-6z"/></svg></button>
-        <button id="refreshBtn" class="icon-btn" title="Rescan Assets"><svg class="icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M20 11a8 8 0 0 0-14.8-4L3 10M4 5v5h5M4 13a8 8 0 0 0 14.8 4L21 14m-1 5v-5h-5"/></svg></button>
-        <button id="settingsBtn" class="icon-btn" title="Settings"><svg class="icon" viewBox="0 0 24 24" aria-hidden="true"><path d="m9.5 3-.5 2a7 7 0 0 0-2 1.2L5 5.3l-2 3.4 1.7 1.3a7 7 0 0 0 0 2.4L3 13.7l2 3.4 2-0.9a7 7 0 0 0 2 1.2l.5 2h4l.5-2a7 7 0 0 0 2-1.2l2 .9 2-3.4-1.7-1.3a7 7 0 0 0 0-2.4L21 8.7l-2-3.4-2 .9a7 7 0 0 0-2-1.2l-.5-2zM12 9a3 3 0 1 1 0 6 3 3 0 0 1 0-6z"/></svg></button>
+        <button id="buildAssetBtn" class="icon-btn" title="Create & Manage Custom Assets">➕</button>
+        <button id="viewToggleBtn" class="icon-btn" title="Toggle List / Grid View">☰</button>
+        <button id="reloadPanelBtn" class="icon-btn" title="Force Reload UI">⚡</button>
+        <button id="refreshBtn" class="icon-btn" title="Rescan Assets">⟳</button>
+        <button id="settingsBtn" class="icon-btn" title="Settings">⚙</button>
       </div>
     </header>
 
     <!-- QUICK KEYWORD FILTER PILLS BAR -->
     <div class="category-pills-bar" id="categoryPills">
-      <button class="pill active" data-cat="__home"><svg class="icon" viewBox="0 0 24 24"><path d="m3 11 9-8 9 8v9h-6v-6H9v6H3z"/></svg>All</button>
-      <button class="pill pill-tag" data-tag="shake"><svg class="icon" viewBox="0 0 24 24"><path d="m4 9 5 3-5 3M20 9l-5 3 5 3M12 4v16"/></svg>Shakes</button>
-      <button class="pill" data-cat="__favorites"><svg class="icon" viewBox="0 0 24 24"><path d="m12 3 2.8 5.7 6.2.9-4.5 4.4 1.1 6.2-5.6-2.9-5.6 2.9 1.1-6.2L3 9.6l6.2-.9z"/></svg>Favorites</button>
-      <button class="pill" data-cat="__recent"><svg class="icon" viewBox="0 0 24 24"><path d="M12 7v5l3 2M20 12a8 8 0 1 1-2.3-5.7M20 4v6h-6"/></svg>Recent</button>
-      <button class="pill pill-tag" data-tag="riser"><svg class="icon" viewBox="0 0 24 24"><path d="M12 20V4M6 10l6-6 6 6"/></svg>Risers</button>
-      <button class="pill pill-tag" data-tag="whoosh"><svg class="icon" viewBox="0 0 24 24"><path d="M3 8h9M3 12h14M3 16h9"/></svg>Whooshes</button>
-      <button class="pill pill-tag" data-tag="impact"><svg class="icon" viewBox="0 0 24 24"><path d="m12 3 1.8 6.2L20 12l-6.2 2.8L12 21l-1.8-6.2L4 12l6.2-2.8z"/></svg>Impacts</button>
-      <button class="pill pill-tag" data-tag="gun"><svg class="icon" viewBox="0 0 24 24"><path d="M4 8h12l2 3h3v3h-7l-2 4H9l1-4H4z"/></svg>Guns</button>
-      <button class="pill pill-tag" data-tag="click"><svg class="icon" viewBox="0 0 24 24"><path d="m5 3 3 14 3-4 4 5 2-2-4-5 5-1z"/></svg>Clicks</button>
-      <button class="pill pill-tag" data-tag="cinematic"><svg class="icon" viewBox="0 0 24 24"><path d="M4 7h16v10H4zM8 7V4M16 7V4M8 17v3M16 17v3"/></svg>Cinematic</button>
-      <button class="pill pill-tag" data-tag="glitch"><svg class="icon" viewBox="0 0 24 24"><path d="M4 6h6v5H4zM14 13h6v5h-6zM14 6h6M4 18h6M10 8l4 8M14 8l-4 8"/></svg>Glitch</button>
-      <button class="pill pill-tag" data-tag="car"><svg class="icon" viewBox="0 0 24 24"><path d="m5 16 2-6h10l2 6M4 16h16v3H4zM7 19v2M17 19v2M7 14h.1M17 14h.1"/></svg>Cars</button>
-      <button class="pill pill-tag" data-tag="meme"><svg class="icon" viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><path d="M8 14s1 2 4 2 4-2 4-2M8 9h.1M16 9h.1"/></svg>Memes</button>
+      <button class="pill active" data-cat="__home">🏠 All</button>
+      <button class="pill" data-cat="__custom">🛠️ My Assets</button>
+      <button class="pill pill-tag" data-tag="shake">🎬 Shakes</button>
+      <button class="pill" data-cat="__favorites">★ Favorites</button>
+      <button class="pill" data-cat="__recent">🕒 Recent</button>
+      <button class="pill pill-tag" data-tag="riser">⚡ Risers</button>
+      <button class="pill pill-tag" data-tag="whoosh">💨 Whooshes</button>
+      <button class="pill pill-tag" data-tag="impact">💥 Impacts</button>
+      <button class="pill pill-tag" data-tag="gun">🔫 Guns</button>
+      <button class="pill pill-tag" data-tag="click">🖱️ Clicks</button>
+      <button class="pill pill-tag" data-tag="cinematic">🎬 Cinematic</button>
+      <button class="pill pill-tag" data-tag="glitch">👾 Glitch</button>
+      <button class="pill pill-tag" data-tag="car">🏎️ Cars</button>
+      <button class="pill pill-tag" data-tag="meme">😂 Memes</button>
     </div>
 
     <!-- MAIN BODY AREA -->
@@ -69,15 +62,16 @@
       <nav class="sidebar" id="sidebar">
         <div class="sidebar-header">
           <span class="eyebrow">LIBRARY CATEGORIES</span>
-          <button id="closeSidebarBtn" class="close-btn"><svg class="icon" viewBox="0 0 24 24"><path d="m6 6 12 12M18 6 6 18"/></svg></button>
+          <button id="closeSidebarBtn" class="close-btn">✕</button>
         </div>
         <div class="sidebar-section">
-          <div class="sidebar-item active" data-cat="__home"><svg class="icon" viewBox="0 0 24 24"><path d="m3 11 9-8 9 8v9h-6v-6H9v6H3z"/></svg>Home Overview</div>
-          <div class="sidebar-item" data-cat="Shakes"><svg class="icon" viewBox="0 0 24 24"><path d="m4 9 5 3-5 3M20 9l-5 3 5 3M12 4v16"/></svg>Camera Shakes</div>
-          <div class="sidebar-item" data-cat="__favorites"><svg class="icon" viewBox="0 0 24 24"><path d="m12 3 2.8 5.7 6.2.9-4.5 4.4 1.1 6.2-5.6-2.9-5.6 2.9 1.1-6.2L3 9.6l6.2-.9z"/></svg>Favorites</div>
-          <div class="sidebar-item" data-cat="__recent"><svg class="icon" viewBox="0 0 24 24"><path d="M12 7v5l3 2M20 12a8 8 0 1 1-2.3-5.7M20 4v6h-6"/></svg>Recent</div>
-          <div class="sidebar-item" data-cat="__downloads"><svg class="icon" viewBox="0 0 24 24"><path d="M12 3v12M7 10l5 5 5-5M4 20h16"/></svg>Downloads</div>
-          <div class="sidebar-item" data-cat="__updates"><svg class="icon" viewBox="0 0 24 24"><path d="M20 11a8 8 0 0 0-14.8-4L3 10M4 5v5h5M4 13a8 8 0 0 0 14.8 4L21 14m-1 5v-5h-5"/></svg>Updates</div>
+          <div class="sidebar-item active" data-cat="__home">🏠 Home Overview</div>
+          <div class="sidebar-item" data-cat="__custom">🛠️ My Custom Assets</div>
+          <div class="sidebar-item" data-cat="Shakes">🎬 Camera Shakes</div>
+          <div class="sidebar-item" data-cat="__favorites">★ Favorites</div>
+          <div class="sidebar-item" data-cat="__recent">🕒 Recent</div>
+          <div class="sidebar-item" data-cat="__downloads">⬇ Downloads</div>
+          <div class="sidebar-item" data-cat="__updates">⟳ Updates</div>
         </div>
         <div class="sidebar-divider"></div>
         <div class="sidebar-section" id="categoryList">
@@ -90,4 +84,147 @@
         <div class="content-header">
           <div class="title-group">
             <span class="eyebrow" id="eyebrowText">ASSET SUITE</span>
-    
+            <h2 id="contentTitle">Home</h2>
+          </div>
+          <span id="contentCount" class="count-pill">1,912 ASSETS</span>
+        </div>
+
+        <div id="cardGrid" class="card-grid list-view">
+          <!-- High-density 32px rows injected here -->
+        </div>
+
+        <div id="emptyState" class="empty-state" style="display:none;">
+          <p>No matching assets found.</p>
+          <p class="empty-sub">Drop files into <code>Assets/</code> or use ➕ to create custom assets.</p>
+        </div>
+      </main>
+
+      <!-- INSPECTOR DRAWER (Shake Parameter Controls & 60FPS Live Preview) -->
+      <aside class="inspector-drawer" id="inspectorDrawer" style="display:none;">
+        <div class="inspector-header">
+          <span id="inspectorTitle" class="eyebrow" style="margin:0;">PRESET CUSTOMIZER</span>
+          <button id="closeInspectorBtn" class="close-btn">✕</button>
+        </div>
+        <div class="inspector-body" id="inspector">
+          <!-- Populated dynamically -->
+        </div>
+      </aside>
+
+    </div>
+
+    <!-- FLOATING GLASS MINI-PLAYER & QUICK INSERT BAR -->
+    <div id="playerBar" class="player-bar" style="display:none;">
+      <button id="playerPlayBtn" class="player-btn">▶</button>
+      <div class="player-info">
+        <span id="playerTitle" class="player-title">Selected Audio</span>
+        <canvas id="waveformCanvas" class="waveform-canvas" width="160" height="20"></canvas>
+      </div>
+      <div class="player-controls">
+        <input id="volumeSlider" type="range" min="0" max="1" step="0.05" value="0.8" class="vol-slider" title="Volume" />
+        <button id="playerInsertBtn" class="insert-action-btn">⚡ INSERT</button>
+      </div>
+    </div>
+
+    <!-- STATUS BAR -->
+    <footer class="statusbar">
+      <span id="statusText">Ready</span>
+      <div class="statusbar-right">
+        <span id="assetTotal">1,912 assets indexed</span>
+      </div>
+    </footer>
+
+  </div>
+
+  <!-- ASSET BUILDER & MANAGER STUDIO MODAL -->
+  <div id="assetStudioModal" class="modal-overlay" style="display:none;">
+    <div class="modal-card">
+      <div class="modal-header">
+        <h3>🛠️ Asset Studio & Builder</h3>
+        <button id="closeStudioBtn" class="close-btn">✕</button>
+      </div>
+      <div class="modal-tabs">
+        <button class="tab-btn active" data-tab="createShakeTab">🫨 Create Shake</button>
+        <button class="tab-btn" data-tab="importAudioTab">🔊 Import Audio</button>
+        <button class="tab-btn" data-tab="manageTab">🗂️ Manage My Assets</button>
+      </div>
+
+      <div class="modal-body">
+        <!-- TAB 1: CREATE CUSTOM SHAKE -->
+        <div id="createShakeTab" class="tab-content active">
+          <div class="shake-preview-viewport" style="height:110px;">
+            <canvas id="studioShakeCanvas" class="shake-canvas"></canvas>
+          </div>
+          <div class="form-group">
+            <label>Preset Name</label>
+            <input type="text" id="customShakeName" placeholder="e.g. My Epic Action Shake" />
+          </div>
+          <div class="form-group">
+            <label>Category</label>
+            <input type="text" id="customShakeCategory" value="Custom Shakes" />
+          </div>
+          <div class="form-row">
+            <div>
+              <label>Intensity (<span id="studioValIntensity">40</span>)</label>
+              <input type="range" id="studioIntensity" min="1" max="100" value="40" />
+            </div>
+            <div>
+              <label>Duration (<span id="studioValDuration">0.6s</span>)</label>
+              <input type="range" id="studioDuration" min="0.1" max="5" step="0.1" value="0.6" />
+            </div>
+          </div>
+          <div class="form-row">
+            <div>
+              <label>Scale (<span id="studioValScale">10%</span>)</label>
+              <input type="range" id="studioScale" min="0" max="30" value="10" />
+            </div>
+            <div>
+              <label>Rotation (<span id="studioValRotation">6°</span>)</label>
+              <input type="range" id="studioRotation" min="0" max="30" value="6" />
+            </div>
+          </div>
+          <button id="saveCustomShakeBtn" class="insert-action-btn" style="width:100%; height:34px; margin-top:8px;">💾 SAVE SHAKE PRESET TO LIBRARY</button>
+        </div>
+
+        <!-- TAB 2: IMPORT AUDIO -->
+        <div id="importAudioTab" class="tab-content" style="display:none;">
+          <div class="form-group">
+            <label>Select Audio File (.wav, .mp3, .aiff)</label>
+            <input type="file" id="audioFileInput" accept="audio/*" />
+          </div>
+          <div class="form-group">
+            <label>Sound Title</label>
+            <input type="text" id="customAudioName" placeholder="e.g. My Custom Impact" />
+          </div>
+          <div class="form-group">
+            <label>Category</label>
+            <input type="text" id="customAudioCategory" value="My Custom Sounds" />
+          </div>
+          <button id="saveCustomAudioBtn" class="insert-action-btn" style="width:100%; height:34px; margin-top:8px;">📥 ADD SOUND TO LIBRARY</button>
+        </div>
+
+        <!-- TAB 3: MANAGE ASSETS -->
+        <div id="manageTab" class="tab-content" style="display:none;">
+          <div id="customAssetsList" class="custom-assets-list">
+            <!-- Populated dynamically -->
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- TOAST NOTIFICATIONS -->
+  <div id="toasts" class="toasts"></div>
+
+  <!-- Clean local scripts without query params for CEP file:// compatibility -->
+  <script src="js/lib/CSInterface.js"></script>
+  <script src="js/modules/scanner.js"></script>
+  <script src="js/modules/database.js"></script>
+  <script src="js/modules/settings.js"></script>
+  <script src="js/modules/updater.js"></script>
+  <script src="js/modules/downloader.js"></script>
+  <script src="js/modules/license.js"></script>
+  <script src="js/modules/player.js"></script>
+  <script src="js/modules/ui.js"></script>
+  <script src="js/main.js"></script>
+</body>
+</html>
