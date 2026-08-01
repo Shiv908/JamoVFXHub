@@ -103,7 +103,7 @@ GS.Scanner = (function () {
 
       assets.push({
         id: group + "/" + categoryName + "/" + base,
-        name: meta.Name || titleCase(base),
+        name: String(meta.Name || "").trim() || titleCase(base) || base,
         category: categoryName,
         group: group,
         type: isTemplate ? "template" : kind,

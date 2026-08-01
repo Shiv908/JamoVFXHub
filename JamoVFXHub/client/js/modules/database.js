@@ -79,10 +79,37 @@ GS.DB = (function () {
     });
   }
 
+  function normalizeAsset(raw) {
+    if (!raw) return null;
+    var name = raw.name || raw.Name || raw.title || raw.Title || "Unnamed Asset";
+    var category = raw.category || raw.Category || "General";
+    var group = raw.group || raw.Group || "Library";
+    var file = raw.file || raw.File || raw.sourceFile || raw.SourceFile || "";
+    var id = raw.id || raw.ID || ("asset_" + Math.random().toString(36).substr(2, 9));
+    var type = raw.type || raw.Type || raw.kind || raw.Kind || (file.toLowerCase().endsWith(".ffx") || file.toLowerCase().endsWith(".json") || file.toLowerCase().endsWith(".prfpset") ? "shake" : "audio");
+
+    return {
+      id: String(id),
+      name: String(name).trim(),
+      category: String(category).trim(),
+      group: String(group).trim(),
+      type: String(type).toLowerCase(),
+      kind: String(type).toLowerCase(),
+      file: String(file),
+      sourceFile: String(file),
+      hostHint: raw.hostHint || raw.Host || "",
+      params: raw.params || raw.Params || null,
+      length: raw.length || raw.Length || raw.duration || raw.Duration || "--:--",
+      tags: raw.tags || raw.Tags || [category.toLowerCase()],
+      favorite: !!raw.favorite,
+      preview: raw.preview || raw.Preview || ""
+    };
+  }
+
   function loadFromCache() {
     var cached = readJSON(dbPath(), null);
     if (cached && cached.assets) {
-      state.assets = cached.assets;
+      state.assets = cached.assets.map(normalizeAsset).filter(Boolean);
       state.categories = cached.categories || [];
       mergeCustomAssets();
       applyFavorites();
@@ -94,12 +121,12 @@ GS.DB = (function () {
 
   function rescan() {
     var result = GS.Scanner.scanAll();
-    state.assets = result.assets;
-    state.categories = result.categories;
+    state.assets = (result.assets || []).map(normalizeAsset).filter(Boolean);
+    state.categories = result.categories || [];
     mergeCustomAssets();
     applyFavorites();
     rebuildIndexes();
-    writeJSON(dbPath(), result);
+    writeJSON(dbPath(), { assets: state.assets, categories: state.categories });
     return state;
   }
 

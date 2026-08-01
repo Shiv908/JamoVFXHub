@@ -549,6 +549,126 @@ GS.UI = (function () {
     grid._loadingBatch = false;
   }
 
+  function buildRow(asset) {
+    if (!asset) return document.createElement("div");
+    var name = String(asset.name || asset.Name || asset.title || "Unnamed Asset").trim();
+    var category = String(asset.category || asset.Category || "General").trim().replace(/^\d+\s*/, "");
+    var id = asset.id || asset.ID || "asset_" + Math.random();
+    var duration = asset.length || asset.Length || asset.duration || "--:--";
+
+    var row = document.createElement("div");
+    row.className = "asset-row " + (isShakeAsset(asset) ? "shake-asset" : isTextAsset(asset) ? "text-asset" : "audio-asset");
+    row.draggable = true;
+    row.dataset.id = id;
+    if (selectedAsset && selectedAsset.id === id) row.classList.add("selected");
+    if (playingAssetId === id) row.classList.add("is-playing");
+
+    var playIcon = isShakeAsset(asset) ? svgIcon("shake") : isTextAsset(asset) ? "🔤" : (playingAssetId === id ? svgIcon("pause") : svgIcon("play"));
+
+    row.innerHTML =
+      '<button class="row-play-btn" title="Preview">' + playIcon + '</button>' +
+      '<div class="row-name" title="' + escapeHTML(name) + '">' + escapeHTML(name) + '</div>' +
+      '<span class="row-waveform" aria-hidden="true"></span>' +
+      '<div class="row-meta">' +
+        '<span>' + escapeHTML(category) + '</span>' +
+        '<span>' + escapeHTML(duration) + '</span>' +
+        (playingAssetId === id ? '<span class="playing-label">PLAYING</span>' : '') +
+        '<span class="card-fav' + (asset.favorite ? " active" : "") + '">' + svgIcon("star") + '</span>' +
+        '<button class="row-insert-btn" title="Insert to timeline">' + svgIcon("add") + 'ADD</button>' +
+      '</div>';
+
+    var playBtn = row.querySelector(".row-play-btn");
+    if (playBtn) {
+      playBtn.addEventListener("click", function (e) {
+        e.stopPropagation();
+        selectAsset(asset);
+      });
+    }
+
+    var insertBtn = row.querySelector(".row-insert-btn");
+    if (insertBtn) {
+      insertBtn.addEventListener("click", function (e) {
+        e.stopPropagation();
+        GS.DB.markRecent(id);
+        if (isShakeAsset(asset)) {
+          inspectShake(asset);
+        } else if (isTextAsset(asset)) {
+          inspectText(asset);
+        } else {
+          GS.Host.importSound(asset.file, true);
+        }
+      });
+    }
+
+    var favBtn = row.querySelector(".card-fav");
+    if (favBtn) {
+      favBtn.addEventListener("click", function (e) {
+        e.stopPropagation();
+        GS.DB.toggleFavorite(id);
+        favBtn.classList.toggle("active");
+      });
+    }
+
+    row.addEventListener("click", function () {
+      selectAsset(asset);
+    });
+
+    row.addEventListener("dragstart", function (e) {
+      handleDragStart(e, asset.file || asset.File || "");
+    });
+
+    return row;
+  }
+
+  function handleDragStart(e, filePath) {
+    if (!filePath) return;
+    var normalized = String(filePath).replace(/\\/g, "/");
+    var fileURI = "file:///" + encodeURI(normalized).replace(/#/g, "%23");
+    var fileName = filePath.split(/[\\/]/).pop();
+
+    e.dataTransfer.setData("text/plain", filePath);
+    e.dataTransfer.setData("text/uri-list", fileURI);
+    e.dataTransfer.setData("URL", fileURI);
+    e.dataTransfer.setData("DownloadURL", "application/octet-stream:" + fileName + ":" + fileURI);
+  }
+
+  function buildCard(asset) {
+    if (!asset) return document.createElement("div");
+    var name = String(asset.name || asset.Name || asset.title || "Unnamed Asset").trim();
+    var category = String(asset.category || asset.Category || "General").trim().replace(/^\d+\s*/, "");
+    var id = asset.id || asset.ID || "asset_" + Math.random();
+
+    var card = document.createElement("div");
+    card.className = "asset-card " + (isShakeAsset(asset) ? "shake-asset" : isTextAsset(asset) ? "text-asset" : "audio-asset");
+    card.draggable = true;
+    card.dataset.id = id;
+    if (selectedAsset && selectedAsset.id === id) card.classList.add("selected");
+    if (playingAssetId === id) card.classList.add("is-playing");
+
+    var icon = isShakeAsset(asset) ? svgIcon("shake") : isTextAsset(asset) ? "🔤" : svgIcon("audio");
+
+    card.innerHTML =
+      '<div class="card-preview">' + icon + '</div>' +
+      '<div class="card-name">' + escapeHTML(name) + '</div>' +
+      '<div class="card-meta"><span>' + escapeHTML(category) + '</span>' +
+      '<span class="card-fav' + (asset.favorite ? " active" : "") + '">' + svgIcon("star") + '</span></div>';
+
+    card.addEventListener("click", function (e) {
+      if (e.target.classList.contains("card-fav")) {
+        GS.DB.toggleFavorite(id);
+        e.target.classList.toggle("active");
+        return;
+      }
+      selectAsset(asset);
+    });
+
+    card.addEventListener("dragstart", function (e) {
+      handleDragStart(e, asset.file || asset.File || "");
+    });
+
+    return card;
+  }
+
   function isShakeAsset(asset) {
     if (!asset) return false;
     if (asset.type === "shake" || asset.kind === "shake") return true;
