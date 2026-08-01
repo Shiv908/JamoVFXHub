@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ExtensionManifest Version="9.0" ExtensionBundleId="com.jamovfx.hub"
+    ExtensionBundleVersion="1.0.0" ExtensionBundleName="JamoVFX Hub"
+    xmlns:ExtensionBundleId="http://ns.adobe.com/Extensibility/1.0">
+
+  <ExtensionList>
+    <Extension Id="com.jamovfx.hub.panel" Version="1.0.0" />
+  </ExtensionList>
+
+  <ExecutionEnvironment>
+    <HostList>
+      <!-- AEFT = After Effects (14.0 = CC2019-current) -->
+      <Host Name="AEFT" Version="[14.0,99.9]" />
+      <!-- PPRO = Premiere Pro (13.0 = CC2019-current) -->
+      <Host Name="PPRO" Version="[13.0,99.9]" />
+    </HostList>
+    <LocaleList>
+      <Locale Code="All" />
+    </LocaleList>
+    <RequiredRuntimeList>
+      <RequiredRuntime Name="CSXS" Version="9.0" />
+    </RequiredRuntimeList>
+  </ExecutionEnvironment>
+
+  <DispatchInfoList>
+    <Extension Id="com.jamovfx.hub.panel">
+      <DispatchInfo>
+        <Resources>
+          <MainPath>./client/index.html</MainPath>
+          <ScriptPath>./host/host.jsx</ScriptPath>
+          <CEFCommandLine>
+            <Parameter>--enable-nodejs</Parameter>
+            <Parameter>--mixed-context</Parameter>
+          </CEFCommandLine>
+        </Resources>
+        <Lifecycle>
+          <AutoVisible>true</AutoVisible>
+        </Lifecycle>
+        <UI>
+          <Type>Panel</Type>
+          <Menu>JamoVFX Hub</Menu>
+          <Geometry>
+            <Size>
+              <Height>580</Height>
+              <Width>340</Width>
+            </Size>
+            <MinSize>
+              <Height>320</Height>
+              <Width>240</Width>
+            </MinSize>
+          </Geometry>
+          <Icons>
+            <Icon Type="Normal">./client/icons/icon-normal.png</Icon>
+            <Icon Type="RollOver">./client/icons/icon-rollover.png</Icon>
+            <Icon Type="Darkened">./client/icons/icon-darkened.png</Icon>
+          </Icons>
+        </UI>
+      </DispatchInfo>
+    </Extension>
+  </DispatchInfoList>
+
+</ExtensionManifest>

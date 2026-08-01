@@ -1,0 +1,25 @@
+{
+  "Name": "Shake Preset 2",
+  "Category": "Premiere Pro",
+  "Tags": [
+    "premiere pro",
+    "shake",
+    "preset"
+  ],
+  "Keywords": [
+    "premiere pro",
+    "shake",
+    "preset"
+  ],
+  "Description": "",
+  "Premium": false,
+  "Version": "1.0",
+  "Params": {
+    "intensity": 45,
+    "duration": 0.3,
+    "scale": 8,
+    "rotation": 4,
+    "frequency": 24
+  },
+  "Host": "PPRO"
+}

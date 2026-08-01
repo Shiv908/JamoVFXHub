@@ -1,0 +1,25 @@
+{
+  "Name": "Shake Preset 7",
+  "Category": "After Effects",
+  "Tags": [
+    "after effects",
+    "shake",
+    "preset"
+  ],
+  "Keywords": [
+    "after effects",
+    "shake",
+    "preset"
+  ],
+  "Description": "",
+  "Premium": false,
+  "Version": "1.0",
+  "Params": {
+    "intensity": 28,
+    "duration": 1,
+    "scale": 5,
+    "rotation": 9,
+    "frequency": 10
+  },
+  "Host": "AEFT"
+}

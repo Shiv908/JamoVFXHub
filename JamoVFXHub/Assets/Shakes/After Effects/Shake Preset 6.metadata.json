@@ -1,0 +1,25 @@
+{
+  "Name": "Shake Preset 6",
+  "Category": "After Effects",
+  "Tags": [
+    "after effects",
+    "shake",
+    "preset"
+  ],
+  "Keywords": [
+    "after effects",
+    "shake",
+    "preset"
+  ],
+  "Description": "",
+  "Premium": false,
+  "Version": "1.0",
+  "Params": {
+    "intensity": 35,
+    "duration": 0.5,
+    "scale": 6,
+    "rotation": 2,
+    "frequency": 16
+  },
+  "Host": "AEFT"
+}

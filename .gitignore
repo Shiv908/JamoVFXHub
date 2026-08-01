@@ -1,0 +1,12 @@
+# OS junk
+.DS_Store
+Thumbs.db
+desktop.ini
+
+# Scratch files
+dws.txt
+*.log
+
+# Node dependencies
+node_modules/
+npm-debug.log*

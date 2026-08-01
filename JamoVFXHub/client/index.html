@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>JamoVFX Hub</title>
+<style>
+  @font-face {
+    font-family: "Angila";
+    src: url("../../Angila.ttf") format("truetype");
+    font-style: normal;
+    font-weight: 400;
+    font-display: swap;
+  }
+</style>
+<!-- Google Fonts with local system font fallback -->
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@500;700&family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=Syne:wght@700;800&display=swap" rel="stylesheet">
+<!-- CLEAN FILE PATH FOR CEP (No query strings on file:// protocol) -->
+<link rel="stylesheet" href="css/style.css" />
+</head>
+<body>
+
+  <div id="app">
+
+    <!-- TOP CONTROL BAR -->
+    <header class="topbar">
+      <button id="toggleSidebarBtn" class="icon-btn sidebar-toggle" title="Toggle Categories Drawer"><svg class="icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M4 6h16M4 12h16M4 18h16"/></svg></button>
+      
+      <div class="brand-badge" title="JamoVFX Hub">
+        <span class="brand-mark">JV</span>
+        <span id="hostBadge" class="host-badge">PPRO</span>
+      </div>
+
+      <div class="search-wrap">
+        <input id="searchInput" type="text" placeholder="Search 1,912 sounds, shakes, tags…" autocomplete="off" />
+      </div>
+
+      <div class="top-actions">
+        <button id="viewToggleBtn" class="icon-btn" title="Toggle List / Grid View"><svg class="icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M4 5h6v6H4zM14 5h6v6h-6zM4 15h6v6H4zM14 15h6v6h-6z"/></svg></button>
+        <button id="reloadPanelBtn" class="icon-btn" title="Force Reload UI"><svg class="icon" viewBox="0 0 24 24" aria-hidden="true"><path d="m13 2-8 12h6l-1 8 8-12h-6z"/></svg></button>
+        <button id="refreshBtn" class="icon-btn" title="Rescan Assets"><svg class="icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M20 11a8 8 0 0 0-14.8-4L3 10M4 5v5h5M4 13a8 8 0 0 0 14.8 4L21 14m-1 5v-5h-5"/></svg></button>
+        <button id="settingsBtn" class="icon-btn" title="Settings"><svg class="icon" viewBox="0 0 24 24" aria-hidden="true"><path d="m9.5 3-.5 2a7 7 0 0 0-2 1.2L5 5.3l-2 3.4 1.7 1.3a7 7 0 0 0 0 2.4L3 13.7l2 3.4 2-0.9a7 7 0 0 0 2 1.2l.5 2h4l.5-2a7 7 0 0 0 2-1.2l2 .9 2-3.4-1.7-1.3a7 7 0 0 0 0-2.4L21 8.7l-2-3.4-2 .9a7 7 0 0 0-2-1.2l-.5-2zM12 9a3 3 0 1 1 0 6 3 3 0 0 1 0-6z"/></svg></button>
+      </div>
+    </header>
+
+    <!-- QUICK KEYWORD FILTER PILLS BAR -->
+    <div class="category-pills-bar" id="categoryPills">
+      <button class="pill active" data-cat="__home"><svg class="icon" viewBox="0 0 24 24"><path d="m3 11 9-8 9 8v9h-6v-6H9v6H3z"/></svg>All</button>
+      <button class="pill pill-tag" data-tag="shake"><svg class="icon" viewBox="0 0 24 24"><path d="m4 9 5 3-5 3M20 9l-5 3 5 3M12 4v16"/></svg>Shakes</button>
+      <button class="pill" data-cat="__favorites"><svg class="icon" viewBox="0 0 24 24"><path d="m12 3 2.8 5.7 6.2.9-4.5 4.4 1.1 6.2-5.6-2.9-5.6 2.9 1.1-6.2L3 9.6l6.2-.9z"/></svg>Favorites</button>
+      <button class="pill" data-cat="__recent"><svg class="icon" viewBox="0 0 24 24"><path d="M12 7v5l3 2M20 12a8 8 0 1 1-2.3-5.7M20 4v6h-6"/></svg>Recent</button>
+      <button class="pill pill-tag" data-tag="riser"><svg class="icon" viewBox="0 0 24 24"><path d="M12 20V4M6 10l6-6 6 6"/></svg>Risers</button>
+      <button class="pill pill-tag" data-tag="whoosh"><svg class="icon" viewBox="0 0 24 24"><path d="M3 8h9M3 12h14M3 16h9"/></svg>Whooshes</button>
+      <button class="pill pill-tag" data-tag="impact"><svg class="icon" viewBox="0 0 24 24"><path d="m12 3 1.8 6.2L20 12l-6.2 2.8L12 21l-1.8-6.2L4 12l6.2-2.8z"/></svg>Impacts</button>
+      <button class="pill pill-tag" data-tag="gun"><svg class="icon" viewBox="0 0 24 24"><path d="M4 8h12l2 3h3v3h-7l-2 4H9l1-4H4z"/></svg>Guns</button>
+      <button class="pill pill-tag" data-tag="click"><svg class="icon" viewBox="0 0 24 24"><path d="m5 3 3 14 3-4 4 5 2-2-4-5 5-1z"/></svg>Clicks</button>
+      <button class="pill pill-tag" data-tag="cinematic"><svg class="icon" viewBox="0 0 24 24"><path d="M4 7h16v10H4zM8 7V4M16 7V4M8 17v3M16 17v3"/></svg>Cinematic</button>
+      <button class="pill pill-tag" data-tag="glitch"><svg class="icon" viewBox="0 0 24 24"><path d="M4 6h6v5H4zM14 13h6v5h-6zM14 6h6M4 18h6M10 8l4 8M14 8l-4 8"/></svg>Glitch</button>
+      <button class="pill pill-tag" data-tag="car"><svg class="icon" viewBox="0 0 24 24"><path d="m5 16 2-6h10l2 6M4 16h16v3H4zM7 19v2M17 19v2M7 14h.1M17 14h.1"/></svg>Cars</button>
+      <button class="pill pill-tag" data-tag="meme"><svg class="icon" viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><path d="M8 14s1 2 4 2 4-2 4-2M8 9h.1M16 9h.1"/></svg>Memes</button>
+    </div>
+
+    <!-- MAIN BODY AREA -->
+    <div class="body">
+
+      <!-- COLLAPSIBLE SIDEBAR DRAWER -->
+      <nav class="sidebar" id="sidebar">
+        <div class="sidebar-header">
+          <span class="eyebrow">LIBRARY CATEGORIES</span>
+          <button id="closeSidebarBtn" class="close-btn"><svg class="icon" viewBox="0 0 24 24"><path d="m6 6 12 12M18 6 6 18"/></svg></button>
+        </div>
+        <div class="sidebar-section">
+          <div class="sidebar-item active" data-cat="__home"><svg class="icon" viewBox="0 0 24 24"><path d="m3 11 9-8 9 8v9h-6v-6H9v6H3z"/></svg>Home Overview</div>
+          <div class="sidebar-item" data-cat="Shakes"><svg class="icon" viewBox="0 0 24 24"><path d="m4 9 5 3-5 3M20 9l-5 3 5 3M12 4v16"/></svg>Camera Shakes</div>
+          <div class="sidebar-item" data-cat="__favorites"><svg class="icon" viewBox="0 0 24 24"><path d="m12 3 2.8 5.7 6.2.9-4.5 4.4 1.1 6.2-5.6-2.9-5.6 2.9 1.1-6.2L3 9.6l6.2-.9z"/></svg>Favorites</div>
+          <div class="sidebar-item" data-cat="__recent"><svg class="icon" viewBox="0 0 24 24"><path d="M12 7v5l3 2M20 12a8 8 0 1 1-2.3-5.7M20 4v6h-6"/></svg>Recent</div>
+          <div class="sidebar-item" data-cat="__downloads"><svg class="icon" viewBox="0 0 24 24"><path d="M12 3v12M7 10l5 5 5-5M4 20h16"/></svg>Downloads</div>
+          <div class="sidebar-item" data-cat="__updates"><svg class="icon" viewBox="0 0 24 24"><path d="M20 11a8 8 0 0 0-14.8-4L3 10M4 5v5h5M4 13a8 8 0 0 0 14.8 4L21 14m-1 5v-5h-5"/></svg>Updates</div>
+        </div>
+        <div class="sidebar-divider"></div>
+        <div class="sidebar-section" id="categoryList">
+          <!-- Populated dynamically -->
+        </div>
+      </nav>
+
+      <!-- MAIN CONTENT LIST / GRID -->
+      <main class="content">
+        <div class="content-header">
+          <div class="title-group">
+            <span class="eyebrow" id="eyebrowText">ASSET SUITE</span>
+    
